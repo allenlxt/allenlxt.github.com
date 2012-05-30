@@ -10,8 +10,9 @@ categories: octopress rvm
 
 ## ubuntu10.04安装rvm ##
 
-### 1. 安装curl、ruby ###
-	sudo apt-get install curl ruby
+### 1. 安装ruby依靠包、curl、ruby ###
+	sudo apt-get install build-essential openssl libreadline6 libreadline6-dev curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt-dev autoconf libc6-dev ncurses-dev automake libtool bison subversion
+	sudo apt-get install ruby
 
 ### 2. 通过下面指令安装rvm ###
 	bash -s stable < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer )
@@ -66,7 +67,9 @@ categories: octopress rvm
 	gem install bundler
 	bundle install
 
-到此已完成`Octopress`环境的配置，可以使用`Octopress`的相关命令，如`rake install`、
-`rake generate`、`rake preview`等。
+到此已完成`Octopress`环境的配置，可以使用`Octopress`的相关命令：    
+	rake install
+	rake generate
+	rake preview
 
 <hr />

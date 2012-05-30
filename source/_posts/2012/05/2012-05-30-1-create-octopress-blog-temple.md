@@ -58,12 +58,17 @@ octopress的工作到此已经完成。
 先checkout版本，如下：   
 	git clone git@github.com:meegoo-tsui/meegoo-tsui.github.com.git
 	cd meegoo-tsui.github.com
+	rake setup_github_pages
 	git branch -a
 	  master
 	* source
 	  remotes/origin/HEAD -> origin/master
 	  remotes/origin/master
 	  remotes/origin/source
+	git checkout source
+	rake generate
+	rake preview
+	rake deploy
 
 `master`分支为主页显示所需要的内容，因此需要在github上配置当前分支为`master`；    
 `source`分支为源代码，在此分支上写代码然后使用`rake deploy`就可以修改`master`的内容，也就
