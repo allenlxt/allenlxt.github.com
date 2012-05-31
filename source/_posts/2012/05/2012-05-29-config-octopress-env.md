@@ -63,6 +63,7 @@ categories: octopress rvm
 	ruby --version  # 显示 Ruby 1.9.2
 
 ### 3. 安装依靠包 ###
+Windows环境安装了[RailsInstaller](http://railsinstaller.org/)，可直接安装下面内容，
 以下命令需要在`octopress`路径下执行，版本的锁定需要此路径下的`Gemfile`文件：   
 	gem install bundler
 	bundle install

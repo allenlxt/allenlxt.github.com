@@ -6,8 +6,16 @@ comments: true
 categories: jekyll
 ---
 
-安装jekyll在windows和linux。
-## jekyll的安装 - Windows 7 ##
+<!---
+################################################################################
+-->
+*    [Windows 环境](#windows)
+*    [Linux 环境](#linux)
+
+<!---
+################################################################################
+-->
+<h2 id="windows">jekyll的安装 - Windows 环境</h2>
 ### 1. 安装RailsInstaller ###
 下载[RailsInstaller](http://railsinstaller.org/)，
 然后安装，里面包含了Ruby、Rails、Bundler、Git、Sqlite、TinyTDS、SQL Server support和DevKit。
@@ -66,44 +74,13 @@ $ easy_install Pygments
 {% endhighlight %}
 
 e. 修正bug：D:\RailsInstaller\Ruby1.9.3\lib\ruby\gems\1.9.1\gems\albino-1.3.3\lib\albino.rb；    
-{% highlight diff %}
-diff --git a/lib/albino.rb b/lib/albino.rb
-index 387c8e9..b77d55e 100644
---- a/lib/albino.rb
-+++ b/lib/albino.rb
-@@ -1,4 +1,5 @@
- require 'posix-spawn'
-+require 'rbconfig'
- 
- ##
- # Wrapper for the Pygments command line tool, pygmentize.
-@@ -84,11 +85,21 @@ class Albino
-     proc_options[:timeout] = options.delete(:timeout) || self.class.timeout_threshold
-     command = convert_options(options)
-     command.unshift(bin)
--    Child.new(*(command + [proc_options.merge(:input => write_target)]))
-+    if RbConfig::CONFIG['host_os'] =~ /(mingw|mswin)/
-+      output = ''
-+      IO.popen(command, mode='r+') do |p|
-+        p.write @target
-+        p.close_write
-+        output = p.read.strip
-+      end
-+      output
-+    else
-+      Child.new(*(command + [proc_options.merge(:input => write_target)]))
-+    end
-   end
- 
-   def colorize(options = {})
--    out = execute(options).out
-+    out = RbConfig::CONFIG['host_os'] =~ /(mingw|mswin)/ ? execute(options) : execute(options).out
- 
-     # markdown requires block elements on their own line
-     out.sub!(%r{</pre></div>\Z}, "</pre>\n</div>")
-{% endhighlight %}
+{% include_code lang:diff albino.rb.diff %}
 
-## jekyll的安装 - Ubuntu 10.04 ##
+<!---
+################################################################################
+-->
+<hr />
+<h2 id="linux">jekyll的安装 - linux 环境</h2>
 ### 1. Install ruby ###
 {% highlight bash %}
 $ sudo apt-get install ruby1.9.1 ruby1.9.1-dev python-pygments
