@@ -73,4 +73,14 @@ Windows环境安装了[RailsInstaller](http://railsinstaller.org/)，可直接�
 	rake generate
 	rake preview
 
+windows下问题:    
+	d:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/ffi-1.0.11/lib/ffi/library.
+	rb:121:in `block in ffi_lib': Could not open library 'c:\Python27/lib/python27.dll':  (LoadError)
+
+修改文件`D:\RailsInstaller\Ruby1.9.3\lib\ruby\gems\1.9.1\gems\rubypython-0.5.3\lib\rubypython\python.rb`:    
+    # ffi_lib_flags :lazy, :global
+    ffi_lib_flags  "python27"
+
+拷贝`python27.dll`到`c:\Python27\lib`即可。
+
 <hr />
