@@ -52,8 +52,8 @@ categories: octopress rvm
 
 ### 1. 安装ruby ###
 `Octopress`当前使用的`ruby`版本为`1.9.2`，因此使用如下命令安装`ruby`：    
-	rvm pkg install zlib    # 不安装可能报错，报错时安装再重装 rvm reinstall 1.9.2
-	rvm pkg install openssh # 不安装可能报错，报错时安装再重装 rvm reinstall 1.9.2
+	rvm install 1.9.2 && rvm use 1.9.2
+需要重装时：   
 	rvm install 1.9.2 && rvm use 1.9.2
 
 ### 2. 克隆`Octopress`的版本库 ###

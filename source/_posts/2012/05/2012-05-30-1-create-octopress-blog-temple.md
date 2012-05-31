@@ -58,15 +58,16 @@ octopress的工作到此已经完成。
 先checkout版本，如下：   
 	git clone git@github.com:meegoo-tsui/meegoo-tsui.github.com.git
 	cd meegoo-tsui.github.com
-	rake setup_github_pages
+	rake setup_github_pages # 此条命令必须，不然deploy失败
 	git branch -a
-	  master
-	* source
+	  master                # 此分支为主页显示的内容，source分支deploy自动push生成
+	* source                # 所有源程序及文档
 	  remotes/origin/HEAD -> origin/master
 	  remotes/origin/master
 	  remotes/origin/source
-	git checkout source
+	git checkout source     # 切换到source分支操作
 	rake generate
+	rake new_post[test-blog]# 生成博客，也可以手动生成
 	rake preview
 	rake deploy
 
