@@ -6,7 +6,16 @@ comments: true
 categories: octopress
 ---
 
-### 1. 代码块 ###
+*   内容列表
+    *   [1. 代码块](#codeblock)
+    *   [2. 代码包含](#includecode)
+    *   [3. 引用](#blockquote)
+    *   [4. gist](#gist)
+    *   [5. 图片](#img)
+    *   [6. 视频](#video)
+    *   [7. category](#category)
+
+<h2 id="codeblock">1. 代码块</h2>
 语法：    
 	{{ "{% codeblock [title] [lang:language] [start:#] [url] [link text]" }} %}
 	code snippet
@@ -58,7 +67,7 @@ var arr1 = new Array(arrayLength);
 var arr2 = new Array(element0, element1, ..., elementN);
 {% endcodeblock %}
 
-实例5 - 添加行信息：     
+实例6 - 添加行信息：     
     {% raw %}{% codeblock Coffeescript Tricks lang:coffeescript start:51 %}
     # Given an alphabet:
     alphabet = 'abcdefghijklmnopqrstuvwxyz'
@@ -75,8 +84,7 @@ alphabet = 'abcdefghijklmnopqrstuvwxyz'
 console.log letter for letter in alphabet[4..8]
 {% endcodeblock %}
 
-
-### 2. 代码包含 ###
+<h2 id="includecode">2. 代码包含</h2>
 语法：   
 	{{ "{% include_code [title] [lang:language] path/to/file [start:#] [end:#] [range:#,#]" }} %}
 
@@ -94,7 +102,7 @@ console.log letter for letter in alphabet[4..8]
 	{{ "{% include_code test.coffee lang:coffeescript" }} %}
 {% include_code test.coffee lang:coffeescript %}
 
-### 3. 引用 ###
+<h2 id="blockquote">3. 引用</h2>
 语法：   
 	{{ "{% blockquote [author[, source]] [link] [source_link_title]" }} %}
 	Quote string
@@ -127,7 +135,18 @@ Flying is learning how to throw yourself at the ground and miss.
 Every interaction is both precious and an opportunity to delight.
 {% endblockquote %}
 
-### 4. 图片 ###
+<h2 id="gist">4. gist</h2>
+语法：   
+    {{ "{% gist gist_id [filename]" }} %}
+实例：
+	{{ "{% gist 996818" }} %}
+{% gist 996818 %}
+
+包含多个文件：   
+	{{ "{% gist 1059334 svg_bullets.rb" }} %}
+	{{ "{% gist 1059334 usage.scss" }} %}
+
+<h2 id="img">5. 图片</h2>
 语法：   
 	{{ "{% img [class names] /path/to/image [width] [height] [title text [alt text]]" }} %}
 实例：    
@@ -160,7 +179,7 @@ hamburger corned beef drumstick ad. Eu labore enim velit.
 Filler text courtesy of [Bacon Ipsum](http://baconipsum.com), 
 Images courtesy of [Place Kitten](http://placekitten.com).
 
-### 5. 视频 ###
+<h2 id="video">6. 视频</h2>
 语法：   
 	{{ "{% video url/to/video [width height] [url/to/poster]" }} %}
 实例：    
@@ -168,7 +187,7 @@ Images courtesy of [Place Kitten](http://placekitten.com).
 效果如下： 
 {% video http://s3.imathis.com/video/zero-to-fancy-buttons.mp4 640 320 http://s3.imathis.com/video/zero-to-fancy-buttons.png %}
 
-### 6. category ###
+<h2 id="category">7. category</h2>
 修改plugin，生成categories，补丁文件如下：    
 {% include_code lang:diff category_generator.rb.diff %}
 
