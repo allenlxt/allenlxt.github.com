@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: github | Meegoo Tsui's Blog]]></title>
+  <link href="http://meegoo-tsui.github.com/blog/categories/github/atom.xml" rel="self"/>
+  <link href="http://meegoo-tsui.github.com/"/>
+  <updated>2012-06-01T11:30:54+08:00</updated>
+  <id>http://meegoo-tsui.github.com/</id>
+  <author>
+    <name><![CDATA[Meegoo Tsui]]></name>
+    <email><![CDATA[meegoo.tsui@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[在github上使用git]]></title>
+    <link href="http://meegoo-tsui.github.com/blog/2012/05/15/git-on-github/"/>
+    <updated>2012-05-15T13:11:00+08:00</updated>
+    <id>http://meegoo-tsui.github.com/blog/2012/05/15/git-on-github</id>
+    <content type="html"><![CDATA[<h2>git工具的安装 - Windows 7</h2>
+
+<h3>1. 安装命令行工具 msysgit</h3>
+
+<p>msysgit为google上的托管项目，可以从<a href="http://code.google.com/p/msysgit/downloads/list">google</a>下载安装包，
+选择最新版本(Git-1.7.8-preview20111206.exe)进行安装，安装时无特别要求，选择默认选项，一直“next”完成安装。</p>
+
+<h3>2. 安装图形工具 - tortoise git</h3>
+
+<p>tortoisegit为google上的托管项目，可以从<a href="http://code.google.com/p/tortoisegit/downloads/list">google</a>下载安装包，
+选择最新版本(TortoiseGit-1.7.8.0-32bit.msi或TortoiseGit-1.7.8.0-64bit.msi)进行安装，安装时无特别要求，
+选择默认选项，一直“next”完成安装。</p>
+
+<h3>3. git配置</h3>
+
+<p>配置git账户信息，包括用户名和邮件地址等，一般以命令行形式配置，使用git config配置时:</p>
+
+<ul>
+<li>无参数   - 参数保存在.git/config</li>
+<li>--global - 参数保存在/home/user_name/.gitconfig</li>
+<li>--system - 参数保存在/etc/gitconfig</li>
+</ul>
+
+
+<p>执行配置脚本：
+<div>
+  <pre><code class='bash'>&lt;/p&gt;
+
+&lt;h1&gt;!/bin/sh&lt;/h1&gt;
+
+&lt;h1&gt;name and email&lt;/h1&gt;
+
+&lt;p&gt;git config --global user.name &quot;meegoo tsui&quot;
+git config --global user.email &quot;meegoo.tsui@gmail.com&quot;&lt;/p&gt;
+
+&lt;h1&gt;chinese font&lt;/h1&gt;
+
+&lt;p&gt;git config --global gui.encoding utf-8
+git config --global i18n.commitencoding utf-8
+git config --global i18n.logoutputencoding gbk&lt;/p&gt;
+
+&lt;h1&gt;fie mode and edit&lt;/h1&gt;
+
+&lt;p&gt;git config --global core.fileMode false
+git config --global core.editor vim&lt;/p&gt;
+
+&lt;h1&gt;diff&lt;/h1&gt;
+
+&lt;p&gt;git config --global diff.external git-diff-wrapper.sh
+git config --global diff.tool tortoise
+git config --global difftool.tortoise.cmd 'TortoiseMerge -base:&quot;$LOCAL&quot; -theirs:&quot;$REMOTE&quot;'
+git config --global difftool.prompt false&lt;/p&gt;
+
+&lt;h1&gt;merge&lt;/h1&gt;
+
+&lt;p&gt;git config --global merge.tool tortoise
+git config --global mergetool.tortoise.cmd 'TortoiseMerge -base:&quot;$BASE&quot; -theirs:&quot;$REMOTE&quot; -mine:&quot;$LOCAL&quot; -merged:&quot;$MERGED&quot;'
+git config --global mergetool.prompt false</code></pre>
+</div>
+</p>
+
+<h3>4. 中文输入支持</h3>
+
+<p>修改D:\Program Files (x86)\Git\etc\profile,添加内容如下：</p>
+
+<pre><code># ls 显示中文
+alias ls='ls --show-control-chars --color=auto'
+
+# more 显示中文
+export LESSCHARSET=utf-8
+</code></pre>
+
+<p>中文输入支持，修改文件D:\Program Files (x86)\Git\etc\inputrc：</p>
+
+<pre><code>set output-meta on
+set convert-meta off
+</code></pre>
+
+<p>使用SVN的diff、merge工具TortoiseMerge.exe、git-diff-wrapper.sh，拷贝到D:\Program Files (x86)\Git\bin，git-diff-wrapper.sh
+内容如下：
+<div>
+  <pre><code class='bash'>&lt;/p&gt;
+
+&lt;h1&gt;!/bin/sh&lt;/h1&gt;
+
+&lt;h1&gt;diff is called by git with 7 parameters:&lt;/h1&gt;
+
+&lt;h1&gt;path old-file old-hex old-mode new-file new-hex new-mode&lt;/h1&gt;
+
+&lt;p&gt;TortoiseMerge -base:&quot;$2&quot; -theirs:&quot;$5&quot;</code></pre>
+</div>
+</p>
+
+<h2>git工具的安装 - Ubuntu 10.04</h2>
+
+<h3>1. 安装 openssh</h3>
+
+<p>如果不安装openssh，在导入ssh id_rsa私匙时，认证老是不成功，安装命令如下：</p>
+
+<pre><code>$ sudo apt-get install openssh-serve
+$ sudo /etc/init.d/ssh restart
+</code></pre>
+
+<h3>2. 安装 git</h3>
+
+<p>安装命令如下：</p>
+
+<pre><code>$ sudo apt-get install git-core
+</code></pre>
+
+<h3>3. 安装图形工具 rabbitvcs-nautilus</h3>
+
+<p>与Windows下的tortoisegit的差不多，安装命令如下：</p>
+
+<pre><code>$ sudo add-apt-repository ppa:rabbitvcs/ppa
+$ sudo apt-get update
+$ sudo apt-get install rabbitvcs-nautilus
+</code></pre>
+
+<h2>SSH key生成和使用</h2>
+
+<h3>1. 生成 SSH key</h3>
+
+<p>私匙id_rsa和公匙id_rsa.pub配对生成，配对使用，生成时可设置密码，命令如下：</p>
+
+<pre><code>$ ssh-keygen -t rsa -C "meegoo.tsui@gmail.com"
+</code></pre>
+
+<p>上传公匙id_rsa.pub到github.com的个人repos，测试命令如下：</p>
+
+<pre><code>$ ssh -T git@github.com
+</code></pre>
+
+<h3>2. 导入 SSH key</h3>
+
+<p>复制私匙id_rsa和公匙id_rsa.pub到/home/user_name/.ssh，然后修改文件属性：</p>
+
+<pre><code>$ chmod 600 .ssh/id_rsa .ssh/id_rsa.pub
+</code></pre>
+
+<h3>3. Windows生成*.ppk格式的SSH key</h3>
+
+<p>下载<a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">puttygen.exe</a>，然后导入
+id_rsa文件，Conversions，输入密码，即可生成ppk(putty pravite key)文件。</p>
+
+<h2>创建repos</h2>
+
+<p>在github创建repos的本地操作，基本命令如下：</p>
+
+<h3>Create A Repos</h3>
+
+<pre><code>$ git init
+$ git add README
+$ git commit -m 'first commit'
+$ git remote add origin git@github.com:meegootsui/meegootsui.github.com.git
+$ git push -u origin master
+</code></pre>
+
+<h3>Checkout Repos</h3>
+
+<pre><code>$ git clone git@github.com:meegootsui/meegootsui.github.com.git
+</code></pre>
+
+<h3>Commit</h3>
+
+<pre><code>$ git commit -m ""
+$ git push -u origin master
+</code></pre>
+
+<hr />
+
+]]></content>
+  </entry>
+  
+</feed>

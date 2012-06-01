@@ -1,0 +1,2889 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Meegoo Tsui's Blog]]></title>
+  <link href="http://meegoo-tsui.github.com/atom.xml" rel="self"/>
+  <link href="http://meegoo-tsui.github.com/"/>
+  <updated>2012-06-01T11:30:54+08:00</updated>
+  <id>http://meegoo-tsui.github.com/</id>
+  <author>
+    <name><![CDATA[Meegoo Tsui]]></name>
+    <email><![CDATA[meegoo.tsui@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[octopress使用技巧]]></title>
+    <link href="http://meegoo-tsui.github.com/blog/2012/05/31/octopress-skill/"/>
+    <updated>2012-05-31T08:24:00+08:00</updated>
+    <id>http://meegoo-tsui.github.com/blog/2012/05/31/octopress-skill</id>
+    <content type="html"><![CDATA[<ul>
+<li>内容列表
+
+<ul>
+<li><a href="#codeblock">1. 代码块</a></li>
+<li><a href="#includecode">2. 代码包含</a></li>
+<li><a href="#blockquote">3. 引用</a></li>
+<li><a href="#gist">4. gist</a></li>
+<li><a href="#img">5. 图片</a></li>
+<li><a href="#video">6. 视频</a></li>
+<li><a href="#category">7. category</a></li>
+</ul>
+</li>
+</ul>
+
+
+<h2 id="codeblock">1. 代码块</h2>
+
+
+<p>语法：</p>
+
+<pre><code>{% codeblock [title] [lang:language] [start:#] [url] [link text] %}
+code snippet
+{% endcodeblock %}
+</code></pre>
+
+<p>实例1 - 简单显示：</p>
+
+<pre><code>{% codeblock %}
+需要显示的代码
+{% endcodeblock %}
+</code></pre>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>需要显示的代码</span></code></pre></td></tr></table></div></figure>
+
+
+<p>实例2 - 高亮显示：</p>
+
+<pre><code>{% codeblock lang:objc %}
+[rectangle setX: 10 y: 10 width: 20 height: 20];
+{% endcodeblock %}
+</code></pre>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="p">[</span><span class="n">rectangle</span> <span class="nl">setX:</span> <span class="mi">10</span> <span class="nl">y:</span> <span class="mi">10</span> <span class="nl">width:</span> <span class="mi">20</span> <span class="nl">height:</span> <span class="mi">20</span><span class="p">];</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>实例3 - 高亮显示（交互）：</p>
+
+<pre><code>{% codeblock Time to be Awesome - awesome.rb %}
+puts "Awesome!" unless lame
+{% endcodeblock %}
+</code></pre>
+
+<figure class='code'><figcaption><span>Time to be Awesome - awesome.rb </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="nb">puts</span> <span class="s2">&quot;Awesome!&quot;</span> <span class="k">unless</span> <span class="n">lame</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>实例4 - 高亮显示（强制）：</p>
+
+<pre><code>{% codeblock Here's an example .rvmrc file. lang:ruby %}
+rvm ruby-1.8.6 # ZOMG, seriously? We still use this version?
+{% endcodeblock %}
+</code></pre>
+
+<figure class='code'><figcaption><span>Here&#8217;s an example .rvmrc file.  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">rvm</span> <span class="n">ruby</span><span class="o">-</span><span class="mi">1</span><span class="o">.</span><span class="mi">8</span><span class="o">.</span><span class="mi">6</span> <span class="c1"># ZOMG, seriously? We still use this version?</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>实例5 - 添加url：</p>
+
+<pre><code>{% codeblock Javascript Array Syntax lang:js http://j.mp/pPUUmW MDN Documentation %}
+var arr1 = new Array(arrayLength);
+var arr2 = new Array(element0, element1, ..., elementN);
+{% endcodeblock %}
+</code></pre>
+
+<figure class='code'><figcaption><span>Javascript Array Syntax </span><a href='http://j.mp/pPUUmW'>MDN Documentation </a></figcaption> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kd">var</span> <span class="nx">arr1</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="nx">arrayLength</span><span class="p">);</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">arr2</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="nx">element0</span><span class="p">,</span> <span class="nx">element1</span><span class="p">,</span> <span class="p">...,</span> <span class="nx">elementN</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>实例6 - 添加行信息：</p>
+
+<pre><code>{% codeblock Coffeescript Tricks lang:coffeescript start:51 %}
+# Given an alphabet:
+alphabet = 'abcdefghijklmnopqrstuvwxyz'
+
+# Iterate over part of the alphabet:
+console.log letter for letter in alphabet[4..8]
+{% endcodeblock %}
+</code></pre>
+
+<figure class='code'><figcaption><span>Coffeescript Tricks start:51 </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="c1"># Given an alphabet:</span>
+</span><span class='line'><span class="nv">alphabet = </span><span class="s">&#39;abcdefghijklmnopqrstuvwxyz&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Iterate over part of the alphabet:</span>
+</span><span class='line'><span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="nx">letter</span> <span class="k">for</span> <span class="nx">letter</span> <span class="k">in</span> <span class="nx">alphabet</span><span class="p">[</span><span class="mi">4</span><span class="p">..</span><span class="mi">8</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<h2 id="includecode">2. 代码包含</h2>
+
+
+<p>语法：</p>
+
+<pre><code>{% include_code [title] [lang:language] path/to/file [start:#] [end:#] [range:#,#] %}
+</code></pre>
+
+<p>实例1 - 基本用法：   <br/>
+文件路径<code>source/downloads/code/test.js</code>，include_code的默认路径可修改。</p>
+
+<pre><code>{% include_code test.js %}
+</code></pre>
+
+<figure class='code'><figcaption><span> (test.js)</span> <a href='http://meegoo-tsui.github.com/downloads/code/test.js'>download</a></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm">sample javascript from xui</span>
+</span><span class='line'><span class="cm">*/</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">var</span> <span class="kc">undefined</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">xui</span><span class="p">,</span>
+</span><span class='line'>    <span class="nb">window</span>     <span class="o">=</span> <span class="k">this</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">string</span>     <span class="o">=</span> <span class="k">new</span> <span class="nb">String</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">),</span>
+</span><span class='line'>    <span class="nb">document</span>   <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nb">document</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">simpleExpr</span> <span class="o">=</span> <span class="sr">/^#?([\w-]+)$/</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">idExpr</span>     <span class="o">=</span> <span class="sr">/^#/</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">tagExpr</span>    <span class="o">=</span> <span class="sr">/&lt;([\w:]+)/</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">slice</span>      <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="p">[].</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span> <span class="p">};</span>
+</span><span class='line'>    <span class="k">try</span> <span class="p">{</span> <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="nx">slice</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">nodeType</span><span class="p">;</span> <span class="p">}</span>
+</span><span class='line'>    <span class="k">catch</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span> <span class="nx">slice</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span> <span class="kd">var</span> <span class="nx">ret</span><span class="o">=</span><span class="p">[];</span> <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">e</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span>
+</span><span class='line'>        <span class="nx">ret</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">e</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span> <span class="k">return</span> <span class="nx">ret</span><span class="p">;</span> <span class="p">};</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">window</span><span class="p">.</span><span class="nx">x$</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">xui</span> <span class="o">=</span> <span class="nx">xui</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">q</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="k">new</span> <span class="nx">xui</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">q</span><span class="p">,</span> <span class="nx">context</span><span class="p">);</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>实例2 - 定制标题：   <br/>
+默认情况<code>&lt;figcaption&gt;</code> 为文件名称，但可以修改为任意你喜欢的标题，如下：</p>
+
+<pre><code>{% include_code Add to_fraction for floats test.rb %}
+</code></pre>
+
+<figure class='code'><figcaption><span>Add to_fraction for floats (test.rb)</span> <a href='http://meegoo-tsui.github.com/downloads/code/test.rb'>download</a></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="k">class</span> <span class="nc">Float</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">number_decimal_places</span>
+</span><span class='line'>    <span class="nb">self</span><span class="o">.</span><span class="n">to_s</span><span class="o">.</span><span class="n">length</span><span class="o">-</span><span class="mi">2</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">to_fraction</span>
+</span><span class='line'>    <span class="n">higher</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="nb">self</span><span class="o">.</span><span class="n">number_decimal_places</span>
+</span><span class='line'>    <span class="n">lower</span> <span class="o">=</span> <span class="nb">self</span><span class="o">*</span><span class="n">higher</span>
+</span><span class='line'>    <span class="n">gcden</span> <span class="o">=</span> <span class="n">greatest_common_divisor</span><span class="p">(</span><span class="n">higher</span><span class="p">,</span> <span class="n">lower</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">return</span> <span class="p">(</span><span class="n">lower</span><span class="o">/</span><span class="n">gcden</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">,</span> <span class="p">(</span><span class="n">higher</span><span class="o">/</span><span class="n">gcden</span><span class="p">)</span><span class="o">.</span><span class="n">round</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="kp">private</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">greatest_common_divisor</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+</span><span class='line'>     <span class="k">while</span> <span class="n">a</span><span class="o">%</span><span class="n">b</span> <span class="o">!=</span> <span class="mi">0</span>
+</span><span class='line'>       <span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">round</span><span class="p">,(</span><span class="n">a</span><span class="o">%</span><span class="n">b</span><span class="p">)</span><span class="o">.</span><span class="n">round</span>
+</span><span class='line'>     <span class="k">end</span>
+</span><span class='line'>     <span class="k">return</span> <span class="n">b</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>实例3 - 强制高亮：</p>
+
+<pre><code>{% include_code test.coffee lang:coffeescript %}
+</code></pre>
+
+<figure class='code'><figcaption><span> (test.coffee)</span> <a href='http://meegoo-tsui.github.com/downloads/code/test.coffee'>download</a></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="nv">fibonacci = </span><span class="nf">(n) -&gt;</span>
+</span><span class='line'>  <span class="k">if</span> <span class="nx">n</span> <span class="o">&lt;=</span> <span class="mi">2</span>
+</span><span class='line'>    <span class="nx">n</span>
+</span><span class='line'>  <span class="k">else</span>
+</span><span class='line'>    <span class="nx">arguments</span><span class="p">.</span><span class="nx">callee</span><span class="p">(</span><span class="nx">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="nx">arguments</span><span class="p">.</span><span class="nx">callee</span><span class="p">(</span><span class="nx">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">for</span> <span class="nx">x</span> <span class="k">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">..</span><span class="mi">10</span><span class="p">]</span>
+</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s">&quot;</span><span class="si">#{</span><span class="nx">x</span><span class="si">}</span><span class="s"> : </span><span class="si">#{</span><span class="nx">fibonacci</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span><span class="si">}</span><span class="s">&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<h2 id="blockquote">3. 引用</h2>
+
+
+<p>语法：</p>
+
+<pre><code>{% blockquote [author[, source]] [link] [source_link_title] %}
+Quote string
+{% endblockquote %}
+</code></pre>
+
+<p>实例1 - 基本用法：</p>
+
+<pre><code>{% blockquote %}
+Last night I lay in bed looking up at the stars in the sky and I thought to myself, where the heck is the ceiling.
+{% endblockquote %}
+</code></pre>
+
+<blockquote><p>Last night I lay in bed looking up at the stars in the sky and I thought to myself, where the heck is the ceiling.</p></blockquote>
+
+
+<p>实例2 - 名言：</p>
+
+<pre><code>{% blockquote Douglas Adams, The Hichhikers Guide to the Galaxy %}
+Flying is learning how to throw yourself at the ground and miss.
+{% endblockquote %}
+</code></pre>
+
+<blockquote><p>Flying is learning how to throw yourself at the ground and miss.</p><footer><strong>Douglas Adams</strong> <cite>The Hitchhikers Guide to the Galaxy</cite></footer></blockquote>
+
+
+<p>实例3 - 网络引用：</p>
+
+<pre><code>{% blockquote Seth Godin http://sethgodin.typepad.com/seths_blog/2009/07/welcome-to-island-marketing.html Welcome to Island Marketing %}
+Every interaction is both precious and an opportunity to delight.
+{% endblockquote %}
+</code></pre>
+
+<blockquote><p>Every interaction is both precious and an opportunity to delight.</p><footer><strong>Seth Godin</strong> <cite><a href='http://sethgodin.typepad.com/seths_blog/2009/07/welcome-to-island-marketing.html'>Welcome to Island Marketing</a></cite></footer></blockquote>
+
+
+
+
+<h2 id="gist">4. gist</h2>
+
+
+<p>语法：</p>
+
+<pre><code>{% gist gist_id [filename] %}
+</code></pre>
+
+<p>实例：</p>
+
+<pre><code>{% gist 996818 %}
+</code></pre>
+
+<div><script src='https://gist.github.com/996818.js?file='></script>
+<noscript><pre><code>@@ -590,7 +590,7 @@ class SpritesTest &lt; Test::Unit::TestCase
+  it &quot;should generate a sprite from nested folders&quot; do
+    css = render &lt;&lt;-SCSS
+-     @import &quot;nested/*.png&quot;;
++     @import &quot;nested/**/*.png&quot;;
+      @include all-nested-sprites;
+    SCSS
+    assert_correct css, &lt;&lt;-CSS</code></pre></noscript></div>
+
+
+<p>包含多个文件：</p>
+
+<pre><code>{% gist 1059334 svg_bullets.rb %}
+{% gist 1059334 usage.scss %}
+</code></pre>
+
+<h2 id="img">5. 图片</h2>
+
+
+<p>语法：</p>
+
+<pre><code>{% img [class names] /path/to/image [width] [height] [title text [alt text]] %}
+</code></pre>
+
+<p>实例：</p>
+
+<pre><code>{% img http://placekitten.com/890/280 %}
+{% img left http://placekitten.com/320/250 Place Kitten #2 %}
+{% img right http://placekitten.com/300/500 150 250 Place Kitten #3 %}
+{% img right http://placekitten.com/300/500 150 250 'Place Kitten #4' 'An image of a very cute kitten' %}
+</code></pre>
+
+<p>效果如下：  <br/>
+<img src="http://placekitten.com/890/280">
+Bacon ipsum dolor sit amet exercitation ball tip consectetur tempor.
+Biltong exercitation aliqua, ribeye consequat veniam consectetur.</p>
+
+<p><img class="left" src="http://placekitten.com/320/250" title="Place Kitten #2" >
+<img class="right" src="http://placekitten.com/300/500" width="150" height="250" title="Place Kitten #3" >
+Aliquip nulla do tempor, ball tip dolore anim esse strip steak nisi nostrud.
+Tri-tip mollit deserunt ut duis, commodo brisket short loin est hamburger sunt
+consequat rump meatloaf. Exercitation enim aliqua tempor dolore. Non eu venison,
+officia boudin tri-tip enim beef ribs flank cupidatat in aute.
+Tail voluptate fugiat aute flank, venison sint.</p>
+
+<p><img class="right" src="http://placekitten.com/300/500" width="150" height="250" title="Place Kitten #4" alt="An image of a very cute kitten"></p>
+
+<p>Brisket quis velit bresaola. Pork loin pork chop beef duis.
+Short loin fugiat officia short ribs magna. Ullamco eu proident jerky,
+fugiat chuck nostrud ham rump meatloaf eiusmod adipisicing. Qui et reprehenderit,
+magna biltong consequat short ribs pancetta. Tail tenderloin sausage,
+hamburger corned beef drumstick ad. Eu labore enim velit.</p>
+
+<p>Filler text courtesy of <a href="http://baconipsum.com">Bacon Ipsum</a>,
+Images courtesy of <a href="http://placekitten.com">Place Kitten</a>.</p>
+
+<h2 id="video">6. 视频</h2>
+
+
+<p>语法：</p>
+
+<pre><code>{% video url/to/video [width height] [url/to/poster] %}
+</code></pre>
+
+<p>实例：</p>
+
+<pre><code>{% video http://s3.imathis.com/video/zero-to-fancy-buttons.mp4 640 320 http://s3.imathis.com/video/zero-to-fancy-buttons.png %}
+</code></pre>
+
+<p>效果如下：
+<video width='640' height='320' preload='none' controls poster=' http://s3.imathis.com/video/zero-to-fancy-buttons.png'><source src='http://s3.imathis.com/video/zero-to-fancy-buttons.mp4' type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'/></video></p>
+
+<h2 id="category">7. category</h2>
+
+
+<p>修改plugin，生成categories，补丁文件如下：</p>
+
+<figure class='code'><figcaption><span> (category_generator.rb.diff)</span> <a href='http://meegoo-tsui.github.com/downloads/code/category_generator.rb.diff'>download</a></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='diff'><span class='line'><span class="gh">diff --git a/plugins/category_generator.rb b/plugins/category_generator.rb</span>
+</span><span class='line'><span class="gh">index bb5fd32..2af3ab7 100644</span>
+</span><span class='line'><span class="gd">--- a/plugins/category_generator.rb</span>
+</span><span class='line'><span class="gi">+++ b/plugins/category_generator.rb</span>
+</span><span class='line'><span class="gu">@@ -142,6 +142,7 @@ module Jekyll</span>
+</span><span class='line'>     #
+</span><span class='line'>     def category_links(categories)
+</span><span class='line'>       dir = @context.registers[:site].config[&#39;category_dir&#39;]
+</span><span class='line'><span class="gi">+      categories = categories.keys if categories.class == Hash</span>
+</span><span class='line'>       categories = categories.sort!.map do |item|
+</span><span class='line'>         &quot;&lt;a class=&#39;category&#39; href=&#39;/#{dir}/#{item.gsub(/_|\P{Word}/, &#39;-&#39;).gsub(/-{2,}/, &#39;-&#39;).downcase}/&#39;&gt;#{item}&lt;/a&gt;&quot;
+</span><span class='line'>       end
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Category列表添加到右侧，跟最近博客显示在一起，补丁文件如下：</p>
+
+<figure class='code'><figcaption><span> (recent_posts.html.diff)</span> <a href='http://meegoo-tsui.github.com/downloads/code/recent_posts.html.diff'>download</a></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='diff'><span class='line'><span class="gh">diff --git a/source/_includes/asides/recent_posts.html b/source/_includes/asides/recent_posts.html</span>
+</span><span class='line'><span class="gh">index cc62814..9365601 100644</span>
+</span><span class='line'><span class="gd">--- a/source/_includes/asides/recent_posts.html</span>
+</span><span class='line'><span class="gi">+++ b/source/_includes/asides/recent_posts.html</span>
+</span><span class='line'><span class="gu">@@ -7,4 +7,12 @@</span>
+</span><span class='line'>       &lt;/li&gt;
+</span><span class='line'>     {% endfor %}
+</span><span class='line'>   &lt;/ul&gt;
+</span><span class='line'><span class="gi">+</span>
+</span><span class='line'><span class="gi">+  &lt;h1&gt;Categories&lt;/h1&gt;</span>
+</span><span class='line'><span class="gi">+  &lt;ul&gt;</span>
+</span><span class='line'><span class="gi">+    &lt;li&gt;</span>
+</span><span class='line'><span class="gi">+      {{ site.categories | category_links }}</span>
+</span><span class='line'><span class="gi">+    &lt;/li&gt;</span>
+</span><span class='line'><span class="gi">+  &lt;/ul&gt;</span>
+</span><span class='line'><span class="gi">+</span>
+</span><span class='line'> &lt;/section&gt;
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<hr />
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[创建Octopress博客模板]]></title>
+    <link href="http://meegoo-tsui.github.com/blog/2012/05/30/create-octopress-blog-temple/"/>
+    <updated>2012-05-30T15:11:00+08:00</updated>
+    <id>http://meegoo-tsui.github.com/blog/2012/05/30/create-octopress-blog-temple</id>
+    <content type="html"><![CDATA[<p>开始此节内容之前，参考以下内容：</p>
+
+<ul>
+<li><a href="http://help.github.com/linux-set-up-git/">gitweb git使用</a></li>
+<li><a href="http://help.github.com/pages/">gitweb page</a></li>
+<li><a href="http://octopress.org">Octopress doc</a></li>
+<li><a href="http://meegoo-tsui.github.com/blog/2012/05/29/config-octopress-env">配置Octopress环境</a></li>
+</ul>
+
+
+<h3>1. 创建个人主页</h3>
+
+<p><code>github</code>提供一个二级域名给所有用户，地址为<code>http://username.github.com</code>,注册完用户后，创建一个
+<code>username.github.com</code>的git仓库，在<code>master</code>分支下随意写一个<code>index.html</code>，上传后约十分钟可以通过二级
+域名浏览刚才的<code>index.html</code>内容。</p>
+
+<h3>2. 使用Octopress上传模板</h3>
+
+<p>现从<a href="https://github.com/imathis/octopress">Octopress</a>克隆git版本库，进入该文件夹，查看分支：</p>
+
+<pre><code>git branch -a
+* master
+  remotes/octopress/2.1
+  remotes/octopress/HEAD -&gt; octopress/master
+  remotes/octopress/gh-pages
+  remotes/octopress/linklog
+  remotes/octopress/master
+  remotes/octopress/refactor_with_tests
+  remotes/octopress/rubygemcli
+  remotes/octopress/site
+  remotes/origin/source
+</code></pre>
+
+<p>在<code>master</code>分支，执行如下命令：</p>
+
+<pre><code>rake setup_github_pages
+</code></pre>
+
+<p>意义如下： <br/>
+1. Ask you for your Github Pages repository url.
+2. Rename the remote pointing to imathis/octopress from ‘origin’ to ‘octopress’
+3. Add your Github Pages repository as the default origin remote.
+4. Switch the active branch from master to source.
+5. Configure your blog’s url according to your repository.
+6. Setup a master branch in the _deploy directory for deployment.</p>
+
+<p>安装、生成、部署：</p>
+
+<pre><code>rake install
+rake generate
+rake deploy
+</code></pre>
+
+<p>上传源码：</p>
+
+<pre><code>git add .
+git commit -m 'your message'
+git push origin source
+</code></pre>
+
+<p>octopress的工作到此已经完成。</p>
+
+<h3>3. 使用Octopress生成的模板</h3>
+
+<p>先checkout版本，如下：</p>
+
+<pre><code>git clone git@github.com:meegoo-tsui/meegoo-tsui.github.com.git
+cd meegoo-tsui.github.com
+rake setup_github_pages # 此条命令必须，不然deploy失败
+git branch -a
+  master                # 此分支为主页显示的内容，source分支deploy自动push生成
+* source                # 所有源程序及文档
+  remotes/origin/HEAD -&gt; origin/master
+  remotes/origin/master
+  remotes/origin/source
+git checkout source     # 切换到source分支操作
+rake generate
+rake new_post[test-blog]# 生成博客，也可以手动生成
+rake preview
+rake deploy
+</code></pre>
+
+<p><code>master</code>分支为主页显示所需要的内容，因此需要在github上配置当前分支为<code>master</code>；  <br/>
+<code>source</code>分支为源代码，在此分支上写代码然后使用<code>rake deploy</code>就可以修改<code>master</code>的内容，也就
+更新了主页。</p>
+
+<hr />
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[配置Octopress环境]]></title>
+    <link href="http://meegoo-tsui.github.com/blog/2012/05/29/config-octopress-env/"/>
+    <updated>2012-05-29T13:11:00+08:00</updated>
+    <id>http://meegoo-tsui.github.com/blog/2012/05/29/config-octopress-env</id>
+    <content type="html"><![CDATA[<p><a href="http://octopress.org">Octopress</a>的官方网站上有详细文档，可先参考此网站上的相关文档。</p>
+
+<h2>ubuntu10.04安装rvm</h2>
+
+<h3>1. 安装ruby依靠包、curl、ruby</h3>
+
+<pre><code>sudo apt-get install build-essential openssl libreadline6 libreadline6-dev curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt-dev autoconf libc6-dev ncurses-dev automake libtool bison subversion
+sudo apt-get install ruby
+</code></pre>
+
+<h3>2. 通过下面指令安装rvm</h3>
+
+<pre><code>bash -s stable &lt; &lt;(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer )
+</code></pre>
+
+<h3>3. 环境变量的配置</h3>
+
+<p>替换.bashrc：</p>
+
+<pre><code>[ -z "$PS1" ] &amp;&amp; return
+</code></pre>
+
+<p>为</p>
+
+<pre><code>if [[ -n "$PS1" ]]; then
+</code></pre>
+
+<p>文件末尾添加内容：</p>
+
+<pre><code>if [[ -s $HOME/.rvm/scripts/rvm ]] ; then source $HOME/.rvm/scripts/rvm ; fi
+fi
+</code></pre>
+
+<h3>4. 查询安装结果</h3>
+
+<p>重新进入终端或使用<code>. ~/.bashrc</code>使刚才设置的环境变量生效，然后运行如下命令：</p>
+
+<pre><code>rvm list known
+# MRI Rubies
+[ruby-]1.8.6[-p420]
+[ruby-]1.8.7[-p358]
+[ruby-]1.8.7-head
+[ruby-]1.9.1[-p431]
+[ruby-]1.9.2-p180
+[ruby-]1.9.2-p290
+[ruby-]1.9.2-p318
+[ruby-]1.9.2[-p320]
+[ruby-]1.9.2-head
+[ruby-]1.9.3-preview1
+[ruby-]1.9.3-rc1
+[ruby-]1.9.3-p0
+[ruby-]1.9.3-p125
+[ruby-]1.9.3-[p194]
+[ruby-]1.9.3-head
+ruby-head
+</code></pre>
+
+<p>如上所示，显示出可安装的ruby版本，至此rvm的安装完成。</p>
+
+<h2>ubuntu10.04安装ruby及依靠包</h2>
+
+<h3>1. 安装ruby</h3>
+
+<p><code>Octopress</code>当前使用的<code>ruby</code>版本为<code>1.9.2</code>，因此使用如下命令安装<code>ruby</code>：</p>
+
+<pre><code>rvm install 1.9.2 &amp;&amp; rvm use 1.9.2
+</code></pre>
+
+<p>需要重装时：</p>
+
+<pre><code>rvm install 1.9.2 &amp;&amp; rvm use 1.9.2
+</code></pre>
+
+<h3>2. 克隆<code>Octopress</code>的版本库</h3>
+
+<p><code>Octopress</code>的版本库托管在<code>github</code>，使用如下命令<code>checkout</code>：</p>
+
+<pre><code>git clone git://github.com/imathis/octopress.git octopress
+cd octopress    # 当使用rvm时，提示是否信任.rvmrc文件，输入yes
+ruby --version  # 显示 Ruby 1.9.2
+</code></pre>
+
+<h3>3. 安装依靠包</h3>
+
+<p>Windows环境安装了<a href="http://railsinstaller.org/">RailsInstaller</a>，可直接安装下面内容，
+以下命令需要在<code>octopress</code>路径下执行，版本的锁定需要此路径下的<code>Gemfile</code>文件：</p>
+
+<pre><code>gem install bundler
+bundle install
+</code></pre>
+
+<p>到此已完成<code>Octopress</code>环境的配置，可以使用<code>Octopress</code>的相关命令：</p>
+
+<pre><code>rake install
+rake generate
+rake preview
+</code></pre>
+
+<p>windows下问题:</p>
+
+<pre><code>d:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/ffi-1.0.11/lib/ffi/library.
+rb:121:in `block in ffi_lib': Could not open library 'c:\Python27/lib/python27.dll':  (LoadError)
+</code></pre>
+
+<p>修改文件<code>D:\RailsInstaller\Ruby1.9.3\lib\ruby\gems\1.9.1\gems\rubypython-0.5.3\lib\rubypython\python.rb</code>:</p>
+
+<pre><code># ffi_lib_flags :lazy, :global
+ffi_lib_flags  "python27"
+</code></pre>
+
+<p>拷贝<code>python27.dll</code>到<code>c:\Python27\lib</code>即可。</p>
+
+<hr />
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[stm32 f1开发 - 初步]]></title>
+    <link href="http://meegoo-tsui.github.com/blog/2012/05/26/st-stm32-f1/"/>
+    <updated>2012-05-26T13:11:00+08:00</updated>
+    <id>http://meegoo-tsui.github.com/blog/2012/05/26/st-stm32-f1</id>
+    <content type="html"><![CDATA[<p>资源链接：</p>
+
+<ul>
+<li><a href="http://www.st.com/internet/mcu/subclass/1169.jsp">stm32 f1</a></li>
+</ul>
+
+
+<hr />
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[davinci dm365开发 - 初步]]></title>
+    <link href="http://meegoo-tsui.github.com/blog/2012/05/23/davinci-dm365/"/>
+    <updated>2012-05-23T14:11:00+08:00</updated>
+    <id>http://meegoo-tsui.github.com/blog/2012/05/23/davinci-dm365</id>
+    <content type="html"><![CDATA[<p>资源链接：</p>
+
+<ul>
+<li><a href="http://www.ti.com/tool/linuxdvsdk-dm36x">DVSDK</a></li>
+</ul>
+
+
+<hr />
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[vim配置、使用]]></title>
+    <link href="http://meegoo-tsui.github.com/blog/2012/05/22/vim/"/>
+    <updated>2012-05-22T14:11:00+08:00</updated>
+    <id>http://meegoo-tsui.github.com/blog/2012/05/22/vim</id>
+    <content type="html"><![CDATA[<p>资源链接：</p>
+
+<ul>
+<li><a href="http://www.vim.org/">vim - 官方网站</a></li>
+<li><a href="http://www.vim.org/download.php">vim - 下载</a></li>
+</ul>
+
+
+<hr />
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[eclipse配置 - 初步]]></title>
+    <link href="http://meegoo-tsui.github.com/blog/2012/05/22/eclipse/"/>
+    <updated>2012-05-22T13:11:00+08:00</updated>
+    <id>http://meegoo-tsui.github.com/blog/2012/05/22/eclipse</id>
+    <content type="html"><![CDATA[<p>资源链接：</p>
+
+<ul>
+<li><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">JDK</a></li>
+<li><a href="http://www.eclipse.org/downloads/">eclipse</a></li>
+</ul>
+
+
+<h2>1. 安装 java sdk</h2>
+
+<p>当前最新版本为<a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk-7u4-downloads-1591156.html">7u4</a>，
+如windows 64位版本 - jdk-7u4-windows-x64.exe。</p>
+
+<h2>2. 安装eslipse</h2>
+
+<p>在<a href="http://www.eclipse.org/downloads/">eclipse</a>有很多版本供选择，一般选择下载
+Eclipse Classic，当前最新版本为3.7.2，完成后解压即可，到此已可运行eclipse。</p>
+
+<hr />
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Qt编程 - 初步]]></title>
+    <link href="http://meegoo-tsui.github.com/blog/2012/05/21/qt/"/>
+    <updated>2012-05-21T14:11:00+08:00</updated>
+    <id>http://meegoo-tsui.github.com/blog/2012/05/21/qt</id>
+    <content type="html"><![CDATA[<p>资源链接：</p>
+
+<ul>
+<li><a href="http://qt.nokia.com/">home of Qt</a></li>
+<li><a href="http://qt.gitorious.org/">project of Qt</a></li>
+<li><a href="http://doc.qt.nokia.com/">doc for Qt</a></li>
+</ul>
+
+
+<hr />
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[ubuntu更新问题解决]]></title>
+    <link href="http://meegoo-tsui.github.com/blog/2012/05/21/ubuntu-update/"/>
+    <updated>2012-05-21T13:11:00+08:00</updated>
+    <id>http://meegoo-tsui.github.com/blog/2012/05/21/ubuntu-update</id>
+    <content type="html"><![CDATA[<p>ubuntu server 10.04 和 ubuntu desktop 10.04源设置及更新错误解决。</p>
+
+<h2>修改 sources.list</h2>
+
+<pre><code>$ sudo cp /etc/apt/sources.list /etc/apt/sources.list.backup
+</code></pre>
+
+<p>下载<a href="http://mirrors.163.com/.help/sources.list.lucid">sources.list</a>，
+保存于/etc/apt/sources.list，运行命令更新：</p>
+
+<pre><code>$ sudo apt-get update
+$ sudo spt-get upgrade
+</code></pre>
+
+<h2>修改更新错误</h2>
+
+<h3>error 1</h3>
+
+<p>E: Could not get lock /var/lib/apt/lists/lock - open (11: Resource temporarily unavailable)   <br/>
+E: Unable to lock the list directory  <br/>
+解决方法：</p>
+
+<pre><code>$ ps -e | grep apt
+</code></pre>
+
+<p>删除相关进程：</p>
+
+<pre><code>$ sudo kill xxxx
+</code></pre>
+
+<hr />
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[markdown语法]]></title>
+    <link href="http://meegoo-tsui.github.com/blog/2012/05/19/markdown-syntax/"/>
+    <updated>2012-05-19T13:11:00+08:00</updated>
+    <id>http://meegoo-tsui.github.com/blog/2012/05/19/markdown-syntax</id>
+    <content type="html"><![CDATA[<ul>
+<li><a href="#overview">概述</a>
+
+<ul>
+<li><a href="#philosophy">哲学</a></li>
+<li><a href="#html">行內 HTML</a></li>
+<li><a href="#autoescape">特殊字符自动转换</a></li>
+</ul>
+</li>
+<li><a href="#block">块元素</a>
+
+<ul>
+<li><a href="#p">段落和换行</a></li>
+<li><a href="#header">标题</a></li>
+<li><a href="#blockquote">块引言</a></li>
+<li><a href="#list">清单</a></li>
+<li><a href="#precode">程序代码块</a></li>
+<li><a href="#hr">分隔线</a></li>
+</ul>
+</li>
+<li><a href="#span">段元素</a>
+
+<ul>
+<li><a href="#link">连接</a></li>
+<li><a href="#em">强调</a></li>
+<li><a href="#code">代码</a></li>
+<li><a href="#img">图片</a></li>
+</ul>
+</li>
+<li><a href="#misc">杂项</a>
+
+<ul>
+<li><a href="#backslash">转义字符</a></li>
+<li><a href="#autolink">自动连接</a></li>
+</ul>
+</li>
+</ul>
+
+
+<p><strong>注意：</strong>此文档使用Markdown编写，你可以阅读： <br/>
+<a href="http://daringfireball.net/projects/markdown/syntax">英文原版</a> <br/>
+<a href="http://markdown.tw/">繁体翻译</a></p>
+
+<hr />
+
+<h2 id="overview">概述</h2>
+
+
+
+
+<h3 id="philosophy">哲学</h3>
+
+
+<p>Markdown的目标是实现<code>易写易读</code>。</p>
+
+<p>不过最需要强调的就是它的可读性。一份使用 Markdown 格式撰写的文件应该可以直接以纯文本发布，
+并且看起来不会像是由许多标签或是格式指令所构成。Markdown 语法受到一些既有 text-to-HTML 格式的影响，
+包括 <a href="http://docutils.sourceforge.net/mirror/setext.html">Setext</a>、<a href="http://www.aaronsw.com/2002/atx/">atx</a>、<a href="http://textism.com/tools/textile/">Textile</a>、<a href="http://docutils.sourceforge.net/rst.html">reStructuredText</a>、<a href="http://www.triptico.com/software/grutatxt.html">Grutatext</a> 和 <a href="http://ettext.taint.org/doc/">EtText</a>，
+然而最大灵感来源其实是纯文字的电子邮件格式。
+因此 Markdown 的语法全由标点符号所组成，并经过谨慎选择，是为了让它们看起来就像所要表达的意思。
+像是在文字两旁加上星号，看起来就像*强调*。Markdown 的清单看起来，嗯，就是清单。假如你有使用过电子邮件，
+块引用看起来就真的像是引用一段文字。</p>
+
+<h3 id="html">行內 HTML</h3>
+
+
+<p>Markdown 的语法有个主要的目的：用來作为一种网络內容的<em>写作</em>用语言。</p>
+
+<p>Markdown 不是要來取代 HTML，甚至也沒有要和它相似，它的语法种类不多，只和 HTML 的一部分有关系，
+重点<em>不是</em>要创造一种更容易写作 HTML 文件的语法，我认为 HTML 已經很容易写了，Markdown 的重点在于，
+它能让文件更容易阅读、编写。HTML 是一种<em>发布</em>的格式，Markdown 是一种<em>编写</em>的格式，因此，Markdown 的格式语法只涵盖纯文字可以涵盖的范围。</p>
+
+<p>不在 Markdown 涵盖范围之外的标签，都可以直接在文件里面用 HTML 撰写。不需要额外标注这是 HTML 或是 Markdown；只要直接加标签就可以了。</p>
+
+<p>只有块元素，比如 <code>&lt;div&gt;</code>、<code>&lt;table&gt;</code>、<code>&lt;pre&gt;</code>、<code>&lt;p&gt;</code> 等标签，必须在前后加上空白，以利于内容区隔。
+而且这些（元素）的开始与结尾标签，不可以用 tab 或是空白来缩排。Markdown 的产生器有智能型判断，
+可以避免在块标签前后加上没有必要的 <code>&lt;p&gt;</code> 标签。</p>
+
+<p>举例说明，在 Markdown 文件里加上一段 HTML 表格：</p>
+
+<pre><code>This is a regular paragraph.
+
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Foo&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+
+This is another regular paragraph.
+</code></pre>
+
+<p>注意，Markdown 语法在 HTML 块标签中将不会被进行处理。例如，你无法在 HTML 块內使用 Markdown 形式的<code>*强调*</code>。</p>
+
+<p>HTML 的區段標籤如 <code>&lt;span&gt;</code>、<code>&lt;cite&gt;</code>、<code>&lt;del&gt;</code> 則不受限制，可以在 Markdown 的段落、清單或是標題裡任意使用。依照個人習慣，甚至可以不用Markdown 格式，而採用 HTML 標籤來格式化。舉例說明：如果比較喜歡 HTML 的  <code>&lt;a&gt;</code> 或 <code>&lt;img&gt;</code> 標籤，可以直接使用這些標籤，而不用 Markdown 提供的連結或是影像標示語法。</p>
+
+<p>HTML 區段標籤和區塊標籤不同，在區段標籤的範圍內， Markdown 的語法是有效的。</p>
+
+<h3 id="autoescape">特殊字元自動轉換</h3>
+
+
+<p>在 HTML 文件中，有兩個字元需要特殊處理： <code>&lt;</code> 和 <code>&amp;</code> 。 <code>&lt;</code> 符號用於起始標籤，<code>&amp;</code> 符號則用於標記 HTML 實體，如果你只是想要使用這些符號，你必須要使用實體的形式，像是 <code>&amp;lt;</code> 和 <code>&amp;amp;</code>。</p>
+
+<p><code>&amp;</code> 符號其實很讓寫作網路文件的人感到困擾，如果你要打「AT&amp;T」 ，你必須要寫成「<code>AT&amp;amp;T</code>」 ，還得轉換網址內的 <code>&amp;</code> 符號，如果你要連結到：</p>
+
+<pre><code>http://images.google.com/images?num=30&amp;q=larry+bird
+</code></pre>
+
+<p>你必須要把網址轉成：</p>
+
+<pre><code>http://images.google.com/images?num=30&amp;amp;q=larry+bird
+</code></pre>
+
+<p>才能放到連結標籤的 <code>href</code> 屬性裡。不用說也知道這很容易忘記，這也可能是 HTML 標準檢查所檢查到的錯誤中，數量最多的。</p>
+
+<p>Markdown 允許你直接使用這些符號，但是你要小心跳脫字元的使用，如果你是在HTML 實體中使用 <code>&amp;</code> 符號的話，它不會被轉換，而在其它情形下，它則會被轉換成 <code>&amp;amp;</code>。所以你如果要在文件中插入一個著作權的符號，你可以這樣寫：</p>
+
+<pre><code>&amp;copy;
+</code></pre>
+
+<p>Markdown 將不會對這段文字做修改，但是如果你這樣寫：</p>
+
+<pre><code>AT&amp;T
+</code></pre>
+
+<p>Markdown 就會將它轉為：</p>
+
+<pre><code>AT&amp;amp;T
+</code></pre>
+
+<p>類似的狀況也會發生在 <code>&lt;</code> 符號上，因為 Markdown 支援 <a href="#html">行內 HTML</a> ，如果你是使用 <code>&lt;</code> 符號作為 HTML 標籤使用，那 Markdown 也不會對它做任何轉換，但是如果你是寫：</p>
+
+<pre><code>4 &lt; 5
+</code></pre>
+
+<p>Markdown 將會把它轉換為：</p>
+
+<pre><code>4 &amp;lt; 5
+</code></pre>
+
+<p>不過需要注意的是，code 範圍內，不論是行內還是區塊， <code>&lt;</code> 和 <code>&amp;</code> 兩個符號都<em>一定</em>會被轉換成 HTML 實體，這項特性讓你可以很容易地用 Markdown 寫 HTML code （和 HTML 相對而言， HTML 語法中，你要把所有的 <code>&lt;</code> 和 <code>&amp;</code> 都轉換為 HTML 實體，才能在 HTML 文件裡面寫出 HTML code。）</p>
+
+<hr />
+
+<h2 id="block">區塊元素</h2>
+
+
+
+
+<h3 id="p">段落和換行</h3>
+
+
+<p>一個段落是由一個以上相連接的行句組成，而一個以上的空行則會切分出不同的段落（空行的定義是顯示上看起來像是空行，便會被視為空行。比方說，若某一行只包含空白和 tab，則該行也會被視為空行），一般的段落不需要用空白或斷行縮排。</p>
+
+<p>「一個以上相連接的行句組成」這句話其實暗示了 Markdown 允許段落內的強迫斷行，這個特性和其他大部分的 text-to-HTML 格式不一樣（包括 MovableType 的「Convert Line Breaks」選項），其它的格式會把每個斷行都轉成 <code>&lt;br /&gt;</code> 標籤。</p>
+
+<p>如果你<em>真的</em>想要插入 <code>&lt;br /&gt;</code> 標籤的話，在行尾加上兩個以上的空白，然後按 enter。</p>
+
+<p>是的，這確實需要花比較多功夫來插入 <code>&lt;br /&gt;</code> ，但是「每個換行都轉換為 <code>&lt;br /&gt;</code>」的方法在 Markdown 中並不適合， Markdown 中 email 式的 <a href="#blockquote">區塊引言</a> 和多段落的 <a href="#list">清單</a> 在使用換行來排版的時候，不但更好用，還更好閱讀。</p>
+
+<h3 id="header">標題</h3>
+
+
+<p>Markdown 支援兩種標題的語法，<a href="http://docutils.sourceforge.net/mirror/setext.html">Setext</a> 和 <a href="http://www.aaronsw.com/2002/atx/">atx</a> 形式。</p>
+
+<p>Setext 形式是用底線的形式，利用 <code>=</code> （最高階標題）和 <code>-</code> （第二階標題），例如：</p>
+
+<pre><code>This is an H1
+=============
+
+This is an H2
+-------------
+</code></pre>
+
+<p>任何數量的 <code>=</code> 和 <code>-</code> 都可以有效果。</p>
+
+<p>Atx 形式則是在行首插入 1 到 6 個 <code>#</code> ，對應到標題 1 到 6 階，例如：</p>
+
+<pre><code># This is an H1
+
+## This is an H2
+
+###### This is an H6
+</code></pre>
+
+<p>你可以選擇性地「關閉」atx 樣式的標題，這純粹只是美觀用的，若是覺得這樣看起來比較舒適，你就可以在行尾加上 <code>#</code>，而行尾的 <code>#</code> 數量也不用和開頭一樣（行首的井字數量決定標題的階數）：</p>
+
+<pre><code># This is an H1 #
+
+## This is an H2 ##
+
+### This is an H3 ######
+</code></pre>
+
+<h3 id="blockquote">Blockquotes</h3>
+
+
+<p>Markdown 使用 email 形式的區塊引言，如果你很熟悉如何在 email 信件中引言，你就知道怎麼在 Markdown 文件中建立一個區塊引言，那會看起來像是你強迫斷行，然後在每行的最前面加上 <code>&gt;</code> ：</p>
+
+<pre><code>&gt; This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,
+&gt; consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.
+&gt; Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.
+&gt; 
+&gt; Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse
+&gt; id sem consectetuer libero luctus adipiscing.
+</code></pre>
+
+<p>Markdown 也允許你只在整個段落的第一行最前面加上 <code>&gt;</code> ：</p>
+
+<pre><code>&gt; This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,
+consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.
+Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.
+
+&gt; Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse
+id sem consectetuer libero luctus adipiscing.
+</code></pre>
+
+<p>區塊引言可以有階層（例如：引言內的引言），只要根據層數加上不同數量的 <code>&gt;</code> ：</p>
+
+<pre><code>&gt; This is the first level of quoting.
+&gt;
+&gt; &gt; This is nested blockquote.
+&gt;
+&gt; Back to the first level.
+</code></pre>
+
+<p>引言的區塊內也可以使用其他的 Markdown 語法，包括標題、清單、程式碼區塊等：</p>
+
+<pre><code>&gt; ## This is a header.
+&gt; 
+&gt; 1.   This is the first list item.
+&gt; 2.   This is the second list item.
+&gt; 
+&gt; Here's some example code:
+&gt; 
+&gt;     return shell_exec("echo $input | $markdown_script");
+</code></pre>
+
+<p>任何標準的文字編輯器都能簡單地建立 email 樣式的引言，例如 BBEdit ，你可以選取文字後然後從選單中選擇<em>增加引言階層</em>。</p>
+
+<h3 id="list">清單</h3>
+
+
+<p>Markdown 支援有序清單和無序清單。</p>
+
+<p>無序清單使用星號、加號或是減號作為清單標記：</p>
+
+<pre><code>*   Red
+*   Green
+*   Blue
+</code></pre>
+
+<p>等同於：</p>
+
+<pre><code>+   Red
++   Green
++   Blue
+</code></pre>
+
+<p>也等同於：</p>
+
+<pre><code>-   Red
+-   Green
+-   Blue
+</code></pre>
+
+<p>有序清單則使用數字接著一個英文句點：</p>
+
+<pre><code>1.  Bird
+2.  McHale
+3.  Parish
+</code></pre>
+
+<p>很重要的一點是，你在清單標記上使用的數字並不會影響輸出的 HTML 結果，上面的清單所產生的 HTML 標記為：</p>
+
+<pre><code>&lt;ol&gt;
+&lt;li&gt;Bird&lt;/li&gt;
+&lt;li&gt;McHale&lt;/li&gt;
+&lt;li&gt;Parish&lt;/li&gt;
+&lt;/ol&gt;
+</code></pre>
+
+<p>如果你的清單標記寫成：</p>
+
+<pre><code>1.  Bird
+1.  McHale
+1.  Parish
+</code></pre>
+
+<p>或甚至是：</p>
+
+<pre><code>3. Bird
+1. McHale
+8. Parish
+</code></pre>
+
+<p>你都會得到完全相同的 HTML 輸出。重點在於，你可以讓 Markdown 文件的清單數字和輸出的結果相同，或是你懶一點，你可以完全不用在意數字的正確性。</p>
+
+<p>如果你使用懶惰的寫法，建議第一個項目最好還是從 1. 開始，因為 Markdown 未來可能會支援有序清單的 start 屬性。</p>
+
+<p>清單項目標記通常是放在最左邊，但是其實也可以縮排，最多三個空白，項目標記後面則一定要接著至少一個空白或 tab。</p>
+
+<p>要讓清單看起來更漂亮，你可以把內容用固定的縮排整理好：</p>
+
+<pre><code>*   Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+    Aliquam hendrerit mi posuere lectus. Vestibulum enim wisi,
+    viverra nec, fringilla in, laoreet vitae, risus.
+*   Donec sit amet nisl. Aliquam semper ipsum sit amet velit.
+    Suspendisse id sem consectetuer libero luctus adipiscing.
+</code></pre>
+
+<p>但是如果你很懶，那也不一定需要：</p>
+
+<pre><code>*   Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+Aliquam hendrerit mi posuere lectus. Vestibulum enim wisi,
+viverra nec, fringilla in, laoreet vitae, risus.
+*   Donec sit amet nisl. Aliquam semper ipsum sit amet velit.
+Suspendisse id sem consectetuer libero luctus adipiscing.
+</code></pre>
+
+<p>如果清單項目間用空行分開， Markdown 會把項目的內容在輸出時用 <code>&lt;p&gt;</code>
+標籤包起來，舉例來說：</p>
+
+<pre><code>*   Bird
+*   Magic
+</code></pre>
+
+<p>會被轉換為：</p>
+
+<pre><code>&lt;ul&gt;
+&lt;li&gt;Bird&lt;/li&gt;
+&lt;li&gt;Magic&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+
+<p>但是這個：</p>
+
+<pre><code>*   Bird
+
+*   Magic
+</code></pre>
+
+<p>會被轉換為：</p>
+
+<pre><code>&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Bird&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Magic&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+
+<p>清單項目可以包含多個段落，每個項目下的段落都必須縮排 4 個空白或是一個 tab ：</p>
+
+<pre><code>1.  This is a list item with two paragraphs. Lorem ipsum dolor
+    sit amet, consectetuer adipiscing elit. Aliquam hendrerit
+    mi posuere lectus.
+
+    Vestibulum enim wisi, viverra nec, fringilla in, laoreet
+    vitae, risus. Donec sit amet nisl. Aliquam semper ipsum
+    sit amet velit.
+
+2.  Suspendisse id sem consectetuer libero luctus adipiscing.
+</code></pre>
+
+<p>如果你每行都有縮排，看起來會看好很多，當然，再次地，如果你很懶惰，Markdown 也允許：</p>
+
+<pre><code>*   This is a list item with two paragraphs.
+
+    This is the second paragraph in the list item. You're
+only required to indent the first line. Lorem ipsum dolor
+sit amet, consectetuer adipiscing elit.
+
+*   Another item in the same list.
+</code></pre>
+
+<p>如果要在清單項目內放進引言，那 <code>&gt;</code> 就需要縮排：</p>
+
+<pre><code>*   A list item with a blockquote:
+
+    &gt; This is a blockquote
+    &gt; inside a list item.
+</code></pre>
+
+<p>如果要放程式碼區塊的話，該區塊就需要縮排<em>兩次</em>，也就是 8 個空白或是兩個 tab：</p>
+
+<pre><code>*   A list item with a code block:
+
+        &lt;code goes here&gt;
+</code></pre>
+
+<p>當然，項目清單很可能會不小心產生，像是下面這樣的寫法：</p>
+
+<pre><code>1986. What a great season.
+</code></pre>
+
+<p>換句話說，也就是在行首出現<em>數字-句點-空白</em>，要避免這樣的狀況，你可以在句點前面加上反斜線。</p>
+
+<pre><code>1986\. What a great season.
+</code></pre>
+
+<h3 id="precode">程式碼區塊</h3>
+
+
+<p>和程式相關的寫作或是標籤語言原始碼通常會有已經排版好的程式碼區塊，通常這些區塊我們並不希望它以一般段落文件的方式去排版，而是照原來的樣子顯示，Markdown 會用 <code>&lt;pre&gt;</code> 和 <code>&lt;code&gt;</code> 標籤來把程式碼區塊包起來。</p>
+
+<p>要在 Markdown 中建立程式碼區塊很簡單，只要簡單地縮排 4 個空白或是 1 個 tab 就可以，例如，下面的輸入：</p>
+
+<pre><code>This is a normal paragraph:
+
+    This is a code block.
+</code></pre>
+
+<p>Markdown 會轉換成：</p>
+
+<pre><code>&lt;p&gt;This is a normal paragraph:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;This is a code block.
+&lt;/code&gt;&lt;/pre&gt;
+</code></pre>
+
+<p>這個每行一階的縮排（4 個空白或是 1 個 tab），都會被移除，例如：</p>
+
+<pre><code>Here is an example of AppleScript:
+
+    tell application "Foo"
+        beep
+    end tell
+</code></pre>
+
+<p>會被轉換為：</p>
+
+<pre><code>&lt;p&gt;Here is an example of AppleScript:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;tell application "Foo"
+    beep
+end tell
+&lt;/code&gt;&lt;/pre&gt;
+</code></pre>
+
+<p>一個程式碼區塊會一直持續到沒有縮排的那一行（或是文件結尾）。</p>
+
+<p>在程式碼區塊裡面， <code>&amp;</code> 、 <code>&lt;</code> 和 <code>&gt;</code> 會自動轉成 HTML 實體，這樣的方式讓你非常容易使用 Markdown 插入範例用的 HTML 原始碼，只需要複製貼上，再加上縮排就可以了，剩下的 Markdown 都會幫你處理，例如：</p>
+
+<pre><code>    &lt;div class="footer"&gt;
+        &amp;copy; 2004 Foo Corporation
+    &lt;/div&gt;
+</code></pre>
+
+<p>會被轉換為：</p>
+
+<pre><code>&lt;pre&gt;&lt;code&gt;&amp;lt;div class="footer"&amp;gt;
+    &amp;amp;copy; 2004 Foo Corporation
+&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+</code></pre>
+
+<p>程式碼區塊中，一般的 Markdown 語法不會被轉換，像是星號便只是星號，這表示你可以很容易地以 Markdown 語法撰寫 Markdown 語法相關的文件。</p>
+
+<h3 id="hr">分隔線</h3>
+
+
+<p>你可以在一行中用三個或以上的星號、減號、底線來建立一個分隔線，行內不能有其他東西。你也可以在星號中間插入空白。下面每種寫法都可以建立分隔線：</p>
+
+<pre><code>* * *
+
+***
+
+*****
+
+- - -
+
+---------------------------------------
+</code></pre>
+
+<hr />
+
+<h2 id="span">區段元素</h2>
+
+
+
+
+<h3 id="link">連結</h3>
+
+
+<p>Markdown 支援兩種形式的連結語法： <em>行內</em>和<em>參考</em>兩種形式。</p>
+
+<p>不管是哪一種，連結的文字都是用 [方括號] 來標記。</p>
+
+<p>要建立一個行內形式的連結，只要在方塊括號後面馬上接著括號並插入網址連結即可，如果你還想要加上連結的 title 文字，只要在網址後面，用雙引號把 title 文字包起來即可，例如：</p>
+
+<pre><code>This is [an example](http://example.com/ "Title") inline link.
+
+[This link](http://example.net/) has no title attribute.
+</code></pre>
+
+<p>會產生：</p>
+
+<pre><code>&lt;p&gt;This is &lt;a href="http://example.com/" title="Title"&gt;
+an example&lt;/a&gt; inline link.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://example.net/"&gt;This link&lt;/a&gt; has no
+title attribute.&lt;/p&gt;
+</code></pre>
+
+<p>如果你是要連結到同樣主機的資源，你可以使用相對路徑：</p>
+
+<pre><code>See my [About](/about/) page for details.   
+</code></pre>
+
+<p>參考形式的連結使用另外一個方括號接在連結文字的括號後面，而在第二個方括號裡面要填入用以辨識連結的標籤：</p>
+
+<pre><code>This is [an example][id] reference-style link.
+</code></pre>
+
+<p>你也可以選擇性地在兩個方括號中間加上空白：</p>
+
+<pre><code>This is [an example] [id] reference-style link.
+</code></pre>
+
+<p>接著，在文件的任意處，你可以把這個標籤的連結內容定義出來：</p>
+
+<pre><code>[id]: http://example.com/  "Optional Title Here"
+</code></pre>
+
+<p>連結定義的形式為：</p>
+
+<ul>
+<li>方括號，裡面輸入連結的辨識用標籤</li>
+<li>接著一個冒號</li>
+<li>接著一個以上的空白或 tab</li>
+<li>接著連結的網址</li>
+<li>選擇性地接著 title 內容，可以用單引號、雙引號或是括弧包著</li>
+</ul>
+
+
+<p>下面這三種連結的定義都是相同：</p>
+
+<pre><code>[foo]: http://example.com/  "Optional Title Here"
+[foo]: http://example.com/  'Optional Title Here'
+[foo]: http://example.com/  (Optional Title Here)
+</code></pre>
+
+<p><strong>請注意：</strong>有一個已知的問題是 Markdown.pl 1.0.1 會忽略單引號包起來的連結 title。</p>
+
+<p>連結網址也可以用方括號包起來：</p>
+
+<pre><code>[id]: &lt;http://example.com/&gt;  "Optional Title Here"
+</code></pre>
+
+<p>你也可以把 title 屬性放到下一行，也可以加一些縮排，網址太長的話，這樣會比較好看：</p>
+
+<pre><code>[id]: http://example.com/longish/path/to/resource/here
+    "Optional Title Here"
+</code></pre>
+
+<p>網址定義只有在產生連結的時候用到，並不會直接出現在文件之中。</p>
+
+<p>連結辨識標籤可以有字母、數字、空白和標點符號，但是並<em>不</em>區分大小寫，因此下面兩個連結是一樣的：</p>
+
+<pre><code>[link text][a]
+[link text][A]
+</code></pre>
+
+<p><em>預設的連結標籤</em>功能讓你可以省略指定連結標籤，這種情形下，連結標籤和連結文字會視為相同，要用預設連結標籤只要在連結文字後面加上一個空的方括號，如果你要讓 &#8220;Google&#8221; 連結到 google.com，你可以簡化成：</p>
+
+<pre><code>[Google][]
+</code></pre>
+
+<p>然後定義連結內容：</p>
+
+<pre><code>[Google]: http://google.com/
+</code></pre>
+
+<p>由於連結文字可能包含空白，所以這種簡化的標籤內也可以包含多個文字：</p>
+
+<pre><code>Visit [Daring Fireball][] for more information.
+</code></pre>
+
+<p>然後接著定義連結：</p>
+
+<pre><code>[Daring Fireball]: http://daringfireball.net/
+</code></pre>
+
+<p>連結的定義可以放在文件中的任何一個地方，我比較偏好直接放在連結出現段落的後面，你也可以把它放在文件最後面，就像是註解一樣。</p>
+
+<p>下面是一個參考式連結的範例：</p>
+
+<pre><code>I get 10 times more traffic from [Google] [1] than from
+[Yahoo] [2] or [MSN] [3].
+
+  [1]: http://google.com/        "Google"
+  [2]: http://search.yahoo.com/  "Yahoo Search"
+  [3]: http://search.msn.com/    "MSN Search"
+</code></pre>
+
+<p>如果改成用連結名稱的方式寫：</p>
+
+<pre><code>I get 10 times more traffic from [Google][] than from
+[Yahoo][] or [MSN][].
+
+  [google]: http://google.com/        "Google"
+  [yahoo]:  http://search.yahoo.com/  "Yahoo Search"
+  [msn]:    http://search.msn.com/    "MSN Search"
+</code></pre>
+
+<p>上面兩種寫法都會產生下面的 HTML。</p>
+
+<pre><code>&lt;p&gt;I get 10 times more traffic from &lt;a href="http://google.com/"
+title="Google"&gt;Google&lt;/a&gt; than from
+&lt;a href="http://search.yahoo.com/" title="Yahoo Search"&gt;Yahoo&lt;/a&gt;
+or &lt;a href="http://search.msn.com/" title="MSN Search"&gt;MSN&lt;/a&gt;.&lt;/p&gt;
+</code></pre>
+
+<p>下面是用行內形式寫的同樣一段內容的 Markdown 文件，提供作為比較之用：</p>
+
+<pre><code>I get 10 times more traffic from [Google](http://google.com/ "Google")
+than from [Yahoo](http://search.yahoo.com/ "Yahoo Search") or
+[MSN](http://search.msn.com/ "MSN Search").
+</code></pre>
+
+<p>參考式的連結其實重點不在於它比較好寫，而是它比較好讀，比較一下上面的範例，使用參考式的文章本身只有 81 個字元，但是用行內形式的連結卻會增加到 176 個字元，如果是用純 HTML 格式來寫，會有 234 個字元，在 HTML 格式中，標籤比文字還要多。</p>
+
+<p>使用 Markdown 的參考式連結，可以讓文件更像是瀏覽器最後產生的結果，讓你可以把一些標記相關的資訊移到段落文字之外，你就可以增加連結而不讓文章的閱讀感覺被打斷。</p>
+
+<h3 id="em">強調</h3>
+
+
+<p>Markdown 使用星號（<code>*</code>）和底線（<code>_</code>）作為標記強調字詞的符號，被 <code>*</code> 或 <code>_</code> 包圍的字詞會被轉成用 <code>&lt;em&gt;</code> 標籤包圍，用兩個 <code>*</code> 或 <code>_</code> 包起來的話，則會被轉成 <code>&lt;strong&gt;</code>，例如：</p>
+
+<pre><code>*single asterisks*
+
+_single underscores_
+
+**double asterisks**
+
+__double underscores__
+</code></pre>
+
+<p>會轉成：</p>
+
+<pre><code>&lt;em&gt;single asterisks&lt;/em&gt;
+
+&lt;em&gt;single underscores&lt;/em&gt;
+
+&lt;strong&gt;double asterisks&lt;/strong&gt;
+
+&lt;strong&gt;double underscores&lt;/strong&gt;
+</code></pre>
+
+<p>你可以隨便用你喜歡的樣式，唯一的限制是，你用什麼符號開啟標籤，就要用什麼符號結束。</p>
+
+<p>強調也可以直接插在文字中間：</p>
+
+<pre><code>un*frigging*believable
+</code></pre>
+
+<p>但是如果你的 <code>*</code> 和 <code>_</code> 兩邊都有空白的話，它們就只會被當成普通的符號。</p>
+
+<p>如果要在文字前後直接插入普通的星號或底線，你可以用反斜線：</p>
+
+<pre><code>\*this text is surrounded by literal asterisks\*
+</code></pre>
+
+<h3 id="code">程式碼</h3>
+
+
+<p>如果要標記一小段行內程式碼，你可以用反引號把它包起來（<code>`</code>），例如：</p>
+
+<pre><code>Use the `printf()` function.
+</code></pre>
+
+<p>會產生：</p>
+
+<pre><code>&lt;p&gt;Use the &lt;code&gt;printf()&lt;/code&gt; function.&lt;/p&gt;
+</code></pre>
+
+<p>如果要在程式碼區段內插入反引號，你可以用多個反引號來開啟和結束程式碼區段：</p>
+
+<pre><code>``There is a literal backtick (`) here.``
+</code></pre>
+
+<p>這段語法會產生：</p>
+
+<pre><code>&lt;p&gt;&lt;code&gt;There is a literal backtick (`) here.&lt;/code&gt;&lt;/p&gt;
+</code></pre>
+
+<p>程式碼區段的起始和結束端都可以放入一個空白，起始端後面一個，結束端前面一個，這樣你就可以在區段的一開始就插入反引號：</p>
+
+<pre><code>A single backtick in a code span: `` ` ``
+
+A backtick-delimited string in a code span: `` `foo` ``
+</code></pre>
+
+<p>會產生：</p>
+
+<pre><code>&lt;p&gt;A single backtick in a code span: &lt;code&gt;`&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;A backtick-delimited string in a code span: &lt;code&gt;`foo`&lt;/code&gt;&lt;/p&gt;
+</code></pre>
+
+<p>在程式碼區段內，<code>&amp;</code> 和方括號都會被轉成 HTML 實體，這樣會比較容易插入 HTML 原始碼，Markdown 會把下面這段：</p>
+
+<pre><code>Please don't use any `&lt;blink&gt;` tags.
+</code></pre>
+
+<p>轉為：</p>
+
+<pre><code>&lt;p&gt;Please don't use any &lt;code&gt;&amp;lt;blink&amp;gt;&lt;/code&gt; tags.&lt;/p&gt;
+</code></pre>
+
+<p>你也可以這樣寫：</p>
+
+<pre><code>`&amp;#8212;` is the decimal-encoded equivalent of `&amp;mdash;`.
+</code></pre>
+
+<p>以產生：</p>
+
+<pre><code>&lt;p&gt;&lt;code&gt;&amp;amp;#8212;&lt;/code&gt; is the decimal-encoded
+equivalent of &lt;code&gt;&amp;amp;mdash;&lt;/code&gt;.&lt;/p&gt;
+</code></pre>
+
+<h3 id="img">圖片</h3>
+
+
+<p>很明顯地，要在純文字應用中設計一個 「自然」的語法來插入圖片是有一定難度的。</p>
+
+<p>Markdown 使用一種和連結很相似的語法來標記圖片，同樣也允許兩種樣式： <em>行內</em>和<em>參考</em>。</p>
+
+<p>行內圖片的語法看起來像是：</p>
+
+<pre><code>![Alt text](/path/to/img.jpg)
+
+![Alt text](/path/to/img.jpg "Optional title")
+</code></pre>
+
+<p>詳細敘述如下：</p>
+
+<ul>
+<li>一個驚嘆號 <code>!</code></li>
+<li>接著一個方括號，裡面放上圖片的替代文字</li>
+<li>接著一個普通括號，裡面放上圖片的網址，最後還可以用引號包住並加上
+選擇性的 &#8216;title&#8217; 文字。</li>
+</ul>
+
+
+<p>參考式的圖片語法則長得像這樣：</p>
+
+<pre><code>![Alt text][id]
+</code></pre>
+
+<p>「id」是圖片參考的名稱，圖片參考的定義方式則和連結參考一樣：</p>
+
+<pre><code>[id]: url/to/image  "Optional title attribute"
+</code></pre>
+
+<p>到目前為止， Markdown 還沒有辦法指定圖片的寬高，如果你需要的話，你可以使用普通的 <code>&lt;img&gt;</code> 標籤。</p>
+
+<hr />
+
+<h2 id="misc">其它</h2>
+
+
+
+
+<h3 id="autolink">自動連結</h3>
+
+
+<p>Markdown 支援比較簡短的自動連結形式來處理網址和電子郵件信箱，只要是用方括號包起來， Markdown 就會自動把它轉成連結，連結的文字就和連結位置一樣，例如：</p>
+
+<pre><code>&lt;http://example.com/&gt;
+</code></pre>
+
+<p>Markdown 會轉為：</p>
+
+<pre><code>&lt;a href="http://example.com/"&gt;http://example.com/&lt;/a&gt;
+</code></pre>
+
+<p>自動的郵件連結也很類似，只是 Markdown 會先做一個編碼轉換的過程，把文字字元轉成 16 進位碼的 HTML 實體，這樣的格式可以混淆一些不好的信箱地址收集機器人，例如：</p>
+
+<pre><code>&lt;address@example.com&gt;
+</code></pre>
+
+<p>Markdown 會轉成：</p>
+
+<pre><code>&lt;a href="&amp;#x6D;&amp;#x61;i&amp;#x6C;&amp;#x74;&amp;#x6F;:&amp;#x61;&amp;#x64;&amp;#x64;&amp;#x72;&amp;#x65;
+&amp;#115;&amp;#115;&amp;#64;&amp;#101;&amp;#120;&amp;#x61;&amp;#109;&amp;#x70;&amp;#x6C;e&amp;#x2E;&amp;#99;&amp;#111;
+&amp;#109;"&gt;&amp;#x61;&amp;#x64;&amp;#x64;&amp;#x72;&amp;#x65;&amp;#115;&amp;#115;&amp;#64;&amp;#101;&amp;#120;&amp;#x61;
+&amp;#109;&amp;#x70;&amp;#x6C;e&amp;#x2E;&amp;#99;&amp;#111;&amp;#109;&lt;/a&gt;
+</code></pre>
+
+<p>在瀏覽器裡面，這段字串會變成一個可以點擊的「address@example.com」連結。</p>
+
+<p>（這種作法雖然可以混淆不少的機器人，但並無法全部擋下來，不過這樣也比什麼都不做好些。無論如何，公開你的信箱終究會引來廣告信件的。）</p>
+
+<h3 id="backslash">跳脫字元</h3>
+
+
+<p>Markdown 可以利用反斜線來插入一些在語法中有其它意義的符號，例如：如果你想要用星號加在文字旁邊的方式來做出強調效果（但不用 <code>&lt;em&gt;</code> 標籤），你可以在星號的前面加上反斜線：</p>
+
+<pre><code>\*literal asterisks\*
+</code></pre>
+
+<p>Markdown 支持在下面這些符号前面加上反斜杆來帮助插入普通的符号：</p>
+
+<pre><code>\   反斜杆
+`   反引号
+*   星号
+_   下划线
+{}  大括号
+[]  中括号
+()  括号
+#   井号
++   加号
+-   减号
+.   英文句号
+!   感叹号
+</code></pre>
+
+<hr />
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[linux git服务器的配置]]></title>
+    <link href="http://meegoo-tsui.github.com/blog/2012/05/17/git-linux-server/"/>
+    <updated>2012-05-17T13:11:00+08:00</updated>
+    <id>http://meegoo-tsui.github.com/blog/2012/05/17/git-linux-server</id>
+    <content type="html"><![CDATA[<p>安装平台： ubuntu 10.04  <br/>
+搭建git服务器，需要如下软件：</p>
+
+<pre><code>$ sudo apt-get install openssh-server openssh-client
+$ sudo apt-get install git-core
+$ sudo apt-get install python-setuptools
+</code></pre>
+
+<h2>源码安装gitosis</h2>
+
+<p>使用git下载源码：</p>
+
+<pre><code>$ git clone https://github.com/ossxp-com/gitosis.git
+$ cd gitosis
+$ sudo python setup.py install
+</code></pre>
+
+<h2>账户相关信息</h2>
+
+<p>创建用户git</p>
+
+<pre><code>$ sudo adduser --system --shell /bin/bash --disabled-password --group git
+</code></pre>
+
+<p>创建git仓库存储目录</p>
+
+<pre><code>$ sudo mkdir /home/git/repositories
+</code></pre>
+
+<p>设置git仓库权限</p>
+
+<pre><code>$ sudo chown git:git /home/git/repositories
+$ sudo chmod 755 /home/git/repositories
+</code></pre>
+
+<p>初始化全局设置</p>
+
+<pre><code>$ git config --global usre.name     "meegoo tsui"
+$ git config --global usre.email    meegoo.tsui@gmail.com
+$ git config --global core.fileMode false
+$ git config --global core.editor   vim
+</code></pre>
+
+<ul>
+<li>配置用户名称</li>
+<li>配置用户邮件</li>
+<li>配置忽略文件的执行权限</li>
+<li>配置编辑器</li>
+</ul>
+
+
+<h2>初使化gitosis</h2>
+
+<p>生成 SSH key：</p>
+
+<pre><code>$ ssh-keygen -t rsa -C "meegoo.tsui@gmail.com"
+</code></pre>
+
+<p>拷贝到服务器/tmp下：</p>
+
+<pre><code>$ cp  ~/.ssh/id_rsa.pub /tmp
+</code></pre>
+
+<p>或：</p>
+
+<pre><code>$ scp ~/.ssh/id_rsa.pub 用户名@主机:/tmp
+</code></pre>
+
+<p>初使化gitosis，切回到服务器：</p>
+
+<pre><code>$ sudo -H -u git gitosis-init &lt; /tmp/id_rsa.pub
+</code></pre>
+
+<p>修改post-update权限:</p>
+
+<pre><code>$ sudo chmod 755 /home/git/repositories/gitosis-admin.git/hooks/post-update
+</code></pre>
+
+<p>clone gitosis管理平台，切换到本地：</p>
+
+<pre><code>$ git clone git@192.168.0.2:gitosis-admin.git
+</code></pre>
+
+<p>或</p>
+
+<pre><code>$ git clone git@lenovo:gitosis-admin.git
+</code></pre>
+
+<p>用户key在gitosis-admin/keydir/下，权限文件在gitosis-admin/gitosis.conf,添加*.pub且修改gitosis.conf，
+上传即可。</p>
+
+<h2>创建版本库</h2>
+
+<p>客服端修改权限文件gitosis-admin.git/gitosis.conf，关键字admin允许创建，添加内容如下：</p>
+
+<pre><code>[group my_project-admin]
+members = meegoo.tsui@gmail.com
+admin = my_project
+</code></pre>
+
+<p>创建版本项目：</p>
+
+<pre><code>$ mkdir my_project;cd my_project
+$ git init
+$ git commit --allow-empty -m "create the repos."
+$ git remote add origin git@192.168.0.2:my_project.git
+$ git push -u origin master
+</code></pre>
+
+<h2>gitweb安装及配置</h2>
+
+<p>安装gitweb：</p>
+
+<pre><code>$ sudo apt-get install gitweb
+</code></pre>
+
+<p>配置apache服务器:</p>
+
+<pre><code>$ sudo gedit /etc/apache2/mods-available/dav_svn.conf
+</code></pre>
+
+<p>添加内容如下：</p>
+
+<pre><code>Alias /gitweb /usr/share/gitweb
+&lt;Directory /usr/share/gitweb&gt;
+    Options FollowSymLinks +ExecCGI
+    AddHandler cgi-script .cgi
+    DirectoryIndex index.cgi gitweb.cgi
+    order Allow,Deny
+    Allow from all
+&lt;/Directory&gt;
+</code></pre>
+
+<p>或：</p>
+
+<pre><code>&lt;VirtualHost *:80&gt;
+    ServerName localhost
+    ScriptAlias /cgi-bin/ /usr/lib/cgi-bin/
+    &lt;Directory /usr/lib/cgi-bin/&gt;
+        Options ExecCGI +FollowSymLinks +SymLinksIfOwnerMatch
+        AllowOverride All
+        order allow,deny
+        Allow from all
+        AddHandler cgi-script cgi .pl .py
+        DirectoryIndex gitweb.cgi
+    &lt;/Directory&gt;
+&lt;/VirtualHost&gt;
+</code></pre>
+
+<p>修改gitweb配置文件：</p>
+
+<pre><code>$ sudo vim /etc/gitweb.conf
+$ sudo /etc/init.d/apache2 restart
+# 修改内容如下：
+$projectroot = "/home/git";
+$home_text = "/home/git/indextext.html";
+</code></pre>
+
+<p>客服端修改权限文件gitosis-admin.git/gitosis.conf：</p>
+
+<pre><code>[repo gitosis-admin.git]
+gitweb      = yes
+description = git server admin
+</code></pre>
+
+<p>服务器修改项目的配置文件，提供显示信息给gitweb，gitosis-admin.git/config：</p>
+
+<pre><code>[gitweb]
+    owner = meegoo tsui &lt;meegoo.tsui@gmail.com&gt;
+    url   = git@192.168.0.2:gitosis-admin.git
+</code></pre>
+
+<p>注：其他项目一样修改服务器xxx.git/config文件。 <br/>
+访问： http://192.168.0.2/gitweb</p>
+
+<hr />
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[linux常用服务器的配置]]></title>
+    <link href="http://meegoo-tsui.github.com/blog/2012/05/16/config-linux-server/"/>
+    <updated>2012-05-16T14:11:00+08:00</updated>
+    <id>http://meegoo-tsui.github.com/blog/2012/05/16/config-linux-server</id>
+    <content type="html"><![CDATA[<p>安装平台： ubuntu 10.04</p>
+
+<pre><code>ssh   - 远程登录    
+samba - 文件共享    
+nfs   - 网络文件系统    
+tftp  - 简单文件传输协议    
+ftp   - 文件传输协议    
+</code></pre>
+
+<h2>ssh</h2>
+
+<h3>1. 安装软件包</h3>
+
+<pre><code>sudo apt-get install openssh-server
+</code></pre>
+
+<h3>2. 重启ssh服务</h3>
+
+<pre><code>sudo /etc/init.d/ssh restart
+</code></pre>
+
+<h3>3. 查看</h3>
+
+<pre><code>netstat -tlp | grep ssh
+</code></pre>
+
+<h2>samba</h2>
+
+<h3>1. 安装软件包</h3>
+
+<pre><code>sudo apt-get install samba samba-common samba-common-bin system-config-samba
+</code></pre>
+
+<h3>2. 运行</h3>
+
+<pre><code>sudo smbd start
+</code></pre>
+
+<h3>3. 图形界面配置</h3>
+
+<pre><code>sudo system-config-samba
+</code></pre>
+
+<h3>4. 命令行配置</h3>
+
+<p>修改配置文件：</p>
+
+<pre><code>sudo gedit /etc/samba/smb.conf
+</code></pre>
+
+<p>修改内容如下：</p>
+
+<pre><code>####### Authentication #######
+
+# “security = user” is always a good idea. This will require a Unix account
+# in this server for every user accessing the server. See
+# /usr/share/doc/samba-doc/htmldocs/Samba-HOWTO-Collection/ServerType.html
+# in the samba-doc package for details.
+;  security = user
+</code></pre>
+
+<p>修改为：</p>
+
+<pre><code>security = user
+username map = /etc/samba/smbusers
+</code></pre>
+
+<p>添加samba用户：</p>
+
+<pre><code>sudo smbpasswd -a meegoo
+</code></pre>
+
+<p>添加到samba用户文件，格式为<ubuntuusername> = “<samba username>”</p>
+
+<pre><code>sudo gedit /etc/samba/smbusers
+</code></pre>
+
+<h3>5. 添加samba共享路径</h3>
+
+<p>修改配置文件：</p>
+
+<pre><code>sudo gedit /etc/samba/smb.conf
+</code></pre>
+
+<p>文件尾添加内容如下：</p>
+
+<pre><code>[meegoo]
+    path = /home/meegoo
+    writeable = yes
+;   browseable = yes
+    valid users = meegoo
+</code></pre>
+
+<p>开始或重启samba服务：</p>
+
+<pre><code>sudo smbd start
+sudo smbd restart
+</code></pre>
+
+<p>测试samba服务器：</p>
+
+<pre><code>sudo aptitude install smbfs
+sudo mkdir /mnt/samba
+sudo mount -t smbfs -o username=meegoo //192.168.0.238/meegoo /mnt/samba
+</code></pre>
+
+<h2>nfs</h2>
+
+<h3>1. 安装软件包</h3>
+
+<pre><code>sudo apt-get install nfs-kernel-server
+</code></pre>
+
+<h3>2. 修改配置文件</h3>
+
+<pre><code>sudo vim /etc/exports
+</code></pre>
+
+<p>添加内容如下：</p>
+
+<pre><code>/home/ming/work/.out/filesys *(rw,sync,no_root_squash,no_subtree_check)
+</code></pre>
+
+<p>配置文件生效：</p>
+
+<pre><code>sudo /usr/sbin/exportfs -va
+</code></pre>
+
+<h2>tftp</h2>
+
+<h3>1. 安装软件包</h3>
+
+<pre><code>sudo apt-get install tftpd tftp xinetd
+</code></pre>
+
+<h3>2. 修改配置文件</h3>
+
+<pre><code>sudo vim /etc/xinetd.d/tftp
+</code></pre>
+
+<p>添加内容如下：</p>
+
+<pre><code>service tftp
+{
+    socket_type = dgram
+    protocol = udp
+    wait = yes
+    user = root
+    server = /usr/sbin/in.tftpd
+    server_args = -s /tftpboot
+    disable = no
+    per_source = 11
+    cps = 100 2
+    flags = IPv4
+} 
+</code></pre>
+
+<p>配置文件生效：</p>
+
+<pre><code>sudo chmod ugo+rwx /tftpboot
+sudo /etc/init.d/xinetd restart 
+</code></pre>
+
+<h2>ftp</h2>
+
+<h3>1. 安装软件包</h3>
+
+<pre><code>sudo apt-get install vsftpd
+</code></pre>
+
+<h3>2. 创建ftp文件夹</h3>
+
+<pre><code>sudo mkdir /home/ftp
+sudo usermod -d /home/ftp ftp
+</code></pre>
+
+<h3>3. ftp操作</h3>
+
+<pre><code>sudo /etc/init.d/vsftpd start
+sudo /etc/init.d/vsftpd restart
+sudo /etc/init.d/vsftpd stop
+</code></pre>
+
+<h3>4. 修改配置文件</h3>
+
+<pre><code>sudo gedit /etc/vsftpd.conf
+</code></pre>
+
+<p>内容如下：</p>
+
+<pre><code>local_umask=022
+anon_umask=000
+anonymous_enable=YES
+write_enable=YES
+anon_world_readable_only=NO
+anon_other_write_enable=YES
+anon_upload_enable=YES
+anon_mkdir_write_enable=YES
+</code></pre>
+
+<hr />
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[linux快捷键]]></title>
+    <link href="http://meegoo-tsui.github.com/blog/2012/05/16/linux-keyboard-shortcuts/"/>
+    <updated>2012-05-16T13:11:00+08:00</updated>
+    <id>http://meegoo-tsui.github.com/blog/2012/05/16/linux-keyboard-shortcuts</id>
+    <content type="html"><![CDATA[<p>There are several keyboard shortcuts in Linux. Learning them can make your life a lot easier!
+This tuXfile discusses mainly command line shortcuts but some X Window System shortcuts are also included.</p>
+
+<h2>Virtual terminals</h2>
+
+<pre><code>Ctrl + Alt + F1
+</code></pre>
+
+<p>Switch to the first virtual terminal. In Linux, you can have several virtual terminals at the same time.
+The default is 6.</p>
+
+<pre><code>Ctrl + Alt + Fn
+</code></pre>
+
+<p>Switch to the nth virtual terminal. Because the number of virtual terminals is 6 by default, n = 1&#8230;6.</p>
+
+<pre><code>tty
+</code></pre>
+
+<p>Typing the tty command tells you what virtual terminal you&#8217;re currently working in.</p>
+
+<pre><code>Ctrl + Alt + F7
+</code></pre>
+
+<p>Switch to the GUI. If you have the X Window System running, it runs in the seventh virtual terminal by default
+in most Linux distros. If X isn&#8217;t running, this terminal is empty.
+Note: in some distros, X runs in a different virtual terminal by default. For example, in Puppy Linux, it&#8217;s 3.</p>
+
+<h2>X Window System</h2>
+
+<pre><code>Ctrl + Alt + +
+</code></pre>
+
+<p>Switch to the next resolution in the X Window System.
+This works if you&#8217;ve configured more than one resolution for your X server. Note that you must use the + in your numpad.</p>
+
+<pre><code>Ctrl + Alt + -
+</code></pre>
+
+<p>Switch to the previous X resolution. Use the - in your numpad.</p>
+
+<pre><code>MiddleMouseButton
+</code></pre>
+
+<p>Paste the highlighted text. You can highlight the text with your left mouse button
+(or with some other highlighting method, depending on the application you&#8217;re using),
+and then press the middle mouse button to paste. This is the traditional way of copying
+and pasting in the X Window System, but it may not work in some X applications.
+If you have a two-button mouse, pressing both of the buttons at the same time has the same effect
+as pressing the middle one. If it doesn&#8217;t, you must enable 3-mouse-button emulation.
+This works also in text terminals if you enable the gpm service.</p>
+
+<pre><code>Ctrl + Alt + Backspace
+</code></pre>
+
+<p>Kill the X server. Use this if X crashes and you can&#8217;t exit it normally.
+If you&#8217;ve configured your X Window System to start automatically at bootup,
+this restarts the server and throws you back to the graphical login screen.</p>
+
+<h2>Command line - input</h2>
+
+<pre><code>Home or Ctrl + a
+</code></pre>
+
+<p>Move the cursor to the beginning of the current line.</p>
+
+<pre><code>End or Ctrl + e
+</code></pre>
+
+<p>Move the cursor to the end of the current line.</p>
+
+<pre><code>Alt + b
+</code></pre>
+
+<p>Move the cursor to the beginning of the current or previous word. Note that while this works in virtual terminals,
+it may not work in all graphical terminal emulators, because many graphical applications already use this
+as a menu shortcut by default.</p>
+
+<pre><code>Alt + f
+</code></pre>
+
+<p>Move the cursor to the end of the next word. Again, like with all shortcuts that use Alt as the modifier,
+this may not work in all graphical terminal emulators.</p>
+
+<pre><code>Tab
+</code></pre>
+
+<p>Autocomplete commands and file names. Type the first letter(s) of a command, directory or file name,
+press Tab and the rest is completed automatically! If there are more commands starting with the same letters,
+the shell completes as much as it can and beeps. If you then press Tab again, it shows you all the alternatives.
+This shortcut is really helpful and saves a lot of typing! It even works at the lilo prompt and in some X applications.</p>
+
+<pre><code>Ctrl + u
+</code></pre>
+
+<p>Erase the current line.</p>
+
+<pre><code>Ctrl + k
+</code></pre>
+
+<p>Delete the line from the position of the cursor to the end of the line.</p>
+
+<pre><code>Ctrl + w
+</code></pre>
+
+<p>Delete the word before the cursor.</p>
+
+<h2>Command line - output</h2>
+
+<pre><code>history
+</code></pre>
+
+<p>When you type the history command, you&#8217;ll see a list of the commands you executed previously.</p>
+
+<pre><code>ArrowUp or Ctrl + p
+</code></pre>
+
+<p>Scroll up in the history and edit the previously executed commands. To execute them, press Enter like you normally do.</p>
+
+<pre><code>ArrowDown or Ctrl + n
+</code></pre>
+
+<p>Scroll down in the history and edit the next commands.</p>
+
+<pre><code>Ctrl + r
+</code></pre>
+
+<p>Find the last command that contained the letters you&#8217;re typing.
+For example, if you want to find out the last action you did to a file called &#8220;file42.txt&#8221;,
+you&#8217;ll press Ctrl + r and start typing the file name.
+Or, if you want to find out the last parameters you gave to the &#8220;cp&#8221; command, you&#8217;ll press Ctrl + r and type in &#8220;cp&#8221;.</p>
+
+<h2>Command line - misc</h2>
+
+<pre><code>Ctrl + c
+</code></pre>
+
+<p>Kill the current process.</p>
+
+<pre><code>Ctrl + z
+</code></pre>
+
+<p>Send the current process to background. This is useful if you have a program running,
+and you need the terminal for awhile but don&#8217;t want to exit the program completely.
+Then just send it to background with Ctrl+z, do whatever you want, and type the command fg to get the process back.</p>
+
+<pre><code>Ctrl + d
+</code></pre>
+
+<p>Log out from the current terminal. If you use this in a terminal emulator under X,
+this usually shuts down the terminal emulator after logging you out.</p>
+
+<pre><code>Ctrl + Alt + Del
+</code></pre>
+
+<p>Reboot the system. You can change this behavior by editing /etc/inittab
+if you want the system to shut down instead of rebooting.</p>
+
+<hr />
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[svn服务器配置]]></title>
+    <link href="http://meegoo-tsui.github.com/blog/2012/05/15/config-svn-server/"/>
+    <updated>2012-05-15T15:11:00+08:00</updated>
+    <id>http://meegoo-tsui.github.com/blog/2012/05/15/config-svn-server</id>
+    <content type="html"><![CDATA[<!---
+################################################################################
+-->
+
+
+<ul>
+<li> <a href="#windows">Windows 环境</a></li>
+<li> <a href="#linux">Linux 环境</a></li>
+</ul>
+
+
+<!---
+################################################################################
+-->
+
+
+<h2 id="windows">Windows 环境</h2>
+
+
+<h3>一.安装</h3>
+
+<h3>1. 安装apache服务器</h3>
+
+<p>下载<a href="http://httpd.apache.org/download.cgi#apache24">httpd-2.2.22-win32-x86-openssl-0.9.8t.msi</a>，apache占用80端口，
+安装完成后，在网页浏览器输入<code>http://your_ip</code>,会显示其已经工作，如果80端口端口占用，参考下面内容修改端口；</p>
+
+<h3>2. 安装svn服务器</h3>
+
+<p>下载<a href="http://sourceforge.net/projects/win32svn/files/1.7.4/">Setup-Subversion-1.7.4.msi</a>，默认安装即可；</p>
+
+<h3>3. 安装svn客户端</h3>
+
+<p>下载<a href="http://tortoisesvn.net/downloads.html">TortoiseSVN-1.7.x.xxxxx-win32-svn-1.7.x.msi</a>，默认安装即可；</p>
+
+<h3>二.创建数据仓库</h3>
+
+<h3>1. 确定数据仓库的路径，假设安装在<code>d:\svn_repos</code>，dos命令如下:</h3>
+
+<pre><code>d:
+mkdir d:\svn_repos
+</code></pre>
+
+<h3>2. 创建一个新仓库，dos命令如下：</h3>
+
+<pre><code>svnadmin create d:\svn_repos\my_project
+</code></pre>
+
+<h3>三.配置数据仓库</h3>
+
+<h3>1. 创建配置文件夹</h3>
+
+<pre><code>mkdir d:\svn_repos\conf
+</code></pre>
+
+<h3>2. 添加文件D:\svn_repos\conf\access.auth，添加内容如下：</h3>
+
+<pre><code>[my_project:/]
+meegoo=rw
+</code></pre>
+
+<p>含义：用户meegoo对my_project有读写权限。</p>
+
+<h3>3. apache账户管理</h3>
+
+<p>初次建立密码文件，前者为用户名称，后者为密码：</p>
+
+<pre><code>c:
+cd "c:\Program Files\Apache Software Foundation\Apache2.2\bin"
+htpasswd -cb users.auth meegoo 123456
+</code></pre>
+
+<p>添加其他用户，去掉-c参数：</p>
+
+<pre><code>htpasswd -b users.auth ming 123456
+</code></pre>
+
+<p>把users.auth复制到D:\svn_repos\conf\，或复制内容到D:\svn_repos\conf\users.auth。</p>
+
+<h3>四.配置apache服务器</h3>
+
+<h3>1. 拷贝文件</h3>
+
+<pre><code>cd   "C:\Program Files\Apache Software Foundation\Apache2.2\modules"
+copy "C:\Program Files\Subversion\bin\mod_authz_svn.so"
+copy "C:\Program Files\Subversion\bin\mod_dav_svn.so"
+</code></pre>
+
+<h3>2. 修改apache配置文件</h3>
+
+<p>修改文件<code>C:\Program Files\Apache Software Foundation\Apache2.2\conf\httpd.conf</code>:   <br/>
+去除“LoadModule dav_module modules/mod_dav.so”前面的“#”；   <br/>
+在此行后面加内容如下：</p>
+
+<pre><code>LoadModule dav_svn_module modules/mod_dav_svn.so    
+LoadModule authz_svn_module modules/mod_authz_svn.so   
+</code></pre>
+
+<p>添加以下内容到最后:</p>
+
+<pre><code>&lt;Location /svn&gt;
+
+DAV svn
+SVNParentPath D:/svn_repos
+
+AuthzSVNAccessFile D:/svn_repos/conf/access.auth
+Satisfy Any
+Require valid-user
+
+AuthType Basic
+AuthName "Subversion repositories"
+AuthUserFile  D:/svn_repos/conf/users.auth
+Require valid-user
+&lt;/Location&gt;
+</code></pre>
+
+<p>修改端口，仅当80端口占用情况，修改“Listen 80”为“Listen 8080”</p>
+
+<h3>五.使用</h3>
+
+<ul>
+<li>重启电脑或apache软件；</li>
+<li>网页访问http://your_ip/svn/my_project或http://your_ip:8080/svn/my_project；</li>
+<li>TortoiseSVN右键checkout；</li>
+<li>新增类似my_project的仓库，只需修改控件权限即可，文件：D:\svn_repos\conf\access.auth；</li>
+</ul>
+
+
+<!---
+################################################################################
+-->
+
+
+<hr />
+
+
+<h2 id="linux">linux 环境</h2>
+
+
+<h3>一. 安装</h3>
+
+<p>安装apache2和subversion相关安装包。</p>
+
+<pre><code>sudo apt-get install apache2 subversion libapache2-svn python-subversion sendmail    
+</code></pre>
+
+<p>添加组subversion及用户模式设置。</p>
+
+<pre><code>sudo addgroup subversion;sudo usermod -G subversion -a www-data
+</code></pre>
+
+<h3>二. 创建数据仓库</h3>
+
+<p>创建数据仓库及模式设置。   <br/>
+方法一（无邮件通知功能）：</p>
+
+<pre><code>sudo svnadmin create /opt/svn_repos/my_project
+sudo chown -R root:subversion /opt/svn_repos/my_project;sudo chmod -R g+rws
+</code></pre>
+
+<p>方法二（有邮件通知功能）：   <br/>
+下载文件<a href='http://meegoo-tsui.github.com/downloads/tar/makesvn.tar.bz2' id='blog-link' title='Tar'>makesvn工具</a>,然后解压，
+进入文件夹，运行命令如下：</p>
+
+<pre><code>sudo mkdir /opt/svn_repos;./makesvn.sh /opt/svn_repos/ my_project
+</code></pre>
+
+<h3>三. 配置数据仓库 <a href='http://meegoo-tsui.github.com/downloads/tar/conf.tar.bz2' id='blog-link' title='Tar'>conf</a></h3>
+
+<h3>1. 创建配置文件夹</h3>
+
+<pre><code>cd /opt/svn_repos/;sudo mkdir conf
+</code></pre>
+
+<h3>2. 添加文件D:\svn_repos\conf\access.auth，添加内容如下：</h3>
+
+<pre><code>[my_project:/]
+meegoo=rw
+</code></pre>
+
+<p>含义：用户meegoo对my_project有读写权限。</p>
+
+<h3>3. apache账户管理</h3>
+
+<p>初次建立密码文件，前者为用户名称，后者为密码：</p>
+
+<pre><code>sudo htpasswd -c /opt/svn_repos/conf/dav_svn.passwd meegoo
+</code></pre>
+
+<p>添加其他用户，去掉-c参数：</p>
+
+<pre><code>sudo htpasswd    /opt/svn_repos/conf/dav_svn.passwd ming
+</code></pre>
+
+<h3>四. 配置apache服务器</h3>
+
+<h3>1. 修改apache配置文件</h3>
+
+<pre><code>sudo vim /etc/apache2/mods-available/dav_svn.conf
+</code></pre>
+
+<p>修改内容如下：</p>
+
+<pre><code>&lt;Location /svn&gt;
+DAV svn
+SVNParentPath /opt/svn_repos
+
+AuthType Basic
+AuthName "Subversion Repository"
+AuthUserFile /opt/svn_repos/conf/dav_svn.passwd
+AuthzSVNAccessFile /opt/svn_repos/conf/access.auth
+
+#&lt;LimitExcept GET PROPFIND OPTIONS REPORT&gt;
+Require valid-user
+#&lt;/LimitExcept&gt; 
+
+&lt;/Location&gt;
+</code></pre>
+
+<h3>2. 测试svn服务器</h3>
+
+<p>重启服务器，使配置文件生效：</p>
+
+<pre><code>sudo /etc/init.d/apache2 restart
+</code></pre>
+
+<p>网页访问http://your_ip/svn/my_project，输入密码、访问。</p>
+
+<h3>五. svn命令</h3>
+
+<p>以二进制文件上传：</p>
+
+<pre><code>svn propset svn:mime-type application/octet-stream filename
+</code></pre>
+
+<p>去除文件的执行属性：</p>
+
+<pre><code>svn propdel svn:executable filename.ext
+</code></pre>
+
+<hr />
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[jekyll的安装使用]]></title>
+    <link href="http://meegoo-tsui.github.com/blog/2012/05/15/jekyll-install-and-use/"/>
+    <updated>2012-05-15T14:11:00+08:00</updated>
+    <id>http://meegoo-tsui.github.com/blog/2012/05/15/jekyll-install-and-use</id>
+    <content type="html"><![CDATA[<!---
+################################################################################
+-->
+
+
+<ul>
+<li> <a href="#windows">Windows 环境</a></li>
+<li> <a href="#linux">Linux 环境</a></li>
+</ul>
+
+
+<!---
+################################################################################
+-->
+
+
+<h2 id="windows">jekyll的安装 - Windows 环境</h2>
+
+
+<h3>1. 安装RailsInstaller</h3>
+
+<p>下载<a href="http://railsinstaller.org/">RailsInstaller</a>，
+然后安装，里面包含了Ruby、Rails、Bundler、Git、Sqlite、TinyTDS、SQL Server support和DevKit。</p>
+
+<h3>2. 安装jekyll和相关的包</h3>
+
+<p>把淘宝的镜像加到gem的镜像列表里</p>
+
+<pre><code>$ gem sources --remove http://rubygems.org/
+$ gem sources -a http://ruby.taobao.org/
+</code></pre>
+
+<p>查看：</p>
+
+<pre><code>$ gem sources -l
+</code></pre>
+
+<p>安装jekyll及相关包：</p>
+
+<pre><code>$ gem install jekyll
+$ gem install rdiscount kramdown
+</code></pre>
+
+<h3>3. 修改jekyll运行语言错误</h3>
+
+<p>打开C:\RailsInstaller\Ruby1.9.3\lib\ruby\gems\1.9.1\gems\jekyll-0.11.2\lib\jekyll\tags\include.rb，
+将source = File.read(@file)修改为：</p>
+
+<pre><code>source = File.read(@file, :encoding =&gt; "utf-8")
+</code></pre>
+
+<p>打开C:\RailsInstaller\Ruby1.9.3\lib\ruby\gems\1.9.1\gems\jekyll-0.11.2\lib\jekyll\convertible.rb，
+将self.content = File.read(File.join(base, name))修改为：</p>
+
+<pre><code>self.content = File.read(File.join(base, name), :encoding =&gt; "utf-8")
+</code></pre>
+
+<h3>4. 语法的高亮显示</h3>
+
+<p>a. 下载<a href="http://users.ugent.be/~bpuype/wget/">wget.exe</a>，copy到C:\windows；</p>
+
+<p>b. 下载且安装python；  <br/>
+windows 64位：</p>
+
+<div>
+  <pre><code class='bash'>$ cd /f
+# setuptools does not work with Python 3.2
+$ wget -nc http://python.org/ftp/python/2.7.3/python-2.7.3.amd64.msi
+$ msiexec -qn -i python-2.7.3.amd64.msi ADDLOCAL=&quot;DefaultFeature&quot;</code></pre>
+</div>
+
+
+<p>windows 32位：</p>
+
+<div>
+  <pre><code class='bash'>$ cd /f
+# setuptools does not work with Python 3.2
+$ wget -nc http://python.org/ftp/python/2.7.3/python-2.7.3.msi
+$ msiexec -qn -i python-2.7.3.msi ADDLOCAL=&quot;DefaultFeature&quot;</code></pre>
+</div>
+
+
+<p>c. 添加路径到PATH，文件D:\Program Files (x86)\Git\etc\profile；</p>
+
+<div>
+  <pre><code class='bash'># add python path
+export PATH=&quot;$HOME/bin:/C/Python27:/C/Python27/Scripts:$PATH&quot;</code></pre>
+</div>
+
+
+<p>d. 重新启动git bash，安装Pygments；</p>
+
+<div>
+  <pre><code class='bash'># Install setuptools 
+$ wget -nc peak.telecommunity.com/dist/ez_setup.py
+$ ./ez_setup.py
+# Pygments
+$ easy_install Pygments</code></pre>
+</div>
+
+
+<p>e. 修正bug：D:\RailsInstaller\Ruby1.9.3\lib\ruby\gems\1.9.1\gems\albino-1.3.3\lib\albino.rb；</p>
+
+<figure class='code'><figcaption><span> (albino.rb.diff)</span> <a href='http://meegoo-tsui.github.com/downloads/code/albino.rb.diff'>download</a></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+</pre></td><td class='code'><pre><code class='diff'><span class='line'><span class="gh">diff --git a/lib/albino.rb b/lib/albino.rb</span>
+</span><span class='line'><span class="gh">index 387c8e9..b77d55e 100644</span>
+</span><span class='line'><span class="gd">--- a/lib/albino.rb</span>
+</span><span class='line'><span class="gi">+++ b/lib/albino.rb</span>
+</span><span class='line'><span class="gu">@@ -1,4 +1,5 @@</span>
+</span><span class='line'> require &#39;posix-spawn&#39;
+</span><span class='line'><span class="gi">+require &#39;rbconfig&#39;</span>
+</span><span class='line'>
+</span><span class='line'> ##
+</span><span class='line'> # Wrapper for the Pygments command line tool, pygmentize.
+</span><span class='line'><span class="gu">@@ -84,11 +85,21 @@ class Albino</span>
+</span><span class='line'>     proc_options[:timeout] = options.delete(:timeout) || self.class.timeout_threshold
+</span><span class='line'>     command = convert_options(options)
+</span><span class='line'>     command.unshift(bin)
+</span><span class='line'><span class="gd">-    Child.new(*(command + [proc_options.merge(:input =&gt; write_target)]))</span>
+</span><span class='line'><span class="gi">+    if RbConfig::CONFIG[&#39;host_os&#39;] =~ /(mingw|mswin)/</span>
+</span><span class='line'><span class="gi">+      output = &#39;&#39;</span>
+</span><span class='line'><span class="gi">+      IO.popen(command, mode=&#39;r+&#39;) do |p|</span>
+</span><span class='line'><span class="gi">+        p.write @target</span>
+</span><span class='line'><span class="gi">+        p.close_write</span>
+</span><span class='line'><span class="gi">+        output = p.read.strip</span>
+</span><span class='line'><span class="gi">+      end</span>
+</span><span class='line'><span class="gi">+      output</span>
+</span><span class='line'><span class="gi">+    else</span>
+</span><span class='line'><span class="gi">+      Child.new(*(command + [proc_options.merge(:input =&gt; write_target)]))</span>
+</span><span class='line'><span class="gi">+    end</span>
+</span><span class='line'>   end
+</span><span class='line'>
+</span><span class='line'>   def colorize(options = {})
+</span><span class='line'><span class="gd">-    out = execute(options).out</span>
+</span><span class='line'><span class="gi">+    out = RbConfig::CONFIG[&#39;host_os&#39;] =~ /(mingw|mswin)/ ? execute(options) : execute(options).out</span>
+</span><span class='line'>
+</span><span class='line'>     # markdown requires block elements on their own line
+</span><span class='line'>     out.sub!(%r{&lt;/pre&gt;&lt;/div&gt;\Z}, &quot;&lt;/pre&gt;\n&lt;/div&gt;&quot;)
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<!---
+################################################################################
+-->
+
+
+<hr />
+
+
+<h2 id="linux">jekyll的安装 - linux 环境</h2>
+
+
+<h3>1. Install ruby</h3>
+
+<div>
+  <pre><code class='bash'>$ sudo apt-get install ruby1.9.1 ruby1.9.1-dev python-pygments
+$ sudo ln -s /usr/bin/ruby1.9.1 /usr/bin/ruby</code></pre>
+</div>
+
+
+<h3>2. Download and install rubygems</h3>
+
+<div>
+  <pre><code class='bash'>$ wget http://files.rubyforge.vm.bytemark.co.uk/rubygems/rubygems-1.8.24.tgz
+$ tar -zxf rubygems-1.8.24.tgz
+$ cd rubygems-1.8.24/
+$ sudo ruby setup.rb
+$ sudo ln -s /usr/bin/gem1.9.1 /usr/bin/gem</code></pre>
+</div>
+
+
+<h3>3. Install jekyll via gem</h3>
+
+<div>
+  <pre><code class='bash'>$ sudo gem install jekyll --no-rdoc --no-ri
+$ sudo gem install rdiscount --no-rdoc --no-ri
+$ sudo gem install RedCloth --no-rdoc --no-ri</code></pre>
+</div>
+
+
+<h3>4. Run jekyll at a jekyll project path</h3>
+
+<div>
+  <pre><code class='bash'>$ jekyll --server</code></pre>
+</div>
+
+
+<p>View http://127.0.0.1:4000/</p>
+
+<h2>其他</h2>
+
+<p><a href="https://github.com/mojombo/jekyll/wiki/Liquid-Extensions/">Liquid-Extensions</a>  <br/>
+<a href="https://github.com/mojombo/jekyll/wiki/Install">jekyll-Install</a></p>
+
+<hr />
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[在github上使用git]]></title>
+    <link href="http://meegoo-tsui.github.com/blog/2012/05/15/git-on-github/"/>
+    <updated>2012-05-15T13:11:00+08:00</updated>
+    <id>http://meegoo-tsui.github.com/blog/2012/05/15/git-on-github</id>
+    <content type="html"><![CDATA[<h2>git工具的安装 - Windows 7</h2>
+
+<h3>1. 安装命令行工具 msysgit</h3>
+
+<p>msysgit为google上的托管项目，可以从<a href="http://code.google.com/p/msysgit/downloads/list">google</a>下载安装包，
+选择最新版本(Git-1.7.8-preview20111206.exe)进行安装，安装时无特别要求，选择默认选项，一直“next”完成安装。</p>
+
+<h3>2. 安装图形工具 - tortoise git</h3>
+
+<p>tortoisegit为google上的托管项目，可以从<a href="http://code.google.com/p/tortoisegit/downloads/list">google</a>下载安装包，
+选择最新版本(TortoiseGit-1.7.8.0-32bit.msi或TortoiseGit-1.7.8.0-64bit.msi)进行安装，安装时无特别要求，
+选择默认选项，一直“next”完成安装。</p>
+
+<h3>3. git配置</h3>
+
+<p>配置git账户信息，包括用户名和邮件地址等，一般以命令行形式配置，使用git config配置时:</p>
+
+<ul>
+<li>无参数   - 参数保存在.git/config</li>
+<li>&#8211;global - 参数保存在/home/user_name/.gitconfig</li>
+<li>&#8211;system - 参数保存在/etc/gitconfig</li>
+</ul>
+
+
+<p>执行配置脚本：</p>
+
+<div>
+  <pre><code class='bash'>#!/bin/sh
+
+# name and email
+git config --global user.name &quot;meegoo tsui&quot;
+git config --global user.email &quot;meegoo.tsui@gmail.com&quot;
+
+# chinese font
+git config --global gui.encoding utf-8
+git config --global i18n.commitencoding utf-8
+git config --global i18n.logoutputencoding gbk
+
+# fie mode and edit
+git config --global core.fileMode false
+git config --global core.editor vim
+
+# diff
+git config --global diff.external git-diff-wrapper.sh
+git config --global diff.tool tortoise
+git config --global difftool.tortoise.cmd 'TortoiseMerge -base:&quot;$LOCAL&quot; -theirs:&quot;$REMOTE&quot;'
+git config --global difftool.prompt false
+
+# merge
+git config --global merge.tool tortoise
+git config --global mergetool.tortoise.cmd 'TortoiseMerge -base:&quot;$BASE&quot; -theirs:&quot;$REMOTE&quot; -mine:&quot;$LOCAL&quot; -merged:&quot;$MERGED&quot;'
+git config --global mergetool.prompt false</code></pre>
+</div>
+
+
+<h3>4. 中文输入支持</h3>
+
+<p>修改D:\Program Files (x86)\Git\etc\profile,添加内容如下：</p>
+
+<pre><code># ls 显示中文
+alias ls='ls --show-control-chars --color=auto'
+
+# more 显示中文
+export LESSCHARSET=utf-8
+</code></pre>
+
+<p>中文输入支持，修改文件D:\Program Files (x86)\Git\etc\inputrc：</p>
+
+<pre><code>set output-meta on
+set convert-meta off
+</code></pre>
+
+<p>使用SVN的diff、merge工具TortoiseMerge.exe、git-diff-wrapper.sh，拷贝到D:\Program Files (x86)\Git\bin，git-diff-wrapper.sh
+内容如下：</p>
+
+<div>
+  <pre><code class='bash'>#!/bin/sh
+
+# diff is called by git with 7 parameters:
+# path old-file old-hex old-mode new-file new-hex new-mode
+
+TortoiseMerge -base:&quot;$2&quot; -theirs:&quot;$5&quot;</code></pre>
+</div>
+
+
+<h2>git工具的安装 - Ubuntu 10.04</h2>
+
+<h3>1. 安装 openssh</h3>
+
+<p>如果不安装openssh，在导入ssh id_rsa私匙时，认证老是不成功，安装命令如下：</p>
+
+<pre><code>$ sudo apt-get install openssh-serve
+$ sudo /etc/init.d/ssh restart
+</code></pre>
+
+<h3>2. 安装 git</h3>
+
+<p>安装命令如下：</p>
+
+<pre><code>$ sudo apt-get install git-core
+</code></pre>
+
+<h3>3. 安装图形工具 rabbitvcs-nautilus</h3>
+
+<p>与Windows下的tortoisegit的差不多，安装命令如下：</p>
+
+<pre><code>$ sudo add-apt-repository ppa:rabbitvcs/ppa
+$ sudo apt-get update
+$ sudo apt-get install rabbitvcs-nautilus
+</code></pre>
+
+<h2>SSH key生成和使用</h2>
+
+<h3>1. 生成 SSH key</h3>
+
+<p>私匙id_rsa和公匙id_rsa.pub配对生成，配对使用，生成时可设置密码，命令如下：</p>
+
+<pre><code>$ ssh-keygen -t rsa -C "meegoo.tsui@gmail.com"
+</code></pre>
+
+<p>上传公匙id_rsa.pub到github.com的个人repos，测试命令如下：</p>
+
+<pre><code>$ ssh -T git@github.com
+</code></pre>
+
+<h3>2. 导入 SSH key</h3>
+
+<p>复制私匙id_rsa和公匙id_rsa.pub到/home/user_name/.ssh，然后修改文件属性：</p>
+
+<pre><code>$ chmod 600 .ssh/id_rsa .ssh/id_rsa.pub
+</code></pre>
+
+<h3>3. Windows生成*.ppk格式的SSH key</h3>
+
+<p>下载<a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">puttygen.exe</a>，然后导入
+id_rsa文件，Conversions，输入密码，即可生成ppk(putty pravite key)文件。</p>
+
+<h2>创建repos</h2>
+
+<p>在github创建repos的本地操作，基本命令如下：</p>
+
+<h3>Create A Repos</h3>
+
+<pre><code>$ git init
+$ git add README
+$ git commit -m 'first commit'
+$ git remote add origin git@github.com:meegootsui/meegootsui.github.com.git
+$ git push -u origin master
+</code></pre>
+
+<h3>Checkout Repos</h3>
+
+<pre><code>$ git clone git@github.com:meegootsui/meegootsui.github.com.git
+</code></pre>
+
+<h3>Commit</h3>
+
+<pre><code>$ git commit -m ""
+$ git push -u origin master
+</code></pre>
+
+<hr />
+
+]]></content>
+  </entry>
+  
+</feed>

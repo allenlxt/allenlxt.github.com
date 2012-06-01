@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: stm32 | Meegoo Tsui's Blog]]></title>
+  <link href="http://meegoo-tsui.github.com/blog/categories/stm32/atom.xml" rel="self"/>
+  <link href="http://meegoo-tsui.github.com/"/>
+  <updated>2012-06-01T11:30:54+08:00</updated>
+  <id>http://meegoo-tsui.github.com/</id>
+  <author>
+    <name><![CDATA[Meegoo Tsui]]></name>
+    <email><![CDATA[meegoo.tsui@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[stm32 f1开发 - 初步]]></title>
+    <link href="http://meegoo-tsui.github.com/blog/2012/05/26/st-stm32-f1/"/>
+    <updated>2012-05-26T13:11:00+08:00</updated>
+    <id>http://meegoo-tsui.github.com/blog/2012/05/26/st-stm32-f1</id>
+    <content type="html"><![CDATA[<p>资源链接：</p>
+
+<ul>
+<li><a href="http://www.st.com/internet/mcu/subclass/1169.jsp">stm32 f1</a></li>
+</ul>
+
+
+<hr />
+
+]]></content>
+  </entry>
+  
+</feed>

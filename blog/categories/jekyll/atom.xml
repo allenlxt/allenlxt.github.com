@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: jekyll | Meegoo Tsui's Blog]]></title>
+  <link href="http://meegoo-tsui.github.com/blog/categories/jekyll/atom.xml" rel="self"/>
+  <link href="http://meegoo-tsui.github.com/"/>
+  <updated>2012-06-01T11:30:54+08:00</updated>
+  <id>http://meegoo-tsui.github.com/</id>
+  <author>
+    <name><![CDATA[Meegoo Tsui]]></name>
+    <email><![CDATA[meegoo.tsui@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[jekyll的安装使用]]></title>
+    <link href="http://meegoo-tsui.github.com/blog/2012/05/15/jekyll-install-and-use/"/>
+    <updated>2012-05-15T14:11:00+08:00</updated>
+    <id>http://meegoo-tsui.github.com/blog/2012/05/15/jekyll-install-and-use</id>
+    <content type="html"><![CDATA[<!---
+################################################################################
+-->
+
+
+<ul>
+<li> <a href="#windows">Windows 环境</a></li>
+<li> <a href="#linux">Linux 环境</a></li>
+</ul>
+
+
+<!---
+################################################################################
+-->
+
+
+<h2 id="windows">jekyll的安装 - Windows 环境</h2>
+
+
+<h3>1. 安装RailsInstaller</h3>
+
+<p>下载<a href="http://railsinstaller.org/">RailsInstaller</a>，
+然后安装，里面包含了Ruby、Rails、Bundler、Git、Sqlite、TinyTDS、SQL Server support和DevKit。</p>
+
+<h3>2. 安装jekyll和相关的包</h3>
+
+<p>把淘宝的镜像加到gem的镜像列表里</p>
+
+<pre><code>$ gem sources --remove http://rubygems.org/
+$ gem sources -a http://ruby.taobao.org/
+</code></pre>
+
+<p>查看：</p>
+
+<pre><code>$ gem sources -l
+</code></pre>
+
+<p>安装jekyll及相关包：</p>
+
+<pre><code>$ gem install jekyll
+$ gem install rdiscount kramdown
+</code></pre>
+
+<h3>3. 修改jekyll运行语言错误</h3>
+
+<p>打开C:\RailsInstaller\Ruby1.9.3\lib\ruby\gems\1.9.1\gems\jekyll-0.11.2\lib\jekyll\tags\include.rb，
+将source = File.read(@file)修改为：</p>
+
+<pre><code>source = File.read(@file, :encoding =&gt; "utf-8")
+</code></pre>
+
+<p>打开C:\RailsInstaller\Ruby1.9.3\lib\ruby\gems\1.9.1\gems\jekyll-0.11.2\lib\jekyll\convertible.rb，
+将self.content = File.read(File.join(base, name))修改为：</p>
+
+<pre><code>self.content = File.read(File.join(base, name), :encoding =&gt; "utf-8")
+</code></pre>
+
+<h3>4. 语法的高亮显示</h3>
+
+<p>a. 下载<a href="http://users.ugent.be/~bpuype/wget/">wget.exe</a>，copy到C:\windows；</p>
+
+<p>b. 下载且安装python；  <br/>
+windows 64位：  <br/>
+<div>
+  <pre><code class='bash'>$ cd /f&lt;/p&gt;
+
+&lt;h1&gt;setuptools does not work with Python 3.2&lt;/h1&gt;
+
+&lt;p&gt;$ wget -nc http://python.org/ftp/python/2.7.3/python-2.7.3.amd64.msi
+$ msiexec -qn -i python-2.7.3.amd64.msi ADDLOCAL=&quot;DefaultFeature&quot;</code></pre>
+</div>
+
+windows 32位：  <br/>
+<div>
+  <pre><code class='bash'>$ cd /f&lt;/p&gt;
+
+&lt;h1&gt;setuptools does not work with Python 3.2&lt;/h1&gt;
+
+&lt;p&gt;$ wget -nc http://python.org/ftp/python/2.7.3/python-2.7.3.msi
+$ msiexec -qn -i python-2.7.3.msi ADDLOCAL=&quot;DefaultFeature&quot;</code></pre>
+</div>
+</p>
+
+<p>c. 添加路径到PATH，文件D:\Program Files (x86)\Git\etc\profile；  <br/>
+<div>
+  <pre><code class='bash'>&lt;/p&gt;
+
+&lt;h1&gt;add python path&lt;/h1&gt;
+
+&lt;p&gt;export PATH=&quot;$HOME/bin:/C/Python27:/C/Python27/Scripts:$PATH&quot;</code></pre>
+</div>
+</p>
+
+<p>d. 重新启动git bash，安装Pygments；  <br/>
+<div>
+  <pre><code class='bash'>&lt;/p&gt;
+
+&lt;h1&gt;Install setuptools&lt;/h1&gt;
+
+&lt;p&gt;$ wget -nc peak.telecommunity.com/dist/ez_setup.py
+$ ./ez_setup.py&lt;/p&gt;
+
+&lt;h1&gt;Pygments&lt;/h1&gt;
+
+&lt;p&gt;$ easy_install Pygments</code></pre>
+</div>
+</p>
+
+<p>e. 修正bug：D:\RailsInstaller\Ruby1.9.3\lib\ruby\gems\1.9.1\gems\albino-1.3.3\lib\albino.rb；  <br/>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span> (albino.rb.diff)</span> <a href='/downloads/code/albino.rb.diff'>download</a></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+</pre></td><td class='code'><pre><code class='diff'><span class='line'><span class="gh">diff --git a/lib/albino.rb b/lib/albino.rb</span>
+</span><span class='line'><span class="gh">index 387c8e9..b77d55e 100644</span>
+</span><span class='line'><span class="gd">--- a/lib/albino.rb</span>
+</span><span class='line'><span class="gi">+++ b/lib/albino.rb</span>
+</span><span class='line'><span class="gu">@@ -1,4 +1,5 @@</span>
+</span><span class='line'> require &#39;posix-spawn&#39;
+</span><span class='line'><span class="gi">+require &#39;rbconfig&#39;</span>
+</span><span class='line'>
+</span><span class='line'> ##
+</span><span class='line'> # Wrapper for the Pygments command line tool, pygmentize.
+</span><span class='line'><span class="gu">@@ -84,11 +85,21 @@ class Albino</span>
+</span><span class='line'>     proc_options[:timeout] = options.delete(:timeout) || self.class.timeout_threshold
+</span><span class='line'>     command = convert_options(options)
+</span><span class='line'>     command.unshift(bin)
+</span><span class='line'><span class="gd">-    Child.new(*(command + [proc_options.merge(:input =&gt; write_target)]))</span>
+</span><span class='line'><span class="gi">+    if RbConfig::CONFIG[&#39;host_os&#39;] =~ /(mingw|mswin)/</span>
+</span><span class='line'><span class="gi">+      output = &#39;&#39;</span>
+</span><span class='line'><span class="gi">+      IO.popen(command, mode=&#39;r+&#39;) do |p|</span>
+</span><span class='line'><span class="gi">+        p.write @target</span>
+</span><span class='line'><span class="gi">+        p.close_write</span>
+</span><span class='line'><span class="gi">+        output = p.read.strip</span>
+</span><span class='line'><span class="gi">+      end</span>
+</span><span class='line'><span class="gi">+      output</span>
+</span><span class='line'><span class="gi">+    else</span>
+</span><span class='line'><span class="gi">+      Child.new(*(command + [proc_options.merge(:input =&gt; write_target)]))</span>
+</span><span class='line'><span class="gi">+    end</span>
+</span><span class='line'>   end
+</span><span class='line'>
+</span><span class='line'>   def colorize(options = {})
+</span><span class='line'><span class="gd">-    out = execute(options).out</span>
+</span><span class='line'><span class="gi">+    out = RbConfig::CONFIG[&#39;host_os&#39;] =~ /(mingw|mswin)/ ? execute(options) : execute(options).out</span>
+</span><span class='line'>
+</span><span class='line'>     # markdown requires block elements on their own line
+</span><span class='line'>     out.sub!(%r{&lt;/pre&gt;&lt;/div&gt;\Z}, &quot;&lt;/pre&gt;\n&lt;/div&gt;&quot;)
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<!---
+################################################################################
+-->
+
+
+<hr />
+
+
+<h2 id="linux">jekyll的安装 - linux 环境</h2>
+
+
+<h3>1. Install ruby</h3>
+
+<p><div>
+  <pre><code class='bash'>$ sudo apt-get install ruby1.9.1 ruby1.9.1-dev python-pygments
+$ sudo ln -s /usr/bin/ruby1.9.1 /usr/bin/ruby</code></pre>
+</div>
+</p>
+
+<h3>2. Download and install rubygems</h3>
+
+<p><div>
+  <pre><code class='bash'>$ wget http://files.rubyforge.vm.bytemark.co.uk/rubygems/rubygems-1.8.24.tgz
+$ tar -zxf rubygems-1.8.24.tgz
+$ cd rubygems-1.8.24/
+$ sudo ruby setup.rb
+$ sudo ln -s /usr/bin/gem1.9.1 /usr/bin/gem</code></pre>
+</div>
+</p>
+
+<h3>3. Install jekyll via gem</h3>
+
+<p><div>
+  <pre><code class='bash'>$ sudo gem install jekyll --no-rdoc --no-ri
+$ sudo gem install rdiscount --no-rdoc --no-ri
+$ sudo gem install RedCloth --no-rdoc --no-ri</code></pre>
+</div>
+</p>
+
+<h3>4. Run jekyll at a jekyll project path</h3>
+
+<p><div>
+  <pre><code class='bash'>$ jekyll --server</code></pre>
+</div>
+</p>
+
+<p>View http://127.0.0.1:4000/</p>
+
+<h2>其他</h2>
+
+<p><a href="https://github.com/mojombo/jekyll/wiki/Liquid-Extensions/">Liquid-Extensions</a>  <br/>
+<a href="https://github.com/mojombo/jekyll/wiki/Install">jekyll-Install</a></p>
+
+<hr />
+
+]]></content>
+  </entry>
+  
+</feed>

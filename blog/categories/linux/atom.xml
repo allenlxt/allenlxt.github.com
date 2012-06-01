@@ -1,0 +1,579 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: linux | Meegoo Tsui's Blog]]></title>
+  <link href="http://meegoo-tsui.github.com/blog/categories/linux/atom.xml" rel="self"/>
+  <link href="http://meegoo-tsui.github.com/"/>
+  <updated>2012-06-01T11:30:54+08:00</updated>
+  <id>http://meegoo-tsui.github.com/</id>
+  <author>
+    <name><![CDATA[Meegoo Tsui]]></name>
+    <email><![CDATA[meegoo.tsui@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[linux git服务器的配置]]></title>
+    <link href="http://meegoo-tsui.github.com/blog/2012/05/17/git-linux-server/"/>
+    <updated>2012-05-17T13:11:00+08:00</updated>
+    <id>http://meegoo-tsui.github.com/blog/2012/05/17/git-linux-server</id>
+    <content type="html"><![CDATA[<p>安装平台： ubuntu 10.04  <br/>
+搭建git服务器，需要如下软件：</p>
+
+<pre><code>$ sudo apt-get install openssh-server openssh-client
+$ sudo apt-get install git-core
+$ sudo apt-get install python-setuptools
+</code></pre>
+
+<h2>源码安装gitosis</h2>
+
+<p>使用git下载源码：</p>
+
+<pre><code>$ git clone https://github.com/ossxp-com/gitosis.git
+$ cd gitosis
+$ sudo python setup.py install
+</code></pre>
+
+<h2>账户相关信息</h2>
+
+<p>创建用户git</p>
+
+<pre><code>$ sudo adduser --system --shell /bin/bash --disabled-password --group git
+</code></pre>
+
+<p>创建git仓库存储目录</p>
+
+<pre><code>$ sudo mkdir /home/git/repositories
+</code></pre>
+
+<p>设置git仓库权限</p>
+
+<pre><code>$ sudo chown git:git /home/git/repositories
+$ sudo chmod 755 /home/git/repositories
+</code></pre>
+
+<p>初始化全局设置</p>
+
+<pre><code>$ git config --global usre.name     "meegoo tsui"
+$ git config --global usre.email    meegoo.tsui@gmail.com
+$ git config --global core.fileMode false
+$ git config --global core.editor   vim
+</code></pre>
+
+<ul>
+<li>配置用户名称</li>
+<li>配置用户邮件</li>
+<li>配置忽略文件的执行权限</li>
+<li>配置编辑器</li>
+</ul>
+
+
+<h2>初使化gitosis</h2>
+
+<p>生成 SSH key：</p>
+
+<pre><code>$ ssh-keygen -t rsa -C "meegoo.tsui@gmail.com"
+</code></pre>
+
+<p>拷贝到服务器/tmp下：</p>
+
+<pre><code>$ cp  ~/.ssh/id_rsa.pub /tmp
+</code></pre>
+
+<p>或：</p>
+
+<pre><code>$ scp ~/.ssh/id_rsa.pub 用户名@主机:/tmp
+</code></pre>
+
+<p>初使化gitosis，切回到服务器：</p>
+
+<pre><code>$ sudo -H -u git gitosis-init &lt; /tmp/id_rsa.pub
+</code></pre>
+
+<p>修改post-update权限:</p>
+
+<pre><code>$ sudo chmod 755 /home/git/repositories/gitosis-admin.git/hooks/post-update
+</code></pre>
+
+<p>clone gitosis管理平台，切换到本地：</p>
+
+<pre><code>$ git clone git@192.168.0.2:gitosis-admin.git
+</code></pre>
+
+<p>或</p>
+
+<pre><code>$ git clone git@lenovo:gitosis-admin.git
+</code></pre>
+
+<p>用户key在gitosis-admin/keydir/下，权限文件在gitosis-admin/gitosis.conf,添加*.pub且修改gitosis.conf，
+上传即可。</p>
+
+<h2>创建版本库</h2>
+
+<p>客服端修改权限文件gitosis-admin.git/gitosis.conf，关键字admin允许创建，添加内容如下：</p>
+
+<pre><code>[group my_project-admin]
+members = meegoo.tsui@gmail.com
+admin = my_project
+</code></pre>
+
+<p>创建版本项目：</p>
+
+<pre><code>$ mkdir my_project;cd my_project
+$ git init
+$ git commit --allow-empty -m "create the repos."
+$ git remote add origin git@192.168.0.2:my_project.git
+$ git push -u origin master
+</code></pre>
+
+<h2>gitweb安装及配置</h2>
+
+<p>安装gitweb：</p>
+
+<pre><code>$ sudo apt-get install gitweb
+</code></pre>
+
+<p>配置apache服务器:</p>
+
+<pre><code>$ sudo gedit /etc/apache2/mods-available/dav_svn.conf
+</code></pre>
+
+<p>添加内容如下：</p>
+
+<pre><code>Alias /gitweb /usr/share/gitweb
+&lt;Directory /usr/share/gitweb&gt;
+    Options FollowSymLinks +ExecCGI
+    AddHandler cgi-script .cgi
+    DirectoryIndex index.cgi gitweb.cgi
+    order Allow,Deny
+    Allow from all
+&lt;/Directory&gt;
+</code></pre>
+
+<p>或：</p>
+
+<pre><code>&lt;VirtualHost *:80&gt;
+    ServerName localhost
+    ScriptAlias /cgi-bin/ /usr/lib/cgi-bin/
+    &lt;Directory /usr/lib/cgi-bin/&gt;
+        Options ExecCGI +FollowSymLinks +SymLinksIfOwnerMatch
+        AllowOverride All
+        order allow,deny
+        Allow from all
+        AddHandler cgi-script cgi .pl .py
+        DirectoryIndex gitweb.cgi
+    &lt;/Directory&gt;
+&lt;/VirtualHost&gt;
+</code></pre>
+
+<p>修改gitweb配置文件：</p>
+
+<pre><code>$ sudo vim /etc/gitweb.conf
+$ sudo /etc/init.d/apache2 restart
+# 修改内容如下：
+$projectroot = "/home/git";
+$home_text = "/home/git/indextext.html";
+</code></pre>
+
+<p>客服端修改权限文件gitosis-admin.git/gitosis.conf：</p>
+
+<pre><code>[repo gitosis-admin.git]
+gitweb      = yes
+description = git server admin
+</code></pre>
+
+<p>服务器修改项目的配置文件，提供显示信息给gitweb，gitosis-admin.git/config：</p>
+
+<pre><code>[gitweb]
+    owner = meegoo tsui &lt;meegoo.tsui@gmail.com&gt;
+    url   = git@192.168.0.2:gitosis-admin.git
+</code></pre>
+
+<p>注：其他项目一样修改服务器xxx.git/config文件。 <br/>
+访问： http://192.168.0.2/gitweb</p>
+
+<hr />
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[linux常用服务器的配置]]></title>
+    <link href="http://meegoo-tsui.github.com/blog/2012/05/16/config-linux-server/"/>
+    <updated>2012-05-16T14:11:00+08:00</updated>
+    <id>http://meegoo-tsui.github.com/blog/2012/05/16/config-linux-server</id>
+    <content type="html"><![CDATA[<p>安装平台： ubuntu 10.04</p>
+
+<pre><code>ssh   - 远程登录    
+samba - 文件共享    
+nfs   - 网络文件系统    
+tftp  - 简单文件传输协议    
+ftp   - 文件传输协议    
+</code></pre>
+
+<h2>ssh</h2>
+
+<h3>1. 安装软件包</h3>
+
+<pre><code>sudo apt-get install openssh-server
+</code></pre>
+
+<h3>2. 重启ssh服务</h3>
+
+<pre><code>sudo /etc/init.d/ssh restart
+</code></pre>
+
+<h3>3. 查看</h3>
+
+<pre><code>netstat -tlp | grep ssh
+</code></pre>
+
+<h2>samba</h2>
+
+<h3>1. 安装软件包</h3>
+
+<pre><code>sudo apt-get install samba samba-common samba-common-bin system-config-samba
+</code></pre>
+
+<h3>2. 运行</h3>
+
+<pre><code>sudo smbd start
+</code></pre>
+
+<h3>3. 图形界面配置</h3>
+
+<pre><code>sudo system-config-samba
+</code></pre>
+
+<h3>4. 命令行配置</h3>
+
+<p>修改配置文件：</p>
+
+<pre><code>sudo gedit /etc/samba/smb.conf
+</code></pre>
+
+<p>修改内容如下：</p>
+
+<pre><code>####### Authentication #######
+
+# “security = user” is always a good idea. This will require a Unix account
+# in this server for every user accessing the server. See
+# /usr/share/doc/samba-doc/htmldocs/Samba-HOWTO-Collection/ServerType.html
+# in the samba-doc package for details.
+;  security = user
+</code></pre>
+
+<p>修改为：</p>
+
+<pre><code>security = user
+username map = /etc/samba/smbusers
+</code></pre>
+
+<p>添加samba用户：</p>
+
+<pre><code>sudo smbpasswd -a meegoo
+</code></pre>
+
+<p>添加到samba用户文件，格式为<ubuntuusername> = “<samba username>”</p>
+
+<pre><code>sudo gedit /etc/samba/smbusers
+</code></pre>
+
+<h3>5. 添加samba共享路径</h3>
+
+<p>修改配置文件：</p>
+
+<pre><code>sudo gedit /etc/samba/smb.conf
+</code></pre>
+
+<p>文件尾添加内容如下：</p>
+
+<pre><code>[meegoo]
+    path = /home/meegoo
+    writeable = yes
+;   browseable = yes
+    valid users = meegoo
+</code></pre>
+
+<p>开始或重启samba服务：</p>
+
+<pre><code>sudo smbd start
+sudo smbd restart
+</code></pre>
+
+<p>测试samba服务器：</p>
+
+<pre><code>sudo aptitude install smbfs
+sudo mkdir /mnt/samba
+sudo mount -t smbfs -o username=meegoo //192.168.0.238/meegoo /mnt/samba
+</code></pre>
+
+<h2>nfs</h2>
+
+<h3>1. 安装软件包</h3>
+
+<pre><code>sudo apt-get install nfs-kernel-server
+</code></pre>
+
+<h3>2. 修改配置文件</h3>
+
+<pre><code>sudo vim /etc/exports
+</code></pre>
+
+<p>添加内容如下：</p>
+
+<pre><code>/home/ming/work/.out/filesys *(rw,sync,no_root_squash,no_subtree_check)
+</code></pre>
+
+<p>配置文件生效：</p>
+
+<pre><code>sudo /usr/sbin/exportfs -va
+</code></pre>
+
+<h2>tftp</h2>
+
+<h3>1. 安装软件包</h3>
+
+<pre><code>sudo apt-get install tftpd tftp xinetd
+</code></pre>
+
+<h3>2. 修改配置文件</h3>
+
+<pre><code>sudo vim /etc/xinetd.d/tftp
+</code></pre>
+
+<p>添加内容如下：</p>
+
+<pre><code>service tftp
+{
+    socket_type = dgram
+    protocol = udp
+    wait = yes
+    user = root
+    server = /usr/sbin/in.tftpd
+    server_args = -s /tftpboot
+    disable = no
+    per_source = 11
+    cps = 100 2
+    flags = IPv4
+} 
+</code></pre>
+
+<p>配置文件生效：</p>
+
+<pre><code>sudo chmod ugo+rwx /tftpboot
+sudo /etc/init.d/xinetd restart 
+</code></pre>
+
+<h2>ftp</h2>
+
+<h3>1. 安装软件包</h3>
+
+<pre><code>sudo apt-get install vsftpd
+</code></pre>
+
+<h3>2. 创建ftp文件夹</h3>
+
+<pre><code>sudo mkdir /home/ftp
+sudo usermod -d /home/ftp ftp
+</code></pre>
+
+<h3>3. ftp操作</h3>
+
+<pre><code>sudo /etc/init.d/vsftpd start
+sudo /etc/init.d/vsftpd restart
+sudo /etc/init.d/vsftpd stop
+</code></pre>
+
+<h3>4. 修改配置文件</h3>
+
+<pre><code>sudo gedit /etc/vsftpd.conf
+</code></pre>
+
+<p>内容如下：</p>
+
+<pre><code>local_umask=022
+anon_umask=000
+anonymous_enable=YES
+write_enable=YES
+anon_world_readable_only=NO
+anon_other_write_enable=YES
+anon_upload_enable=YES
+anon_mkdir_write_enable=YES
+</code></pre>
+
+<hr />
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[linux快捷键]]></title>
+    <link href="http://meegoo-tsui.github.com/blog/2012/05/16/linux-keyboard-shortcuts/"/>
+    <updated>2012-05-16T13:11:00+08:00</updated>
+    <id>http://meegoo-tsui.github.com/blog/2012/05/16/linux-keyboard-shortcuts</id>
+    <content type="html"><![CDATA[<p>There are several keyboard shortcuts in Linux. Learning them can make your life a lot easier!
+This tuXfile discusses mainly command line shortcuts but some X Window System shortcuts are also included.</p>
+
+<h2>Virtual terminals</h2>
+
+<pre><code>Ctrl + Alt + F1
+</code></pre>
+
+<p>Switch to the first virtual terminal. In Linux, you can have several virtual terminals at the same time.
+The default is 6.</p>
+
+<pre><code>Ctrl + Alt + Fn
+</code></pre>
+
+<p>Switch to the nth virtual terminal. Because the number of virtual terminals is 6 by default, n = 1...6.</p>
+
+<pre><code>tty
+</code></pre>
+
+<p>Typing the tty command tells you what virtual terminal you're currently working in.</p>
+
+<pre><code>Ctrl + Alt + F7
+</code></pre>
+
+<p>Switch to the GUI. If you have the X Window System running, it runs in the seventh virtual terminal by default
+in most Linux distros. If X isn't running, this terminal is empty.
+Note: in some distros, X runs in a different virtual terminal by default. For example, in Puppy Linux, it's 3.</p>
+
+<h2>X Window System</h2>
+
+<pre><code>Ctrl + Alt + +
+</code></pre>
+
+<p>Switch to the next resolution in the X Window System.
+This works if you've configured more than one resolution for your X server. Note that you must use the + in your numpad.</p>
+
+<pre><code>Ctrl + Alt + -
+</code></pre>
+
+<p>Switch to the previous X resolution. Use the - in your numpad.</p>
+
+<pre><code>MiddleMouseButton
+</code></pre>
+
+<p>Paste the highlighted text. You can highlight the text with your left mouse button
+(or with some other highlighting method, depending on the application you're using),
+and then press the middle mouse button to paste. This is the traditional way of copying
+and pasting in the X Window System, but it may not work in some X applications.
+If you have a two-button mouse, pressing both of the buttons at the same time has the same effect
+as pressing the middle one. If it doesn't, you must enable 3-mouse-button emulation.
+This works also in text terminals if you enable the gpm service.</p>
+
+<pre><code>Ctrl + Alt + Backspace
+</code></pre>
+
+<p>Kill the X server. Use this if X crashes and you can't exit it normally.
+If you've configured your X Window System to start automatically at bootup,
+this restarts the server and throws you back to the graphical login screen.</p>
+
+<h2>Command line - input</h2>
+
+<pre><code>Home or Ctrl + a
+</code></pre>
+
+<p>Move the cursor to the beginning of the current line.</p>
+
+<pre><code>End or Ctrl + e
+</code></pre>
+
+<p>Move the cursor to the end of the current line.</p>
+
+<pre><code>Alt + b
+</code></pre>
+
+<p>Move the cursor to the beginning of the current or previous word. Note that while this works in virtual terminals,
+it may not work in all graphical terminal emulators, because many graphical applications already use this
+as a menu shortcut by default.</p>
+
+<pre><code>Alt + f
+</code></pre>
+
+<p>Move the cursor to the end of the next word. Again, like with all shortcuts that use Alt as the modifier,
+this may not work in all graphical terminal emulators.</p>
+
+<pre><code>Tab
+</code></pre>
+
+<p>Autocomplete commands and file names. Type the first letter(s) of a command, directory or file name,
+press Tab and the rest is completed automatically! If there are more commands starting with the same letters,
+the shell completes as much as it can and beeps. If you then press Tab again, it shows you all the alternatives.
+This shortcut is really helpful and saves a lot of typing! It even works at the lilo prompt and in some X applications.</p>
+
+<pre><code>Ctrl + u
+</code></pre>
+
+<p>Erase the current line.</p>
+
+<pre><code>Ctrl + k
+</code></pre>
+
+<p>Delete the line from the position of the cursor to the end of the line.</p>
+
+<pre><code>Ctrl + w
+</code></pre>
+
+<p>Delete the word before the cursor.</p>
+
+<h2>Command line - output</h2>
+
+<pre><code>history
+</code></pre>
+
+<p>When you type the history command, you'll see a list of the commands you executed previously.</p>
+
+<pre><code>ArrowUp or Ctrl + p
+</code></pre>
+
+<p>Scroll up in the history and edit the previously executed commands. To execute them, press Enter like you normally do.</p>
+
+<pre><code>ArrowDown or Ctrl + n
+</code></pre>
+
+<p>Scroll down in the history and edit the next commands.</p>
+
+<pre><code>Ctrl + r
+</code></pre>
+
+<p>Find the last command that contained the letters you're typing.
+For example, if you want to find out the last action you did to a file called "file42.txt",
+you'll press Ctrl + r and start typing the file name.
+Or, if you want to find out the last parameters you gave to the "cp" command, you'll press Ctrl + r and type in "cp".</p>
+
+<h2>Command line - misc</h2>
+
+<pre><code>Ctrl + c
+</code></pre>
+
+<p>Kill the current process.</p>
+
+<pre><code>Ctrl + z
+</code></pre>
+
+<p>Send the current process to background. This is useful if you have a program running,
+and you need the terminal for awhile but don't want to exit the program completely.
+Then just send it to background with Ctrl+z, do whatever you want, and type the command fg to get the process back.</p>
+
+<pre><code>Ctrl + d
+</code></pre>
+
+<p>Log out from the current terminal. If you use this in a terminal emulator under X,
+this usually shuts down the terminal emulator after logging you out.</p>
+
+<pre><code>Ctrl + Alt + Del
+</code></pre>
+
+<p>Reboot the system. You can change this behavior by editing /etc/inittab
+if you want the system to shut down instead of rebooting.</p>
+
+<hr />
+
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: vim | Meegoo Tsui's Blog]]></title>
+  <link href="http://meegoo-tsui.github.com/blog/categories/vim/atom.xml" rel="self"/>
+  <link href="http://meegoo-tsui.github.com/"/>
+  <updated>2012-06-01T11:30:54+08:00</updated>
+  <id>http://meegoo-tsui.github.com/</id>
+  <author>
+    <name><![CDATA[Meegoo Tsui]]></name>
+    <email><![CDATA[meegoo.tsui@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[vim配置、使用]]></title>
+    <link href="http://meegoo-tsui.github.com/blog/2012/05/22/vim/"/>
+    <updated>2012-05-22T14:11:00+08:00</updated>
+    <id>http://meegoo-tsui.github.com/blog/2012/05/22/vim</id>
+    <content type="html"><![CDATA[<p>资源链接：</p>
+
+<ul>
+<li><a href="http://www.vim.org/">vim - 官方网站</a></li>
+<li><a href="http://www.vim.org/download.php">vim - 下载</a></li>
+</ul>
+
+
+<hr />
+
+]]></content>
+  </entry>
+  
+</feed>

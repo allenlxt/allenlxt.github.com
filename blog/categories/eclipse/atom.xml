@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: eclipse | Meegoo Tsui's Blog]]></title>
+  <link href="http://meegoo-tsui.github.com/blog/categories/eclipse/atom.xml" rel="self"/>
+  <link href="http://meegoo-tsui.github.com/"/>
+  <updated>2012-06-01T11:30:54+08:00</updated>
+  <id>http://meegoo-tsui.github.com/</id>
+  <author>
+    <name><![CDATA[Meegoo Tsui]]></name>
+    <email><![CDATA[meegoo.tsui@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[eclipse配置 - 初步]]></title>
+    <link href="http://meegoo-tsui.github.com/blog/2012/05/22/eclipse/"/>
+    <updated>2012-05-22T13:11:00+08:00</updated>
+    <id>http://meegoo-tsui.github.com/blog/2012/05/22/eclipse</id>
+    <content type="html"><![CDATA[<p>资源链接：</p>
+
+<ul>
+<li><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">JDK</a></li>
+<li><a href="http://www.eclipse.org/downloads/">eclipse</a></li>
+</ul>
+
+
+<h2>1. 安装 java sdk</h2>
+
+<p>当前最新版本为<a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk-7u4-downloads-1591156.html">7u4</a>，
+如windows 64位版本 - jdk-7u4-windows-x64.exe。</p>
+
+<h2>2. 安装eslipse</h2>
+
+<p>在<a href="http://www.eclipse.org/downloads/">eclipse</a>有很多版本供选择，一般选择下载
+Eclipse Classic，当前最新版本为3.7.2，完成后解压即可，到此已可运行eclipse。</p>
+
+<hr />
+
+]]></content>
+  </entry>
+  
+</feed>

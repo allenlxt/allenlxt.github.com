@@ -1,0 +1,12 @@
+diff --git a/plugins/category_generator.rb b/plugins/category_generator.rb
+index bb5fd32..2af3ab7 100644
+--- a/plugins/category_generator.rb
++++ b/plugins/category_generator.rb
+@@ -142,6 +142,7 @@ module Jekyll
+     #
+     def category_links(categories)
+       dir = @context.registers[:site].config['category_dir']
++      categories = categories.keys if categories.class == Hash
+       categories = categories.sort!.map do |item|
+         "<a class='category' href='/#{dir}/#{item.gsub(/_|\P{Word}/, '-').gsub(/-{2,}/, '-').downcase}/'>#{item}</a>"
+       end

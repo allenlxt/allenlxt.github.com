@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: ubuntu | Meegoo Tsui's Blog]]></title>
+  <link href="http://meegoo-tsui.github.com/blog/categories/ubuntu/atom.xml" rel="self"/>
+  <link href="http://meegoo-tsui.github.com/"/>
+  <updated>2012-06-01T11:30:54+08:00</updated>
+  <id>http://meegoo-tsui.github.com/</id>
+  <author>
+    <name><![CDATA[Meegoo Tsui]]></name>
+    <email><![CDATA[meegoo.tsui@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[ubuntu更新问题解决]]></title>
+    <link href="http://meegoo-tsui.github.com/blog/2012/05/21/ubuntu-update/"/>
+    <updated>2012-05-21T13:11:00+08:00</updated>
+    <id>http://meegoo-tsui.github.com/blog/2012/05/21/ubuntu-update</id>
+    <content type="html"><![CDATA[<p>ubuntu server 10.04 和 ubuntu desktop 10.04源设置及更新错误解决。</p>
+
+<h2>修改 sources.list</h2>
+
+<pre><code>$ sudo cp /etc/apt/sources.list /etc/apt/sources.list.backup
+</code></pre>
+
+<p>下载<a href="http://mirrors.163.com/.help/sources.list.lucid">sources.list</a>，
+保存于/etc/apt/sources.list，运行命令更新：</p>
+
+<pre><code>$ sudo apt-get update
+$ sudo spt-get upgrade
+</code></pre>
+
+<h2>修改更新错误</h2>
+
+<h3>error 1</h3>
+
+<p>E: Could not get lock /var/lib/apt/lists/lock - open (11: Resource temporarily unavailable)   <br/>
+E: Unable to lock the list directory  <br/>
+解决方法：</p>
+
+<pre><code>$ ps -e | grep apt
+</code></pre>
+
+<p>删除相关进程：</p>
+
+<pre><code>$ sudo kill xxxx
+</code></pre>
+
+<hr />
+
+]]></content>
+  </entry>
+  
+</feed>

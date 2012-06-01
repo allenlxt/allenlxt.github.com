@@ -1,108 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
 
-<!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <title>Meegoo Tsui's Blog</title>
-  <meta name="author" content="Meegoo Tsui">
-
-  
-  <meta name="description" content="内容列表 1. 代码块
-2. 代码包含
-3. 引用
-4. gist
-5. 图片
-6. 视频
-7. category 1. 代码块 语法： {% codeblock [title] [lang:language] [start:#] [url] [link text] %}
-code &hellip;">
-  
-
-  <!-- http://t.co/dKP3o1e -->
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><![CDATA[Category: octopress | Meegoo Tsui's Blog]]></title>
+  <link href="http://meegoo-tsui.github.com/blog/categories/octopress/atom.xml" rel="self"/>
+  <link href="http://meegoo-tsui.github.com/"/>
+  <updated>2012-06-01T11:30:54+08:00</updated>
+  <id>http://meegoo-tsui.github.com/</id>
+  <author>
+    <name><![CDATA[Meegoo Tsui]]></name>
+    <email><![CDATA[meegoo.tsui@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
 
   
-  <link rel="canonical" href="http://meegoo-tsui.github.com">
-  <link href="/favicon.png" rel="icon">
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="/javascripts/ender.js"></script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="/atom.xml" rel="alternate" title="Meegoo Tsui's Blog" type="application/atom+xml">
-  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-
-  
-
-</head>
-
-<body   >
-  <header role="banner"><hgroup>
-  <h1><a href="/">Meegoo Tsui's Blog</a></h1>
-  
-    <h2>The simply the best.</h2>
-  
-</hgroup>
-
-</header>
-  <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-  
-</ul>
-  
-<form action="http://google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:meegoo-tsui.github.com" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-  
-<ul class="main-navigation">
-  <li><a href="/">主页</a></li>
-  <li><a href="/blog/archives">博客</a></li>
-  <li><a href="/aboutme">关于我</a></li>
-</ul>
-
-
-</nav>
-  <div id="main">
-    <div id="content">
-      <div class="blog-index">
-  
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/05/31/octopress-skill/">Octopress使用技巧</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-05-31T08:24:00+08:00" pubdate data-updated="true">May 31<span>st</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><ul>
+  <entry>
+    <title type="html"><![CDATA[octopress使用技巧]]></title>
+    <link href="http://meegoo-tsui.github.com/blog/2012/05/31/octopress-skill/"/>
+    <updated>2012-05-31T08:24:00+08:00</updated>
+    <id>http://meegoo-tsui.github.com/blog/2012/05/31/octopress-skill</id>
+    <content type="html"><![CDATA[<ul>
 <li>内容列表
 
 <ul>
@@ -135,9 +51,8 @@ code snippet
 {% endcodeblock %}
 </code></pre>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>需要显示的代码</span></code></pre></td></tr></table></div></figure>
-
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>需要显示的代码</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>实例2 - 高亮显示：</p>
 
@@ -146,10 +61,9 @@ code snippet
 {% endcodeblock %}
 </code></pre>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="p">[</span><span class="n">rectangle</span> <span class="nl">setX:</span> <span class="mi">10</span> <span class="nl">y:</span> <span class="mi">10</span> <span class="nl">width:</span> <span class="mi">20</span> <span class="nl">height:</span> <span class="mi">20</span><span class="p">];</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>实例3 - 高亮显示（交互）：</p>
 
@@ -158,11 +72,10 @@ puts "Awesome!" unless lame
 {% endcodeblock %}
 </code></pre>
 
-<figure class='code'><figcaption><span>Time to be Awesome - awesome.rb </span></figcaption>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Time to be Awesome - awesome.rb </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="nb">puts</span> <span class="s2">&quot;Awesome!&quot;</span> <span class="k">unless</span> <span class="n">lame</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>实例4 - 高亮显示（强制）：</p>
 
@@ -171,11 +84,10 @@ rvm ruby-1.8.6 # ZOMG, seriously? We still use this version?
 {% endcodeblock %}
 </code></pre>
 
-<figure class='code'><figcaption><span>Here&#8217;s an example .rvmrc file.  </span></figcaption>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Here's an example .rvmrc file.  </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">rvm</span> <span class="n">ruby</span><span class="o">-</span><span class="mi">1</span><span class="o">.</span><span class="mi">8</span><span class="o">.</span><span class="mi">6</span> <span class="c1"># ZOMG, seriously? We still use this version?</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>实例5 - 添加url：</p>
 
@@ -185,12 +97,11 @@ var arr2 = new Array(element0, element1, ..., elementN);
 {% endcodeblock %}
 </code></pre>
 
-<figure class='code'><figcaption><span>Javascript Array Syntax </span><a href='http://j.mp/pPUUmW'>MDN Documentation </a></figcaption> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Javascript Array Syntax </span><a href='http://j.mp/pPUUmW'>MDN Documentation </a></figcaption> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kd">var</span> <span class="nx">arr1</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="nx">arrayLength</span><span class="p">);</span>
 </span><span class='line'><span class="kd">var</span> <span class="nx">arr2</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="nx">element0</span><span class="p">,</span> <span class="nx">element1</span><span class="p">,</span> <span class="p">...,</span> <span class="nx">elementN</span><span class="p">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>实例6 - 添加行信息：</p>
 
@@ -203,21 +114,26 @@ console.log letter for letter in alphabet[4..8]
 {% endcodeblock %}
 </code></pre>
 
-<figure class='code'><figcaption><span>Coffeescript Tricks start:51 </span></figcaption>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Coffeescript Tricks start:51 </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="c1"># Given an alphabet:</span>
-</span><span class='line'><span class="nv">alphabet = </span><span class="s">&#39;abcdefghijklmnopqrstuvwxyz&#39;</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="o">&lt;/</span><span class="nx">p</span><span class="o">&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="c1"># Iterate over part of the alphabet:</span>
-</span><span class='line'><span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="nx">letter</span> <span class="k">for</span> <span class="nx">letter</span> <span class="k">in</span> <span class="nx">alphabet</span><span class="p">[</span><span class="mi">4</span><span class="p">..</span><span class="mi">8</span><span class="p">]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
+</span><span class='line'><span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Given</span> <span class="nx">an</span> <span class="nx">alphabet</span><span class="o">:&lt;/</span><span class="nx">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nv">alphabet = </span><span class="s">&#39;abcdefghijklmnopqrstuvwxyz&#39;</span><span class="o">&lt;/</span><span class="nx">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Iterate</span> <span class="nx">over</span> <span class="nx">part</span> <span class="k">of</span> <span class="nx">the</span> <span class="nx">alphabet</span><span class="o">:&lt;/</span><span class="nx">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="nx">letter</span> <span class="k">for</span> <span class="nx">letter</span> <span class="k">in</span> <span class="nx">alphabet</span><span class="p">[</span><span class="mi">4</span><span class="p">..</span><span class="mi">8</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2 id="includecode">2. 代码包含</h2>
 
@@ -233,7 +149,7 @@ console.log letter for letter in alphabet[4..8]
 <pre><code>{% include_code test.js %}
 </code></pre>
 
-<figure class='code'><figcaption><span> (test.js)</span> <a href='/downloads/code/test.js'>download</a></figcaption>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span> (test.js)</span> <a href='/downloads/code/test.js'>download</a></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -274,8 +190,7 @@ console.log letter for letter in alphabet[4..8]
 </span><span class='line'><span class="nb">window</span><span class="p">.</span><span class="nx">x$</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">xui</span> <span class="o">=</span> <span class="nx">xui</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">q</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
 </span><span class='line'>    <span class="k">return</span> <span class="k">new</span> <span class="nx">xui</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">q</span><span class="p">,</span> <span class="nx">context</span><span class="p">);</span>
 </span><span class='line'><span class="p">};</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>实例2 - 定制标题：   <br/>
 默认情况<code>&lt;figcaption&gt;</code> 为文件名称，但可以修改为任意你喜欢的标题，如下：</p>
@@ -283,7 +198,7 @@ console.log letter for letter in alphabet[4..8]
 <pre><code>{% include_code Add to_fraction for floats test.rb %}
 </code></pre>
 
-<figure class='code'><figcaption><span>Add to_fraction for floats (test.rb)</span> <a href='/downloads/code/test.rb'>download</a></figcaption>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Add to_fraction for floats (test.rb)</span> <a href='/downloads/code/test.rb'>download</a></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -324,15 +239,14 @@ console.log letter for letter in alphabet[4..8]
 </span><span class='line'>     <span class="k">return</span> <span class="n">b</span>
 </span><span class='line'>  <span class="k">end</span>
 </span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>实例3 - 强制高亮：</p>
 
 <pre><code>{% include_code test.coffee lang:coffeescript %}
 </code></pre>
 
-<figure class='code'><figcaption><span> (test.coffee)</span> <a href='/downloads/code/test.coffee'>download</a></figcaption>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span> (test.coffee)</span> <a href='/downloads/code/test.coffee'>download</a></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -349,10 +263,7 @@ console.log letter for letter in alphabet[4..8]
 </span><span class='line'>
 </span><span class='line'><span class="k">for</span> <span class="nx">x</span> <span class="k">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">..</span><span class="mi">10</span><span class="p">]</span>
 </span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s">&quot;</span><span class="si">#{</span><span class="nx">x</span><span class="si">}</span><span class="s"> : </span><span class="si">#{</span><span class="nx">fibonacci</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span><span class="si">}</span><span class="s">&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2 id="blockquote">3. 引用</h2>
 
@@ -371,8 +282,7 @@ Last night I lay in bed looking up at the stars in the sky and I thought to myse
 {% endblockquote %}
 </code></pre>
 
-<blockquote><p>Last night I lay in bed looking up at the stars in the sky and I thought to myself, where the heck is the ceiling.</p></blockquote>
-
+<p><blockquote><p>Last night I lay in bed looking up at the stars in the sky and I thought to myself, where the heck is the ceiling.</p></blockquote></p>
 
 <p>实例2 - 名言：</p>
 
@@ -381,8 +291,7 @@ Flying is learning how to throw yourself at the ground and miss.
 {% endblockquote %}
 </code></pre>
 
-<blockquote><p>Flying is learning how to throw yourself at the ground and miss.</p><footer><strong>Douglas Adams</strong> <cite>The Hitchhikers Guide to the Galaxy</cite></footer></blockquote>
-
+<p><blockquote><p>Flying is learning how to throw yourself at the ground and miss.</p><footer><strong>Douglas Adams</strong> <cite>The Hitchhikers Guide to the Galaxy</cite></footer></blockquote></p>
 
 <p>实例3 - 网络引用：</p>
 
@@ -391,10 +300,7 @@ Every interaction is both precious and an opportunity to delight.
 {% endblockquote %}
 </code></pre>
 
-<blockquote><p>Every interaction is both precious and an opportunity to delight.</p><footer><strong>Seth Godin</strong> <cite><a href='http://sethgodin.typepad.com/seths_blog/2009/07/welcome-to-island-marketing.html'>Welcome to Island Marketing</a></cite></footer></blockquote>
-
-
-
+<p><blockquote><p>Every interaction is both precious and an opportunity to delight.</p><footer><strong>Seth Godin</strong> <cite><a href='http://sethgodin.typepad.com/seths_blog/2009/07/welcome-to-island-marketing.html'>Welcome to Island Marketing</a></cite></footer></blockquote></p>
 
 <h2 id="gist">4. gist</h2>
 
@@ -409,7 +315,7 @@ Every interaction is both precious and an opportunity to delight.
 <pre><code>{% gist 996818 %}
 </code></pre>
 
-<div><script src='https://gist.github.com/996818.js?file='></script>
+<p><div><script src='https://gist.github.com/996818.js?file='></script>
 <noscript><pre><code>@@ -590,7 +590,7 @@ class SpritesTest &lt; Test::Unit::TestCase
   it &quot;should generate a sprite from nested folders&quot; do
     css = render &lt;&lt;-SCSS
@@ -418,7 +324,7 @@ Every interaction is both precious and an opportunity to delight.
       @include all-nested-sprites;
     SCSS
     assert_correct css, &lt;&lt;-CSS</code></pre></noscript></div>
-
+</p>
 
 <p>包含多个文件：</p>
 
@@ -485,9 +391,8 @@ Images courtesy of <a href="http://placekitten.com">Place Kitten</a>.</p>
 <h2 id="category">7. category</h2>
 
 
-<p>修改plugin，生成categories，补丁文件如下：</p>
-
-<figure class='code'><figcaption><span> (category_generator.rb.diff)</span> <a href='/downloads/code/category_generator.rb.diff'>download</a></figcaption>
+<p>修改plugin，生成categories，补丁文件如下：  <br/>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span> (category_generator.rb.diff)</span> <a href='/downloads/code/category_generator.rb.diff'>download</a></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -512,12 +417,10 @@ Images courtesy of <a href="http://placekitten.com">Place Kitten</a>.</p>
 </span><span class='line'>       categories = categories.sort!.map do |item|
 </span><span class='line'>         &quot;&lt;a class=&#39;category&#39; href=&#39;/#{dir}/#{item.gsub(/_|\P{Word}/, &#39;-&#39;).gsub(/-{2,}/, &#39;-&#39;).downcase}/&#39;&gt;#{item}&lt;/a&gt;&quot;
 </span><span class='line'>       end
-</span></code></pre></td></tr></table></div></figure>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-
-<p>Category列表添加到右侧，跟最近博客显示在一起，补丁文件如下：</p>
-
-<figure class='code'><figcaption><span> (recent_posts.html.diff)</span> <a href='/downloads/code/recent_posts.html.diff'>download</a></figcaption>
+<p>Category列表添加到右侧，跟最近博客显示在一起，补丁文件如下：  <br/>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span> (recent_posts.html.diff)</span> <a href='/downloads/code/recent_posts.html.diff'>download</a></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -552,106 +455,231 @@ Images courtesy of <a href="http://placekitten.com">Place Kitten</a>.</p>
 </span><span class='line'><span class="gi">+  &lt;/ul&gt;</span>
 </span><span class='line'><span class="gi">+</span>
 </span><span class='line'> &lt;/section&gt;
-</span></code></pre></td></tr></table></div></figure>
-
-
-
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <hr />
 
 
 
-</div>
+]]></content>
+  </entry>
   
+  <entry>
+    <title type="html"><![CDATA[创建Octopress博客模板]]></title>
+    <link href="http://meegoo-tsui.github.com/blog/2012/05/30/create-octopress-blog-temple/"/>
+    <updated>2012-05-30T15:11:00+08:00</updated>
+    <id>http://meegoo-tsui.github.com/blog/2012/05/30/create-octopress-blog-temple</id>
+    <content type="html"><![CDATA[<p>开始此节内容之前，参考以下内容：</p>
+
+<ul>
+<li><a href="http://help.github.com/linux-set-up-git/">gitweb git使用</a></li>
+<li><a href="http://help.github.com/pages/">gitweb page</a></li>
+<li><a href="http://octopress.org">Octopress doc</a></li>
+<li><a href="/blog/2012/05/29/config-octopress-env">配置Octopress环境</a></li>
+</ul>
+
+
+<h3>1. 创建个人主页</h3>
+
+<p><code>github</code>提供一个二级域名给所有用户，地址为<code>http://username.github.com</code>,注册完用户后，创建一个
+<code>username.github.com</code>的git仓库，在<code>master</code>分支下随意写一个<code>index.html</code>，上传后约十分钟可以通过二级
+域名浏览刚才的<code>index.html</code>内容。</p>
+
+<h3>2. 使用Octopress上传模板</h3>
+
+<p>现从<a href="https://github.com/imathis/octopress">Octopress</a>克隆git版本库，进入该文件夹，查看分支：</p>
+
+<pre><code>git branch -a
+* master
+  remotes/octopress/2.1
+  remotes/octopress/HEAD -&gt; octopress/master
+  remotes/octopress/gh-pages
+  remotes/octopress/linklog
+  remotes/octopress/master
+  remotes/octopress/refactor_with_tests
+  remotes/octopress/rubygemcli
+  remotes/octopress/site
+  remotes/origin/source
+</code></pre>
+
+<p>在<code>master</code>分支，执行如下命令：</p>
+
+<pre><code>rake setup_github_pages
+</code></pre>
+
+<p>意义如下： <br/>
+1. Ask you for your Github Pages repository url.
+2. Rename the remote pointing to imathis/octopress from ‘origin’ to ‘octopress’
+3. Add your Github Pages repository as the default origin remote.
+4. Switch the active branch from master to source.
+5. Configure your blog’s url according to your repository.
+6. Setup a master branch in the _deploy directory for deployment.</p>
+
+<p>安装、生成、部署：</p>
+
+<pre><code>rake install
+rake generate
+rake deploy
+</code></pre>
+
+<p>上传源码：</p>
+
+<pre><code>git add .
+git commit -m 'your message'
+git push origin source
+</code></pre>
+
+<p>octopress的工作到此已经完成。</p>
+
+<h3>3. 使用Octopress生成的模板</h3>
+
+<p>先checkout版本，如下：</p>
+
+<pre><code>git clone git@github.com:meegoo-tsui/meegoo-tsui.github.com.git
+cd meegoo-tsui.github.com
+rake setup_github_pages # 此条命令必须，不然deploy失败
+git branch -a
+  master                # 此分支为主页显示的内容，source分支deploy自动push生成
+* source                # 所有源程序及文档
+  remotes/origin/HEAD -&gt; origin/master
+  remotes/origin/master
+  remotes/origin/source
+git checkout source     # 切换到source分支操作
+rake generate
+rake new_post[test-blog]# 生成博客，也可以手动生成
+rake preview
+rake deploy
+</code></pre>
+
+<p><code>master</code>分支为主页显示所需要的内容，因此需要在github上配置当前分支为<code>master</code>；  <br/>
+<code>source</code>分支为源代码，在此分支上写代码然后使用<code>rake deploy</code>就可以修改<code>master</code>的内容，也就
+更新了主页。</p>
+
+<hr />
+
+]]></content>
+  </entry>
   
+  <entry>
+    <title type="html"><![CDATA[配置Octopress环境]]></title>
+    <link href="http://meegoo-tsui.github.com/blog/2012/05/29/config-octopress-env/"/>
+    <updated>2012-05-29T13:11:00+08:00</updated>
+    <id>http://meegoo-tsui.github.com/blog/2012/05/29/config-octopress-env</id>
+    <content type="html"><![CDATA[<p><a href="http://octopress.org">Octopress</a>的官方网站上有详细文档，可先参考此网站上的相关文档。</p>
 
+<h2>ubuntu10.04安装rvm</h2>
 
-    </article>
+<h3>1. 安装ruby依靠包、curl、ruby</h3>
+
+<pre><code>sudo apt-get install build-essential openssl libreadline6 libreadline6-dev curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt-dev autoconf libc6-dev ncurses-dev automake libtool bison subversion
+sudo apt-get install ruby
+</code></pre>
+
+<h3>2. 通过下面指令安装rvm</h3>
+
+<pre><code>bash -s stable &lt; &lt;(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer )
+</code></pre>
+
+<h3>3. 环境变量的配置</h3>
+
+<p>替换.bashrc：</p>
+
+<pre><code>[ -z "$PS1" ] &amp;&amp; return
+</code></pre>
+
+<p>为</p>
+
+<pre><code>if [[ -n "$PS1" ]]; then
+</code></pre>
+
+<p>文件末尾添加内容：</p>
+
+<pre><code>if [[ -s $HOME/.rvm/scripts/rvm ]] ; then source $HOME/.rvm/scripts/rvm ; fi
+fi
+</code></pre>
+
+<h3>4. 查询安装结果</h3>
+
+<p>重新进入终端或使用<code>. ~/.bashrc</code>使刚才设置的环境变量生效，然后运行如下命令：</p>
+
+<pre><code>rvm list known
+# MRI Rubies
+[ruby-]1.8.6[-p420]
+[ruby-]1.8.7[-p358]
+[ruby-]1.8.7-head
+[ruby-]1.9.1[-p431]
+[ruby-]1.9.2-p180
+[ruby-]1.9.2-p290
+[ruby-]1.9.2-p318
+[ruby-]1.9.2[-p320]
+[ruby-]1.9.2-head
+[ruby-]1.9.3-preview1
+[ruby-]1.9.3-rc1
+[ruby-]1.9.3-p0
+[ruby-]1.9.3-p125
+[ruby-]1.9.3-[p194]
+[ruby-]1.9.3-head
+ruby-head
+</code></pre>
+
+<p>如上所示，显示出可安装的ruby版本，至此rvm的安装完成。</p>
+
+<h2>ubuntu10.04安装ruby及依靠包</h2>
+
+<h3>1. 安装ruby</h3>
+
+<p><code>Octopress</code>当前使用的<code>ruby</code>版本为<code>1.9.2</code>，因此使用如下命令安装<code>ruby</code>：</p>
+
+<pre><code>rvm install 1.9.2 &amp;&amp; rvm use 1.9.2
+</code></pre>
+
+<p>需要重装时：</p>
+
+<pre><code>rvm install 1.9.2 &amp;&amp; rvm use 1.9.2
+</code></pre>
+
+<h3>2. 克隆<code>Octopress</code>的版本库</h3>
+
+<p><code>Octopress</code>的版本库托管在<code>github</code>，使用如下命令<code>checkout</code>：</p>
+
+<pre><code>git clone git://github.com/imathis/octopress.git octopress
+cd octopress    # 当使用rvm时，提示是否信任.rvmrc文件，输入yes
+ruby --version  # 显示 Ruby 1.9.2
+</code></pre>
+
+<h3>3. 安装依靠包</h3>
+
+<p>Windows环境安装了<a href="http://railsinstaller.org/">RailsInstaller</a>，可直接安装下面内容，
+以下命令需要在<code>octopress</code>路径下执行，版本的锁定需要此路径下的<code>Gemfile</code>文件：</p>
+
+<pre><code>gem install bundler
+bundle install
+</code></pre>
+
+<p>到此已完成<code>Octopress</code>环境的配置，可以使用<code>Octopress</code>的相关命令：</p>
+
+<pre><code>rake install
+rake generate
+rake preview
+</code></pre>
+
+<p>windows下问题:</p>
+
+<pre><code>d:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/ffi-1.0.11/lib/ffi/library.
+rb:121:in `block in ffi_lib': Could not open library 'c:\Python27/lib/python27.dll':  (LoadError)
+</code></pre>
+
+<p>修改文件<code>D:\RailsInstaller\Ruby1.9.3\lib\ruby\gems\1.9.1\gems\rubypython-0.5.3\lib\rubypython\python.rb</code>:</p>
+
+<pre><code># ffi_lib_flags :lazy, :global
+ffi_lib_flags  "python27"
+</code></pre>
+
+<p>拷贝<code>python27.dll</code>到<code>c:\Python27\lib</code>即可。</p>
+
+<hr />
+
+]]></content>
+  </entry>
   
-  <div class="pagination">
-    
-      <a class="prev" href="/blog/page/2/">&larr; Older</a>
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
-</div>
-<aside class="sidebar">
-  
-    <section>
-  <h1>Recent Posts</h1>
-  <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/2012/05/31/octopress-skill/">octopress使用技巧</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/05/30/create-octopress-blog-temple/">创建Octopress博客模板</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/05/29/config-octopress-env/">配置Octopress环境</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/05/26/st-stm32-f1/">stm32 f1开发 - 初步</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/05/23/davinci-dm365/">davinci dm365开发 - 初步</a>
-      </li>
-    
-  </ul>
-
-  <h1>Categories</h1>
-  <ul>
-    <li>
-      <a class='category' href='/blog/categories/davinci/'>davinci</a>, <a class='category' href='/blog/categories/eclipse/'>eclipse</a>, <a class='category' href='/blog/categories/git/'>git</a>, <a class='category' href='/blog/categories/github/'>github</a>, <a class='category' href='/blog/categories/jekyll/'>jekyll</a>, <a class='category' href='/blog/categories/linux/'>linux</a>, <a class='category' href='/blog/categories/markdown/'>markdown</a>, <a class='category' href='/blog/categories/octopress/'>octopress</a>, <a class='category' href='/blog/categories/qt/'>qt</a>, <a class='category' href='/blog/categories/rvm/'>rvm</a>, <a class='category' href='/blog/categories/stm32/'>stm32</a>, <a class='category' href='/blog/categories/svn/'>svn</a>, <a class='category' href='/blog/categories/ubuntu/'>ubuntu</a>, <a class='category' href='/blog/categories/vim/'>vim</a>
-    </li>
-  </ul>
-
-</section>
-
-
-
-
-
-  
-</aside>
-
-    </div>
-  </div>
-  <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - Meegoo Tsui -
-  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
-</p>
-
-</footer>
-  
-
-<script type="text/javascript">
-      var disqus_shortname = 'meegootsui';
-      
-        
-        var disqus_script = 'count.js';
-      
-    (function () {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
-
-
-
-
-
-
-
-
-
-
-
-</body>
-</html>
+</feed>

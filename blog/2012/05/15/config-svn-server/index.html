@@ -1,0 +1,480 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>svn服务器配置 - Meegoo Tsui's Blog</title>
+  <meta name="author" content="Meegoo Tsui">
+
+  
+  <meta name="description" content="<!---
+################################################################################
+--> Windows 环境 Linux 环境 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://meegoo-tsui.github.com/blog/2012/05/15/config-svn-server">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Meegoo Tsui's Blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Meegoo Tsui's Blog</a></h1>
+  
+    <h2>The simply the best.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:meegoo-tsui.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">主页</a></li>
+  <li><a href="/blog/archives">博客</a></li>
+  <li><a href="/aboutme">关于我</a></li>
+</ul>
+
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Svn服务器配置</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-15T15:11:00+08:00" pubdate data-updated="true">May 15<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><!---
+################################################################################
+-->
+
+
+<ul>
+<li> <a href="#windows">Windows 环境</a></li>
+<li> <a href="#linux">Linux 环境</a></li>
+</ul>
+
+
+<!---
+################################################################################
+-->
+
+
+<h2 id="windows">Windows 环境</h2>
+
+
+<h3>一.安装</h3>
+
+<h3>1. 安装apache服务器</h3>
+
+<p>下载<a href="http://httpd.apache.org/download.cgi#apache24">httpd-2.2.22-win32-x86-openssl-0.9.8t.msi</a>，apache占用80端口，
+安装完成后，在网页浏览器输入<code>http://your_ip</code>,会显示其已经工作，如果80端口端口占用，参考下面内容修改端口；</p>
+
+<h3>2. 安装svn服务器</h3>
+
+<p>下载<a href="http://sourceforge.net/projects/win32svn/files/1.7.4/">Setup-Subversion-1.7.4.msi</a>，默认安装即可；</p>
+
+<h3>3. 安装svn客户端</h3>
+
+<p>下载<a href="http://tortoisesvn.net/downloads.html">TortoiseSVN-1.7.x.xxxxx-win32-svn-1.7.x.msi</a>，默认安装即可；</p>
+
+<h3>二.创建数据仓库</h3>
+
+<h3>1. 确定数据仓库的路径，假设安装在<code>d:\svn_repos</code>，dos命令如下:</h3>
+
+<pre><code>d:
+mkdir d:\svn_repos
+</code></pre>
+
+<h3>2. 创建一个新仓库，dos命令如下：</h3>
+
+<pre><code>svnadmin create d:\svn_repos\my_project
+</code></pre>
+
+<h3>三.配置数据仓库</h3>
+
+<h3>1. 创建配置文件夹</h3>
+
+<pre><code>mkdir d:\svn_repos\conf
+</code></pre>
+
+<h3>2. 添加文件D:\svn_repos\conf\access.auth，添加内容如下：</h3>
+
+<pre><code>[my_project:/]
+meegoo=rw
+</code></pre>
+
+<p>含义：用户meegoo对my_project有读写权限。</p>
+
+<h3>3. apache账户管理</h3>
+
+<p>初次建立密码文件，前者为用户名称，后者为密码：</p>
+
+<pre><code>c:
+cd "c:\Program Files\Apache Software Foundation\Apache2.2\bin"
+htpasswd -cb users.auth meegoo 123456
+</code></pre>
+
+<p>添加其他用户，去掉-c参数：</p>
+
+<pre><code>htpasswd -b users.auth ming 123456
+</code></pre>
+
+<p>把users.auth复制到D:\svn_repos\conf\，或复制内容到D:\svn_repos\conf\users.auth。</p>
+
+<h3>四.配置apache服务器</h3>
+
+<h3>1. 拷贝文件</h3>
+
+<pre><code>cd   "C:\Program Files\Apache Software Foundation\Apache2.2\modules"
+copy "C:\Program Files\Subversion\bin\mod_authz_svn.so"
+copy "C:\Program Files\Subversion\bin\mod_dav_svn.so"
+</code></pre>
+
+<h3>2. 修改apache配置文件</h3>
+
+<p>修改文件<code>C:\Program Files\Apache Software Foundation\Apache2.2\conf\httpd.conf</code>:   <br/>
+去除“LoadModule dav_module modules/mod_dav.so”前面的“#”；   <br/>
+在此行后面加内容如下：</p>
+
+<pre><code>LoadModule dav_svn_module modules/mod_dav_svn.so    
+LoadModule authz_svn_module modules/mod_authz_svn.so   
+</code></pre>
+
+<p>添加以下内容到最后:</p>
+
+<pre><code>&lt;Location /svn&gt;
+
+DAV svn
+SVNParentPath D:/svn_repos
+
+AuthzSVNAccessFile D:/svn_repos/conf/access.auth
+Satisfy Any
+Require valid-user
+
+AuthType Basic
+AuthName "Subversion repositories"
+AuthUserFile  D:/svn_repos/conf/users.auth
+Require valid-user
+&lt;/Location&gt;
+</code></pre>
+
+<p>修改端口，仅当80端口占用情况，修改“Listen 80”为“Listen 8080”</p>
+
+<h3>五.使用</h3>
+
+<ul>
+<li>重启电脑或apache软件；</li>
+<li>网页访问http://your_ip/svn/my_project或http://your_ip:8080/svn/my_project；</li>
+<li>TortoiseSVN右键checkout；</li>
+<li>新增类似my_project的仓库，只需修改控件权限即可，文件：D:\svn_repos\conf\access.auth；</li>
+</ul>
+
+
+<!---
+################################################################################
+-->
+
+
+<hr />
+
+
+<h2 id="linux">linux 环境</h2>
+
+
+<h3>一. 安装</h3>
+
+<p>安装apache2和subversion相关安装包。</p>
+
+<pre><code>sudo apt-get install apache2 subversion libapache2-svn python-subversion sendmail    
+</code></pre>
+
+<p>添加组subversion及用户模式设置。</p>
+
+<pre><code>sudo addgroup subversion;sudo usermod -G subversion -a www-data
+</code></pre>
+
+<h3>二. 创建数据仓库</h3>
+
+<p>创建数据仓库及模式设置。   <br/>
+方法一（无邮件通知功能）：</p>
+
+<pre><code>sudo svnadmin create /opt/svn_repos/my_project
+sudo chown -R root:subversion /opt/svn_repos/my_project;sudo chmod -R g+rws
+</code></pre>
+
+<p>方法二（有邮件通知功能）：   <br/>
+下载文件<a href='/downloads/tar/makesvn.tar.bz2' id='blog-link' title='Tar'>makesvn工具</a>,然后解压，
+进入文件夹，运行命令如下：</p>
+
+<pre><code>sudo mkdir /opt/svn_repos;./makesvn.sh /opt/svn_repos/ my_project
+</code></pre>
+
+<h3>三. 配置数据仓库 <a href='/downloads/tar/conf.tar.bz2' id='blog-link' title='Tar'>conf</a></h3>
+
+<h3>1. 创建配置文件夹</h3>
+
+<pre><code>cd /opt/svn_repos/;sudo mkdir conf
+</code></pre>
+
+<h3>2. 添加文件D:\svn_repos\conf\access.auth，添加内容如下：</h3>
+
+<pre><code>[my_project:/]
+meegoo=rw
+</code></pre>
+
+<p>含义：用户meegoo对my_project有读写权限。</p>
+
+<h3>3. apache账户管理</h3>
+
+<p>初次建立密码文件，前者为用户名称，后者为密码：</p>
+
+<pre><code>sudo htpasswd -c /opt/svn_repos/conf/dav_svn.passwd meegoo
+</code></pre>
+
+<p>添加其他用户，去掉-c参数：</p>
+
+<pre><code>sudo htpasswd    /opt/svn_repos/conf/dav_svn.passwd ming
+</code></pre>
+
+<h3>四. 配置apache服务器</h3>
+
+<h3>1. 修改apache配置文件</h3>
+
+<pre><code>sudo vim /etc/apache2/mods-available/dav_svn.conf
+</code></pre>
+
+<p>修改内容如下：</p>
+
+<pre><code>&lt;Location /svn&gt;
+DAV svn
+SVNParentPath /opt/svn_repos
+
+AuthType Basic
+AuthName "Subversion Repository"
+AuthUserFile /opt/svn_repos/conf/dav_svn.passwd
+AuthzSVNAccessFile /opt/svn_repos/conf/access.auth
+
+#&lt;LimitExcept GET PROPFIND OPTIONS REPORT&gt;
+Require valid-user
+#&lt;/LimitExcept&gt; 
+
+&lt;/Location&gt;
+</code></pre>
+
+<h3>2. 测试svn服务器</h3>
+
+<p>重启服务器，使配置文件生效：</p>
+
+<pre><code>sudo /etc/init.d/apache2 restart
+</code></pre>
+
+<p>网页访问http://your_ip/svn/my_project，输入密码、访问。</p>
+
+<h3>五. svn命令</h3>
+
+<p>以二进制文件上传：</p>
+
+<pre><code>svn propset svn:mime-type application/octet-stream filename
+</code></pre>
+
+<p>去除文件的执行属性：</p>
+
+<pre><code>svn propdel svn:executable filename.ext
+</code></pre>
+
+<hr />
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Meegoo Tsui</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-15T15:11:00+08:00" pubdate data-updated="true">May 15<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/svn/'>svn</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/05/15/jekyll-install-and-use/" title="Previous Post: jekyll的安装使用">&laquo; jekyll的安装使用</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/05/16/linux-keyboard-shortcuts/" title="Next Post: linux快捷键">linux快捷键 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/05/31/octopress-skill/">octopress使用技巧</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/05/30/create-octopress-blog-temple/">创建Octopress博客模板</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/05/29/config-octopress-env/">配置Octopress环境</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/05/26/st-stm32-f1/">stm32 f1开发 - 初步</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/05/23/davinci-dm365/">davinci dm365开发 - 初步</a>
+      </li>
+    
+  </ul>
+
+  <h1>Categories</h1>
+  <ul>
+    <li>
+      <a class='category' href='/blog/categories/davinci/'>davinci</a>, <a class='category' href='/blog/categories/eclipse/'>eclipse</a>, <a class='category' href='/blog/categories/git/'>git</a>, <a class='category' href='/blog/categories/github/'>github</a>, <a class='category' href='/blog/categories/jekyll/'>jekyll</a>, <a class='category' href='/blog/categories/linux/'>linux</a>, <a class='category' href='/blog/categories/markdown/'>markdown</a>, <a class='category' href='/blog/categories/octopress/'>octopress</a>, <a class='category' href='/blog/categories/qt/'>qt</a>, <a class='category' href='/blog/categories/rvm/'>rvm</a>, <a class='category' href='/blog/categories/stm32/'>stm32</a>, <a class='category' href='/blog/categories/svn/'>svn</a>, <a class='category' href='/blog/categories/ubuntu/'>ubuntu</a>, <a class='category' href='/blog/categories/vim/'>vim</a>
+    </li>
+  </ul>
+
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Meegoo Tsui -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'meegootsui';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://meegoo-tsui.github.com/blog/2012/05/15/config-svn-server/';
+        var disqus_url = 'http://meegoo-tsui.github.com/blog/2012/05/15/config-svn-server/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

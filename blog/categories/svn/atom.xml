@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: svn | Meegoo Tsui's Blog]]></title>
+  <link href="http://meegoo-tsui.github.com/blog/categories/svn/atom.xml" rel="self"/>
+  <link href="http://meegoo-tsui.github.com/"/>
+  <updated>2012-06-01T11:30:54+08:00</updated>
+  <id>http://meegoo-tsui.github.com/</id>
+  <author>
+    <name><![CDATA[Meegoo Tsui]]></name>
+    <email><![CDATA[meegoo.tsui@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[svn服务器配置]]></title>
+    <link href="http://meegoo-tsui.github.com/blog/2012/05/15/config-svn-server/"/>
+    <updated>2012-05-15T15:11:00+08:00</updated>
+    <id>http://meegoo-tsui.github.com/blog/2012/05/15/config-svn-server</id>
+    <content type="html"><![CDATA[<!---
+################################################################################
+-->
+
+
+<ul>
+<li> <a href="#windows">Windows 环境</a></li>
+<li> <a href="#linux">Linux 环境</a></li>
+</ul>
+
+
+<!---
+################################################################################
+-->
+
+
+<h2 id="windows">Windows 环境</h2>
+
+
+<h3>一.安装</h3>
+
+<h3>1. 安装apache服务器</h3>
+
+<p>下载<a href="http://httpd.apache.org/download.cgi#apache24">httpd-2.2.22-win32-x86-openssl-0.9.8t.msi</a>，apache占用80端口，
+安装完成后，在网页浏览器输入<code>http://your_ip</code>,会显示其已经工作，如果80端口端口占用，参考下面内容修改端口；</p>
+
+<h3>2. 安装svn服务器</h3>
+
+<p>下载<a href="http://sourceforge.net/projects/win32svn/files/1.7.4/">Setup-Subversion-1.7.4.msi</a>，默认安装即可；</p>
+
+<h3>3. 安装svn客户端</h3>
+
+<p>下载<a href="http://tortoisesvn.net/downloads.html">TortoiseSVN-1.7.x.xxxxx-win32-svn-1.7.x.msi</a>，默认安装即可；</p>
+
+<h3>二.创建数据仓库</h3>
+
+<h3>1. 确定数据仓库的路径，假设安装在<code>d:\svn_repos</code>，dos命令如下:</h3>
+
+<pre><code>d:
+mkdir d:\svn_repos
+</code></pre>
+
+<h3>2. 创建一个新仓库，dos命令如下：</h3>
+
+<pre><code>svnadmin create d:\svn_repos\my_project
+</code></pre>
+
+<h3>三.配置数据仓库</h3>
+
+<h3>1. 创建配置文件夹</h3>
+
+<pre><code>mkdir d:\svn_repos\conf
+</code></pre>
+
+<h3>2. 添加文件D:\svn_repos\conf\access.auth，添加内容如下：</h3>
+
+<pre><code>[my_project:/]
+meegoo=rw
+</code></pre>
+
+<p>含义：用户meegoo对my_project有读写权限。</p>
+
+<h3>3. apache账户管理</h3>
+
+<p>初次建立密码文件，前者为用户名称，后者为密码：</p>
+
+<pre><code>c:
+cd "c:\Program Files\Apache Software Foundation\Apache2.2\bin"
+htpasswd -cb users.auth meegoo 123456
+</code></pre>
+
+<p>添加其他用户，去掉-c参数：</p>
+
+<pre><code>htpasswd -b users.auth ming 123456
+</code></pre>
+
+<p>把users.auth复制到D:\svn_repos\conf\，或复制内容到D:\svn_repos\conf\users.auth。</p>
+
+<h3>四.配置apache服务器</h3>
+
+<h3>1. 拷贝文件</h3>
+
+<pre><code>cd   "C:\Program Files\Apache Software Foundation\Apache2.2\modules"
+copy "C:\Program Files\Subversion\bin\mod_authz_svn.so"
+copy "C:\Program Files\Subversion\bin\mod_dav_svn.so"
+</code></pre>
+
+<h3>2. 修改apache配置文件</h3>
+
+<p>修改文件<code>C:\Program Files\Apache Software Foundation\Apache2.2\conf\httpd.conf</code>:   <br/>
+去除“LoadModule dav_module modules/mod_dav.so”前面的“#”；   <br/>
+在此行后面加内容如下：</p>
+
+<pre><code>LoadModule dav_svn_module modules/mod_dav_svn.so    
+LoadModule authz_svn_module modules/mod_authz_svn.so   
+</code></pre>
+
+<p>添加以下内容到最后:</p>
+
+<pre><code>&lt;Location /svn&gt;
+
+DAV svn
+SVNParentPath D:/svn_repos
+
+AuthzSVNAccessFile D:/svn_repos/conf/access.auth
+Satisfy Any
+Require valid-user
+
+AuthType Basic
+AuthName "Subversion repositories"
+AuthUserFile  D:/svn_repos/conf/users.auth
+Require valid-user
+&lt;/Location&gt;
+</code></pre>
+
+<p>修改端口，仅当80端口占用情况，修改“Listen 80”为“Listen 8080”</p>
+
+<h3>五.使用</h3>
+
+<ul>
+<li>重启电脑或apache软件；</li>
+<li>网页访问http://your_ip/svn/my_project或http://your_ip:8080/svn/my_project；</li>
+<li>TortoiseSVN右键checkout；</li>
+<li>新增类似my_project的仓库，只需修改控件权限即可，文件：D:\svn_repos\conf\access.auth；</li>
+</ul>
+
+
+<!---
+################################################################################
+-->
+
+
+<hr />
+
+
+<h2 id="linux">linux 环境</h2>
+
+
+<h3>一. 安装</h3>
+
+<p>安装apache2和subversion相关安装包。</p>
+
+<pre><code>sudo apt-get install apache2 subversion libapache2-svn python-subversion sendmail    
+</code></pre>
+
+<p>添加组subversion及用户模式设置。</p>
+
+<pre><code>sudo addgroup subversion;sudo usermod -G subversion -a www-data
+</code></pre>
+
+<h3>二. 创建数据仓库</h3>
+
+<p>创建数据仓库及模式设置。   <br/>
+方法一（无邮件通知功能）：</p>
+
+<pre><code>sudo svnadmin create /opt/svn_repos/my_project
+sudo chown -R root:subversion /opt/svn_repos/my_project;sudo chmod -R g+rws
+</code></pre>
+
+<p>方法二（有邮件通知功能）：   <br/>
+下载文件<a href='http://meegoo-tsui.github.com/downloads/tar/makesvn.tar.bz2' id='blog-link' title='Tar'>makesvn工具</a>,然后解压，
+进入文件夹，运行命令如下：</p>
+
+<pre><code>sudo mkdir /opt/svn_repos;./makesvn.sh /opt/svn_repos/ my_project
+</code></pre>
+
+<h3>三. 配置数据仓库 <a href='http://meegoo-tsui.github.com/downloads/tar/conf.tar.bz2' id='blog-link' title='Tar'>conf</a></h3>
+
+<h3>1. 创建配置文件夹</h3>
+
+<pre><code>cd /opt/svn_repos/;sudo mkdir conf
+</code></pre>
+
+<h3>2. 添加文件D:\svn_repos\conf\access.auth，添加内容如下：</h3>
+
+<pre><code>[my_project:/]
+meegoo=rw
+</code></pre>
+
+<p>含义：用户meegoo对my_project有读写权限。</p>
+
+<h3>3. apache账户管理</h3>
+
+<p>初次建立密码文件，前者为用户名称，后者为密码：</p>
+
+<pre><code>sudo htpasswd -c /opt/svn_repos/conf/dav_svn.passwd meegoo
+</code></pre>
+
+<p>添加其他用户，去掉-c参数：</p>
+
+<pre><code>sudo htpasswd    /opt/svn_repos/conf/dav_svn.passwd ming
+</code></pre>
+
+<h3>四. 配置apache服务器</h3>
+
+<h3>1. 修改apache配置文件</h3>
+
+<pre><code>sudo vim /etc/apache2/mods-available/dav_svn.conf
+</code></pre>
+
+<p>修改内容如下：</p>
+
+<pre><code>&lt;Location /svn&gt;
+DAV svn
+SVNParentPath /opt/svn_repos
+
+AuthType Basic
+AuthName "Subversion Repository"
+AuthUserFile /opt/svn_repos/conf/dav_svn.passwd
+AuthzSVNAccessFile /opt/svn_repos/conf/access.auth
+
+#&lt;LimitExcept GET PROPFIND OPTIONS REPORT&gt;
+Require valid-user
+#&lt;/LimitExcept&gt; 
+
+&lt;/Location&gt;
+</code></pre>
+
+<h3>2. 测试svn服务器</h3>
+
+<p>重启服务器，使配置文件生效：</p>
+
+<pre><code>sudo /etc/init.d/apache2 restart
+</code></pre>
+
+<p>网页访问http://your_ip/svn/my_project，输入密码、访问。</p>
+
+<h3>五. svn命令</h3>
+
+<p>以二进制文件上传：</p>
+
+<pre><code>svn propset svn:mime-type application/octet-stream filename
+</code></pre>
+
+<p>去除文件的执行属性：</p>
+
+<pre><code>svn propdel svn:executable filename.ext
+</code></pre>
+
+<hr />
+
+]]></content>
+  </entry>
+  
+</feed>

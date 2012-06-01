@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: rvm | Meegoo Tsui's Blog]]></title>
+  <link href="http://meegoo-tsui.github.com/blog/categories/rvm/atom.xml" rel="self"/>
+  <link href="http://meegoo-tsui.github.com/"/>
+  <updated>2012-06-01T11:30:54+08:00</updated>
+  <id>http://meegoo-tsui.github.com/</id>
+  <author>
+    <name><![CDATA[Meegoo Tsui]]></name>
+    <email><![CDATA[meegoo.tsui@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[配置Octopress环境]]></title>
+    <link href="http://meegoo-tsui.github.com/blog/2012/05/29/config-octopress-env/"/>
+    <updated>2012-05-29T13:11:00+08:00</updated>
+    <id>http://meegoo-tsui.github.com/blog/2012/05/29/config-octopress-env</id>
+    <content type="html"><![CDATA[<p><a href="http://octopress.org">Octopress</a>的官方网站上有详细文档，可先参考此网站上的相关文档。</p>
+
+<h2>ubuntu10.04安装rvm</h2>
+
+<h3>1. 安装ruby依靠包、curl、ruby</h3>
+
+<pre><code>sudo apt-get install build-essential openssl libreadline6 libreadline6-dev curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt-dev autoconf libc6-dev ncurses-dev automake libtool bison subversion
+sudo apt-get install ruby
+</code></pre>
+
+<h3>2. 通过下面指令安装rvm</h3>
+
+<pre><code>bash -s stable &lt; &lt;(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer )
+</code></pre>
+
+<h3>3. 环境变量的配置</h3>
+
+<p>替换.bashrc：</p>
+
+<pre><code>[ -z "$PS1" ] &amp;&amp; return
+</code></pre>
+
+<p>为</p>
+
+<pre><code>if [[ -n "$PS1" ]]; then
+</code></pre>
+
+<p>文件末尾添加内容：</p>
+
+<pre><code>if [[ -s $HOME/.rvm/scripts/rvm ]] ; then source $HOME/.rvm/scripts/rvm ; fi
+fi
+</code></pre>
+
+<h3>4. 查询安装结果</h3>
+
+<p>重新进入终端或使用<code>. ~/.bashrc</code>使刚才设置的环境变量生效，然后运行如下命令：</p>
+
+<pre><code>rvm list known
+# MRI Rubies
+[ruby-]1.8.6[-p420]
+[ruby-]1.8.7[-p358]
+[ruby-]1.8.7-head
+[ruby-]1.9.1[-p431]
+[ruby-]1.9.2-p180
+[ruby-]1.9.2-p290
+[ruby-]1.9.2-p318
+[ruby-]1.9.2[-p320]
+[ruby-]1.9.2-head
+[ruby-]1.9.3-preview1
+[ruby-]1.9.3-rc1
+[ruby-]1.9.3-p0
+[ruby-]1.9.3-p125
+[ruby-]1.9.3-[p194]
+[ruby-]1.9.3-head
+ruby-head
+</code></pre>
+
+<p>如上所示，显示出可安装的ruby版本，至此rvm的安装完成。</p>
+
+<h2>ubuntu10.04安装ruby及依靠包</h2>
+
+<h3>1. 安装ruby</h3>
+
+<p><code>Octopress</code>当前使用的<code>ruby</code>版本为<code>1.9.2</code>，因此使用如下命令安装<code>ruby</code>：</p>
+
+<pre><code>rvm install 1.9.2 &amp;&amp; rvm use 1.9.2
+</code></pre>
+
+<p>需要重装时：</p>
+
+<pre><code>rvm install 1.9.2 &amp;&amp; rvm use 1.9.2
+</code></pre>
+
+<h3>2. 克隆<code>Octopress</code>的版本库</h3>
+
+<p><code>Octopress</code>的版本库托管在<code>github</code>，使用如下命令<code>checkout</code>：</p>
+
+<pre><code>git clone git://github.com/imathis/octopress.git octopress
+cd octopress    # 当使用rvm时，提示是否信任.rvmrc文件，输入yes
+ruby --version  # 显示 Ruby 1.9.2
+</code></pre>
+
+<h3>3. 安装依靠包</h3>
+
+<p>Windows环境安装了<a href="http://railsinstaller.org/">RailsInstaller</a>，可直接安装下面内容，
+以下命令需要在<code>octopress</code>路径下执行，版本的锁定需要此路径下的<code>Gemfile</code>文件：</p>
+
+<pre><code>gem install bundler
+bundle install
+</code></pre>
+
+<p>到此已完成<code>Octopress</code>环境的配置，可以使用<code>Octopress</code>的相关命令：</p>
+
+<pre><code>rake install
+rake generate
+rake preview
+</code></pre>
+
+<p>windows下问题:</p>
+
+<pre><code>d:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/ffi-1.0.11/lib/ffi/library.
+rb:121:in `block in ffi_lib': Could not open library 'c:\Python27/lib/python27.dll':  (LoadError)
+</code></pre>
+
+<p>修改文件<code>D:\RailsInstaller\Ruby1.9.3\lib\ruby\gems\1.9.1\gems\rubypython-0.5.3\lib\rubypython\python.rb</code>:</p>
+
+<pre><code># ffi_lib_flags :lazy, :global
+ffi_lib_flags  "python27"
+</code></pre>
+
+<p>拷贝<code>python27.dll</code>到<code>c:\Python27\lib</code>即可。</p>
+
+<hr />
+
+]]></content>
+  </entry>
+  
+</feed>

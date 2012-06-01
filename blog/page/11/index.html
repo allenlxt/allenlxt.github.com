@@ -1,0 +1,372 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Meegoo Tsui's Blog</title>
+  <meta name="author" content="Meegoo Tsui">
+
+  
+  <meta name="description" content="安装平台： ubuntu 10.04 搭建git服务器，需要如下软件： $ sudo apt-get install openssh-server openssh-client
+$ sudo apt-get install git-core
+$ sudo apt-get install &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://meegoo-tsui.github.com/blog/page/11">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Meegoo Tsui's Blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Meegoo Tsui's Blog</a></h1>
+  
+    <h2>The simply the best.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:meegoo-tsui.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">主页</a></li>
+  <li><a href="/blog/archives">博客</a></li>
+  <li><a href="/aboutme">关于我</a></li>
+</ul>
+
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/05/17/git-linux-server/">Linux Git服务器的配置</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-17T13:11:00+08:00" pubdate data-updated="true">May 17<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>安装平台： ubuntu 10.04  <br/>
+搭建git服务器，需要如下软件：</p>
+
+<pre><code>$ sudo apt-get install openssh-server openssh-client
+$ sudo apt-get install git-core
+$ sudo apt-get install python-setuptools
+</code></pre>
+
+<h2>源码安装gitosis</h2>
+
+<p>使用git下载源码：</p>
+
+<pre><code>$ git clone https://github.com/ossxp-com/gitosis.git
+$ cd gitosis
+$ sudo python setup.py install
+</code></pre>
+
+<h2>账户相关信息</h2>
+
+<p>创建用户git</p>
+
+<pre><code>$ sudo adduser --system --shell /bin/bash --disabled-password --group git
+</code></pre>
+
+<p>创建git仓库存储目录</p>
+
+<pre><code>$ sudo mkdir /home/git/repositories
+</code></pre>
+
+<p>设置git仓库权限</p>
+
+<pre><code>$ sudo chown git:git /home/git/repositories
+$ sudo chmod 755 /home/git/repositories
+</code></pre>
+
+<p>初始化全局设置</p>
+
+<pre><code>$ git config --global usre.name     "meegoo tsui"
+$ git config --global usre.email    meegoo.tsui@gmail.com
+$ git config --global core.fileMode false
+$ git config --global core.editor   vim
+</code></pre>
+
+<ul>
+<li>配置用户名称</li>
+<li>配置用户邮件</li>
+<li>配置忽略文件的执行权限</li>
+<li>配置编辑器</li>
+</ul>
+
+
+<h2>初使化gitosis</h2>
+
+<p>生成 SSH key：</p>
+
+<pre><code>$ ssh-keygen -t rsa -C "meegoo.tsui@gmail.com"
+</code></pre>
+
+<p>拷贝到服务器/tmp下：</p>
+
+<pre><code>$ cp  ~/.ssh/id_rsa.pub /tmp
+</code></pre>
+
+<p>或：</p>
+
+<pre><code>$ scp ~/.ssh/id_rsa.pub 用户名@主机:/tmp
+</code></pre>
+
+<p>初使化gitosis，切回到服务器：</p>
+
+<pre><code>$ sudo -H -u git gitosis-init &lt; /tmp/id_rsa.pub
+</code></pre>
+
+<p>修改post-update权限:</p>
+
+<pre><code>$ sudo chmod 755 /home/git/repositories/gitosis-admin.git/hooks/post-update
+</code></pre>
+
+<p>clone gitosis管理平台，切换到本地：</p>
+
+<pre><code>$ git clone git@192.168.0.2:gitosis-admin.git
+</code></pre>
+
+<p>或</p>
+
+<pre><code>$ git clone git@lenovo:gitosis-admin.git
+</code></pre>
+
+<p>用户key在gitosis-admin/keydir/下，权限文件在gitosis-admin/gitosis.conf,添加*.pub且修改gitosis.conf，
+上传即可。</p>
+
+<h2>创建版本库</h2>
+
+<p>客服端修改权限文件gitosis-admin.git/gitosis.conf，关键字admin允许创建，添加内容如下：</p>
+
+<pre><code>[group my_project-admin]
+members = meegoo.tsui@gmail.com
+admin = my_project
+</code></pre>
+
+<p>创建版本项目：</p>
+
+<pre><code>$ mkdir my_project;cd my_project
+$ git init
+$ git commit --allow-empty -m "create the repos."
+$ git remote add origin git@192.168.0.2:my_project.git
+$ git push -u origin master
+</code></pre>
+
+<h2>gitweb安装及配置</h2>
+
+<p>安装gitweb：</p>
+
+<pre><code>$ sudo apt-get install gitweb
+</code></pre>
+
+<p>配置apache服务器:</p>
+
+<pre><code>$ sudo gedit /etc/apache2/mods-available/dav_svn.conf
+</code></pre>
+
+<p>添加内容如下：</p>
+
+<pre><code>Alias /gitweb /usr/share/gitweb
+&lt;Directory /usr/share/gitweb&gt;
+    Options FollowSymLinks +ExecCGI
+    AddHandler cgi-script .cgi
+    DirectoryIndex index.cgi gitweb.cgi
+    order Allow,Deny
+    Allow from all
+&lt;/Directory&gt;
+</code></pre>
+
+<p>或：</p>
+
+<pre><code>&lt;VirtualHost *:80&gt;
+    ServerName localhost
+    ScriptAlias /cgi-bin/ /usr/lib/cgi-bin/
+    &lt;Directory /usr/lib/cgi-bin/&gt;
+        Options ExecCGI +FollowSymLinks +SymLinksIfOwnerMatch
+        AllowOverride All
+        order allow,deny
+        Allow from all
+        AddHandler cgi-script cgi .pl .py
+        DirectoryIndex gitweb.cgi
+    &lt;/Directory&gt;
+&lt;/VirtualHost&gt;
+</code></pre>
+
+<p>修改gitweb配置文件：</p>
+
+<pre><code>$ sudo vim /etc/gitweb.conf
+$ sudo /etc/init.d/apache2 restart
+# 修改内容如下：
+$projectroot = "/home/git";
+$home_text = "/home/git/indextext.html";
+</code></pre>
+
+<p>客服端修改权限文件gitosis-admin.git/gitosis.conf：</p>
+
+<pre><code>[repo gitosis-admin.git]
+gitweb      = yes
+description = git server admin
+</code></pre>
+
+<p>服务器修改项目的配置文件，提供显示信息给gitweb，gitosis-admin.git/config：</p>
+
+<pre><code>[gitweb]
+    owner = meegoo tsui &lt;meegoo.tsui@gmail.com&gt;
+    url   = git@192.168.0.2:gitosis-admin.git
+</code></pre>
+
+<p>注：其他项目一样修改服务器xxx.git/config文件。 <br/>
+访问： http://192.168.0.2/gitweb</p>
+
+<hr />
+
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/12/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/10/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/05/31/octopress-skill/">octopress使用技巧</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/05/30/create-octopress-blog-temple/">创建Octopress博客模板</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/05/29/config-octopress-env/">配置Octopress环境</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/05/26/st-stm32-f1/">stm32 f1开发 - 初步</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/05/23/davinci-dm365/">davinci dm365开发 - 初步</a>
+      </li>
+    
+  </ul>
+
+  <h1>Categories</h1>
+  <ul>
+    <li>
+      <a class='category' href='/blog/categories/davinci/'>davinci</a>, <a class='category' href='/blog/categories/eclipse/'>eclipse</a>, <a class='category' href='/blog/categories/git/'>git</a>, <a class='category' href='/blog/categories/github/'>github</a>, <a class='category' href='/blog/categories/jekyll/'>jekyll</a>, <a class='category' href='/blog/categories/linux/'>linux</a>, <a class='category' href='/blog/categories/markdown/'>markdown</a>, <a class='category' href='/blog/categories/octopress/'>octopress</a>, <a class='category' href='/blog/categories/qt/'>qt</a>, <a class='category' href='/blog/categories/rvm/'>rvm</a>, <a class='category' href='/blog/categories/stm32/'>stm32</a>, <a class='category' href='/blog/categories/svn/'>svn</a>, <a class='category' href='/blog/categories/ubuntu/'>ubuntu</a>, <a class='category' href='/blog/categories/vim/'>vim</a>
+    </li>
+  </ul>
+
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Meegoo Tsui -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'meegootsui';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

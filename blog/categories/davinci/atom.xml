@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: davinci | Meegoo Tsui's Blog]]></title>
+  <link href="http://meegoo-tsui.github.com/blog/categories/davinci/atom.xml" rel="self"/>
+  <link href="http://meegoo-tsui.github.com/"/>
+  <updated>2012-06-01T11:30:54+08:00</updated>
+  <id>http://meegoo-tsui.github.com/</id>
+  <author>
+    <name><![CDATA[Meegoo Tsui]]></name>
+    <email><![CDATA[meegoo.tsui@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[davinci dm365开发 - 初步]]></title>
+    <link href="http://meegoo-tsui.github.com/blog/2012/05/23/davinci-dm365/"/>
+    <updated>2012-05-23T14:11:00+08:00</updated>
+    <id>http://meegoo-tsui.github.com/blog/2012/05/23/davinci-dm365</id>
+    <content type="html"><![CDATA[<p>资源链接：</p>
+
+<ul>
+<li><a href="http://www.ti.com/tool/linuxdvsdk-dm36x">DVSDK</a></li>
+</ul>
+
+
+<hr />
+
+]]></content>
+  </entry>
+  
+</feed>
